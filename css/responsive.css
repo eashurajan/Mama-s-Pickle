@@ -205,13 +205,59 @@
 
   /* 6. Social Gallery */
   .social-gallery {
-    --reel-width: 210px;
-    padding: var(--space-80) 0 var(--space-16);
+    --reel-width: clamp(220px, 34vw, 280px);
+    height: auto;
+    padding: var(--space-80) 0 var(--space-48);
+    gap: var(--space-40);
   }
 
   .social-gallery__title {
     font-size: 32px;
     line-height: 40px;
+  }
+
+  .social-gallery__viewport {
+    flex: none;
+    width: 100%;
+    overflow: visible;
+  }
+
+  .social-gallery__reels {
+    position: relative;
+    top: auto;
+    left: auto;
+    width: 100%;
+    height: auto;
+    display: flex;
+    align-items: flex-end;
+    gap: var(--space-16);
+    padding: var(--space-8) var(--space-40) var(--space-16);
+    overflow-x: auto;
+    overflow-y: hidden;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+    touch-action: pan-x pan-y;
+    scrollbar-width: none;
+  }
+
+  .social-gallery__reels::-webkit-scrollbar {
+    display: none;
+  }
+
+  .reel-item {
+    position: relative;
+    top: auto;
+    left: auto;
+    flex: 0 0 auto;
+    width: var(--reel-width);
+    scroll-snap-align: center;
+    opacity: 1;
+  }
+
+  .reel-item__insta {
+    opacity: 1;
+    visibility: visible;
   }
 
   /* 7. Site Footer */
@@ -842,14 +888,20 @@
 
   /* 6. Social Gallery */
   .social-gallery {
-    --reel-width: min(168px, 46vw);
-    --reel-radius: 22px;
-    padding: 72px 0 var(--space-12);
+    --reel-width: clamp(200px, 66vw, 260px);
+    --reel-radius: 24px;
+    padding: var(--space-48) 0 var(--space-32);
+    gap: var(--space-32);
   }
 
   .social-gallery__title {
     font-size: 28px;
     line-height: 36px;
+  }
+
+  .social-gallery__reels {
+    gap: var(--space-12);
+    padding: var(--space-4) var(--space-16) var(--space-12);
   }
 
   /* 7. Site Footer */

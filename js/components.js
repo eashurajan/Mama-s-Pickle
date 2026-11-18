@@ -1064,110 +1064,8 @@ function initReelsGallery() {
   };
 
   const hasGsap = typeof window.gsap !== 'undefined';
-  if (hasGsap) {
-    window.gsap.set(items, { x: 0 });
-    window.gsap.set(handles, { y: 0 });
-    window.gsap.set(cards, { scale: 1, transformOrigin: 'center bottom' });
-  }
-  const xSetters = hasGsap ? items.map((el) => window.gsap.quickSetter(el, 'x', 'px')) : null;
-  const ySetters = hasGsap ? handles.map((el) => window.gsap.quickSetter(el, 'y', 'px')) : null;
-  const scaleSetters = hasGsap ? cards.map((el) => window.gsap.quickSetter(el, 'scale')) : null;
-  const opacitySetters = hasGsap ? items.map((el) => window.gsap.quickSetter(el, 'opacity')) : null;
-
-  const measure = () => {
-    const card = cards[0];
-    const handle = handles[0];
-    metrics.cardWidth = card ? card.offsetWidth : metrics.cardWidth;
-    metrics.cardHeight = card ? card.offsetHeight : metrics.cardHeight;
-    const handleHeight = handle ? handle.offsetHeight : 20;
-    metrics.handleBlock = handleHeight + 10;
-    metrics.viewportCenter = window.innerWidth / 2;
-    metrics.gap = readGap();
-    const radiusValue = window.getComputedStyle(section).getPropertyValue('--reel-radius');
-    const parsedRadius = parseFloat(radiusValue);
-    metrics.radius = Number.isFinite(parsedRadius) ? parsedRadius : 32;
-  };
-
-  const placeTrack = () => {
-    const header = section.querySelector('.social-gallery__header');
-    const headerBottom = header ? header.offsetTop + header.offsetHeight : 0;
-    const viewportTop = viewport.offsetTop;
-    const minTop = Math.max(8, headerBottom - viewportTop + 12);
-    const bottomPad = window.innerWidth <= 767 ? 16 : 24;
-    const top = Math.max(minTop, viewport.clientHeight - metrics.handleBlock - metrics.cardHeight - bottomPad);
-    track.style.top = `${top}px`;
-    track.style.height = `${metrics.handleBlock + metrics.cardHeight}px`;
-  };
-
-  const applyFocus = (focus) => {
-    const safeFocus = Math.max(0, Math.min(count - 1, focus));
-
-    for (let i = 0; i < count; i += 1) {
-      scales[i] = coverflowScale(i - safeFocus);
-    }
-
-    centers[0] = 0;
-    for (let i = 0; i < count - 1; i += 1) {
-      centers[i + 1] =
-        centers[i] + (metrics.cardWidth * (scales[i] + scales[i + 1])) / 2 + metrics.gap;
-    }
-
-    const f0 = Math.max(0, Math.min(count - 1, Math.floor(safeFocus)));
-    const f1 = Math.min(count - 1, f0 + 1);
-    const t = safeFocus - f0;
-    const focusCenter = centers[f0] * (1 - t) + centers[f1] * t;
-    const origin = metrics.viewportCenter - focusCenter;
-
-    for (let i = 0; i < count; i += 1) {
-      const x = origin + centers[i] - metrics.cardWidth / 2;
-      const opacity = coverflowOpacity(i - safeFocus);
-      const handleShift = (1 - scales[i]) * metrics.cardHeight;
-
-      if (xSetters) {
-        xSetters[i](x);
-        ySetters[i](handleShift);
-        opacitySetters[i](opacity);
-      } else {
-        items[i].style.transform = `translate3d(${x}px, 0, 0)`;
-        handles[i].style.transform = `translate3d(0, ${handleShift}px, 0)`;
-        items[i].style.opacity = String(opacity);
-      }
-      cards[i].style.transform = `scale(${scales[i]})`;
-
-      cards[i].style.borderRadius = `${metrics.radius / scales[i]}px`;
-      items[i].style.zIndex = String(80 - Math.round(Math.abs(i - safeFocus) * 8));
-    }
-
-    const nearest = Math.round(safeFocus);
-    if (inView) {
-      for (let i = nearest - 1; i <= nearest + 1; i += 1) {
-        if (videos[i]) ensureSource(videos[i]);
-      }
-    }
-
-    let nextActive = activeIndex;
-    if (nextActive < 0 || Math.abs(safeFocus - nextActive) > 1.2) {
-      nextActive = nearest;
-    } else if (safeFocus - nextActive > 0.55) {
-      nextActive += 1;
-    } else if (nextActive - safeFocus > 0.55) {
-      nextActive -= 1;
-    }
-    setActiveReel(nextActive);
-  };
-
-  // Intro hold + one step per reel transition + outro hold, so reel 14 finishes centered.
-  const focusFromProgress = (progress) => {
-    const units = count + 1;
-    const u = progress * units;
-    return Math.min(count - 1, Math.max(0, u - 1));
-  };
-
-  const scrollDistance = () => Math.round(Math.max(180, window.innerHeight * 0.24) * (count - 1));
-
-  measure();
-  placeTrack();
-  applyFocus(0);
+  const desktopMq = window.matchMedia('(min-width: 1024px)');
+  let modeTeardown = null;
 
   const setInView = (next) => {
     inView = next;
@@ -1175,69 +1073,320 @@ function initReelsGallery() {
     else pauseAll();
   };
 
-  if (hasGsap && typeof window.ScrollTrigger !== 'undefined') {
-    const { gsap, ScrollTrigger } = window;
-    gsap.registerPlugin(ScrollTrigger);
-
-    ctx = gsap.context(() => {
-      ScrollTrigger.create({
-        trigger: section,
-        start: 'top top',
-        end: () => `+=${scrollDistance()}`,
-        pin: true,
-        pinType: 'fixed',
-        pinSpacing: true,
-        scrub: 0.55,
-        anticipatePin: 1,
-        invalidateOnRefresh: true,
-        onRefresh: (self) => {
-          measure();
-          placeTrack();
-          applyFocus(focusFromProgress(self.progress || 0));
-        },
-        onUpdate: (self) => {
-          applyFocus(focusFromProgress(self.progress));
-        },
-        onToggle: (self) => {
-          setInView(self.isActive);
-        },
+  const clearInlineStyles = () => {
+    track.style.removeProperty('top');
+    track.style.removeProperty('height');
+    if (hasGsap) {
+      window.gsap.set(items, { clearProps: 'transform,opacity,zIndex' });
+      window.gsap.set(handles, { clearProps: 'transform' });
+      window.gsap.set(cards, { clearProps: 'transform,borderRadius' });
+    } else {
+      items.forEach((el) => {
+        el.style.removeProperty('transform');
+        el.style.removeProperty('opacity');
+        el.style.removeProperty('z-index');
       });
-    }, section);
-
-    const refreshOnLoad = () => {
-      if (ctx) ScrollTrigger.refresh();
-    };
-    window.addEventListener('load', refreshOnLoad, { once: true });
-
-    if (document.fonts && document.fonts.ready) {
-      document.fonts.ready.then(() => {
-        if (ctx) ScrollTrigger.refresh();
+      handles.forEach((el) => {
+        if (el) el.style.removeProperty('transform');
+      });
+      cards.forEach((el) => {
+        if (el) {
+          el.style.removeProperty('transform');
+          el.style.removeProperty('border-radius');
+        }
       });
     }
-  }
-
-  const handleResize = () => {
-    clearTimeout(resizeTimer);
-    resizeTimer = setTimeout(() => {
-      measure();
-      placeTrack();
-      if (window.ScrollTrigger) window.ScrollTrigger.refresh();
-      else applyFocus(0);
-    }, 150);
   };
 
-  window.addEventListener('resize', handleResize);
+  const setupDesktopMode = () => {
+    clearInlineStyles();
+
+    if (hasGsap) {
+      window.gsap.set(items, { x: 0 });
+      window.gsap.set(handles, { y: 0 });
+      window.gsap.set(cards, { scale: 1, transformOrigin: 'center bottom' });
+    }
+
+    const xSetters = hasGsap ? items.map((el) => window.gsap.quickSetter(el, 'x', 'px')) : null;
+    const ySetters = hasGsap ? handles.map((el) => window.gsap.quickSetter(el, 'y', 'px')) : null;
+    const opacitySetters = hasGsap ? items.map((el) => window.gsap.quickSetter(el, 'opacity')) : null;
+
+    const measure = () => {
+      const card = cards[0];
+      const handle = handles[0];
+      metrics.cardWidth = card ? card.offsetWidth : metrics.cardWidth;
+      metrics.cardHeight = card ? card.offsetHeight : metrics.cardHeight;
+      const handleHeight = handle ? handle.offsetHeight : 20;
+      metrics.handleBlock = handleHeight + 10;
+      metrics.viewportCenter = window.innerWidth / 2;
+      metrics.gap = readGap();
+      const radiusValue = window.getComputedStyle(section).getPropertyValue('--reel-radius');
+      const parsedRadius = parseFloat(radiusValue);
+      metrics.radius = Number.isFinite(parsedRadius) ? parsedRadius : 32;
+    };
+
+    const placeTrack = () => {
+      const header = section.querySelector('.social-gallery__header');
+      const headerBottom = header ? header.offsetTop + header.offsetHeight : 0;
+      const viewportTop = viewport.offsetTop;
+      const minTop = Math.max(8, headerBottom - viewportTop + 12);
+      const bottomPad = 24;
+      const top = Math.max(minTop, viewport.clientHeight - metrics.handleBlock - metrics.cardHeight - bottomPad);
+      track.style.top = `${top}px`;
+      track.style.height = `${metrics.handleBlock + metrics.cardHeight}px`;
+    };
+
+    const applyFocus = (focus) => {
+      const safeFocus = Math.max(0, Math.min(count - 1, focus));
+
+      for (let i = 0; i < count; i += 1) {
+        scales[i] = coverflowScale(i - safeFocus);
+      }
+
+      centers[0] = 0;
+      for (let i = 0; i < count - 1; i += 1) {
+        centers[i + 1] =
+          centers[i] + (metrics.cardWidth * (scales[i] + scales[i + 1])) / 2 + metrics.gap;
+      }
+
+      const f0 = Math.max(0, Math.min(count - 1, Math.floor(safeFocus)));
+      const f1 = Math.min(count - 1, f0 + 1);
+      const t = safeFocus - f0;
+      const focusCenter = centers[f0] * (1 - t) + centers[f1] * t;
+      const origin = metrics.viewportCenter - focusCenter;
+
+      for (let i = 0; i < count; i += 1) {
+        const x = origin + centers[i] - metrics.cardWidth / 2;
+        const opacity = coverflowOpacity(i - safeFocus);
+        const handleShift = (1 - scales[i]) * metrics.cardHeight;
+
+        if (xSetters) {
+          xSetters[i](x);
+          ySetters[i](handleShift);
+          opacitySetters[i](opacity);
+        } else {
+          items[i].style.transform = `translate3d(${x}px, 0, 0)`;
+          handles[i].style.transform = `translate3d(0, ${handleShift}px, 0)`;
+          items[i].style.opacity = String(opacity);
+        }
+        cards[i].style.transform = `scale(${scales[i]})`;
+        cards[i].style.borderRadius = `${metrics.radius / scales[i]}px`;
+        items[i].style.zIndex = String(80 - Math.round(Math.abs(i - safeFocus) * 8));
+      }
+
+      const nearest = Math.round(safeFocus);
+      if (inView) {
+        for (let i = nearest - 1; i <= nearest + 1; i += 1) {
+          if (videos[i]) ensureSource(videos[i]);
+        }
+      }
+
+      let nextActive = activeIndex;
+      if (nextActive < 0 || Math.abs(safeFocus - nextActive) > 1.2) {
+        nextActive = nearest;
+      } else if (safeFocus - nextActive > 0.55) {
+        nextActive += 1;
+      } else if (nextActive - safeFocus > 0.55) {
+        nextActive -= 1;
+      }
+      setActiveReel(nextActive);
+    };
+
+    const focusFromProgress = (progress) => {
+      const units = count + 1;
+      const u = progress * units;
+      return Math.min(count - 1, Math.max(0, u - 1));
+    };
+
+    const scrollDistance = () => Math.round(Math.max(180, window.innerHeight * 0.24) * (count - 1));
+
+    measure();
+    placeTrack();
+    applyFocus(0);
+
+    let refreshOnLoad = null;
+    if (hasGsap && typeof window.ScrollTrigger !== 'undefined') {
+      const { gsap, ScrollTrigger } = window;
+      gsap.registerPlugin(ScrollTrigger);
+
+      ctx = gsap.context(() => {
+        ScrollTrigger.create({
+          trigger: section,
+          start: 'top top',
+          end: () => `+=${scrollDistance()}`,
+          pin: true,
+          pinType: 'fixed',
+          pinSpacing: true,
+          scrub: 0.55,
+          anticipatePin: 1,
+          invalidateOnRefresh: true,
+          onRefresh: (self) => {
+            measure();
+            placeTrack();
+            applyFocus(focusFromProgress(self.progress || 0));
+          },
+          onUpdate: (self) => {
+            applyFocus(focusFromProgress(self.progress));
+          },
+          onToggle: (self) => {
+            setInView(self.isActive);
+          },
+        });
+      }, section);
+
+      refreshOnLoad = () => {
+        if (ctx) ScrollTrigger.refresh();
+      };
+      window.addEventListener('load', refreshOnLoad, { once: true });
+
+      if (document.fonts && document.fonts.ready) {
+        document.fonts.ready.then(() => {
+          if (ctx) ScrollTrigger.refresh();
+        });
+      }
+    }
+
+    const handleResize = () => {
+      if (!desktopMq.matches) return;
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(() => {
+        measure();
+        placeTrack();
+        if (window.ScrollTrigger) window.ScrollTrigger.refresh();
+        else applyFocus(0);
+      }, 150);
+    };
+
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+      clearTimeout(resizeTimer);
+      window.removeEventListener('resize', handleResize);
+      if (refreshOnLoad) window.removeEventListener('load', refreshOnLoad);
+      if (ctx) {
+        ctx.revert();
+        ctx = null;
+      }
+      clearInlineStyles();
+      pauseAll();
+    };
+  };
+
+  const setupMobileMode = () => {
+    clearInlineStyles();
+    track.scrollLeft = 0;
+    let rafId = null;
+    let io = null;
+
+    const findCenteredReelIndex = () => {
+      const trackRect = track.getBoundingClientRect();
+      const centerX = trackRect.left + trackRect.width / 2;
+      let bestIndex = 0;
+      let bestDist = Infinity;
+
+      for (let i = 0; i < count; i += 1) {
+        const rect = items[i].getBoundingClientRect();
+        const itemCenter = rect.left + rect.width / 2;
+        const dist = Math.abs(itemCenter - centerX);
+        if (dist < bestDist) {
+          bestDist = dist;
+          bestIndex = i;
+        }
+      }
+      return bestIndex;
+    };
+
+    const syncFromScroll = () => {
+      rafId = null;
+      const nearest = findCenteredReelIndex();
+      setActiveReel(nearest);
+    };
+
+    const onTrackScroll = () => {
+      if (rafId !== null) return;
+      rafId = window.requestAnimationFrame(syncFromScroll);
+    };
+
+    const itemClickHandlers = items.map((item, idx) => {
+      const handler = () => {
+        setActiveReel(idx);
+        item.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+      };
+      item.addEventListener('click', handler);
+      return { item, handler };
+    });
+
+    track.addEventListener('scroll', onTrackScroll, { passive: true });
+
+    if (typeof window.IntersectionObserver !== 'undefined') {
+      io = new window.IntersectionObserver(
+        (entries) => {
+          const entry = entries[0];
+          setInView(Boolean(entry && entry.isIntersecting));
+        },
+        { threshold: 0.25 }
+      );
+      io.observe(section);
+    } else {
+      setInView(true);
+    }
+
+    setActiveReel(0);
+
+    return () => {
+      if (rafId !== null) {
+        window.cancelAnimationFrame(rafId);
+        rafId = null;
+      }
+      track.removeEventListener('scroll', onTrackScroll);
+      itemClickHandlers.forEach(({ item, handler }) => {
+        item.removeEventListener('click', handler);
+      });
+      if (io) {
+        io.disconnect();
+        io = null;
+      }
+      pauseAll();
+    };
+  };
+
+  const applyMode = () => {
+    if (typeof modeTeardown === 'function') {
+      modeTeardown();
+      modeTeardown = null;
+    }
+    activeIndex = -1;
+    inView = false;
+    modeTeardown = desktopMq.matches ? setupDesktopMode() : setupMobileMode();
+  };
+
+  applyMode();
+
+  const onBreakpointChange = () => {
+    applyMode();
+  };
+
+  if (typeof desktopMq.addEventListener === 'function') {
+    desktopMq.addEventListener('change', onBreakpointChange);
+  } else if (typeof desktopMq.addListener === 'function') {
+    desktopMq.addListener(onBreakpointChange);
+  }
 
   const cleanup = () => {
-    clearTimeout(resizeTimer);
-    window.removeEventListener('resize', handleResize);
-    pauseAll();
+    if (typeof desktopMq.removeEventListener === 'function') {
+      desktopMq.removeEventListener('change', onBreakpointChange);
+    } else if (typeof desktopMq.removeListener === 'function') {
+      desktopMq.removeListener(onBreakpointChange);
+    }
+    if (typeof modeTeardown === 'function') {
+      modeTeardown();
+      modeTeardown = null;
+    }
     videos.forEach((video) => {
       if (!video) return;
       video.removeAttribute('src');
       video.load();
     });
-    if (ctx) ctx.revert();
     section._reelsCleanup = null;
   };
 
@@ -1633,6 +1782,7 @@ function initProductDetailPage() {
   const storageEl = pdpMain.querySelector('[data-pdp-storage]');
   const nutritionHeadingEl = pdpMain.querySelector('[data-pdp-nutrition-heading]');
   const nutritionValuesEl = pdpMain.querySelector('[data-pdp-nutrition-values]');
+  const relatedSectionEl = pdpMain.querySelector('.pdp-suggestions');
   const relatedGridEl = pdpMain.querySelector('[data-pdp-related-grid]');
 
   let activeProduct = null;
@@ -1888,6 +2038,44 @@ function initProductDetailPage() {
     renderGallery();
   };
 
+  const renderRelatedSuggestions = () => {
+    if (!relatedGridEl || !activeProduct) return;
+    relatedGridEl.innerHTML = '';
+
+    const cartSlugs = new Set(getCartItems().map((item) => item.slug));
+    const relatedProducts = (activeProduct.relatedSlugs || [])
+      .filter((relSlug) => relSlug !== activeProduct.slug && !cartSlugs.has(relSlug))
+      .map((relSlug) => getBySlug(relSlug))
+      .filter(Boolean);
+
+    const isTabletViewport = window.matchMedia('(min-width: 768px) and (max-width: 1023px)').matches;
+    const desiredCount = isTabletViewport ? 6 : 4;
+
+    if (relatedProducts.length < desiredCount) {
+      productsData.forEach((candidate) => {
+        if (
+          relatedProducts.length < desiredCount &&
+          candidate.slug !== activeProduct.slug &&
+          !cartSlugs.has(candidate.slug) &&
+          !relatedProducts.some((p) => p.slug === candidate.slug)
+        ) {
+          relatedProducts.push(candidate);
+        }
+      });
+    }
+
+    if (relatedSectionEl) {
+      relatedSectionEl.classList.toggle('is-hidden', relatedProducts.length === 0);
+    }
+
+    relatedProducts.slice(0, desiredCount).forEach((relProduct) => {
+      const cardEl = renderSuggestedProductCard(relProduct, (nextSlug) => {
+        navigateToProductSlug(nextSlug);
+      });
+      relatedGridEl.appendChild(cardEl);
+    });
+  };
+
   const renderProductBySlug = (slug, { scrollToTop = false } = {}) => {
     const product = getBySlug(slug);
 
@@ -1961,34 +2149,7 @@ function initProductDetailPage() {
       nutritionValuesEl.textContent = product.nutritionalInfo.values;
     }
 
-    if (relatedGridEl) {
-      relatedGridEl.innerHTML = '';
-      const relatedProducts = (product.relatedSlugs || [])
-        .map((relSlug) => getBySlug(relSlug))
-        .filter(Boolean);
-
-      const isTabletViewport = window.matchMedia('(min-width: 768px) and (max-width: 1023px)').matches;
-      const desiredCount = isTabletViewport ? 6 : 4;
-
-      if (relatedProducts.length < desiredCount) {
-        productsData.forEach((candidate) => {
-          if (
-            relatedProducts.length < desiredCount &&
-            candidate.slug !== product.slug &&
-            !relatedProducts.some((p) => p.slug === candidate.slug)
-          ) {
-            relatedProducts.push(candidate);
-          }
-        });
-      }
-
-      relatedProducts.slice(0, desiredCount).forEach((relProduct) => {
-        const cardEl = renderSuggestedProductCard(relProduct, (nextSlug) => {
-          navigateToProductSlug(nextSlug);
-        });
-        relatedGridEl.appendChild(cardEl);
-      });
-    }
+    renderRelatedSuggestions();
 
     if (scrollToTop) {
       if (window.__lenisInstance) {
@@ -2004,6 +2165,8 @@ function initProductDetailPage() {
     window.history.pushState({ productSlug: slug }, '', nextUrl);
     renderProductBySlug(slug, { scrollToTop: true });
   };
+
+  window.addEventListener('mamas:cart-updated', renderRelatedSuggestions);
 
   if (galleryEl) {
     galleryEl.addEventListener('mouseenter', () => {
