@@ -231,7 +231,7 @@
     display: flex;
     align-items: flex-end;
     gap: var(--space-16);
-    padding: var(--space-8) var(--space-40) var(--space-16);
+    padding: var(--space-8) calc(50% - var(--reel-width) / 2) var(--space-16);
     overflow-x: auto;
     overflow-y: hidden;
     scroll-snap-type: x mandatory;
@@ -253,11 +253,6 @@
     width: var(--reel-width);
     scroll-snap-align: center;
     opacity: 1;
-  }
-
-  .reel-item__insta {
-    opacity: 1;
-    visibility: visible;
   }
 
   /* 7. Site Footer */
@@ -705,7 +700,7 @@
   }
 
   .product-section__header {
-    gap: var(--space-16);
+    gap: var(--space-32);
   }
 
   .product-section__title {
@@ -800,7 +795,8 @@
   }
 
   .promo-section__dots {
-    display: none;
+    display: flex;
+    bottom: var(--space-12);
   }
 
   /* 4. Testimonials Section */
@@ -901,7 +897,7 @@
 
   .social-gallery__reels {
     gap: var(--space-12);
-    padding: var(--space-4) var(--space-16) var(--space-12);
+    padding: var(--space-4) calc(50% - var(--reel-width) / 2) var(--space-12);
   }
 
   /* 7. Site Footer */

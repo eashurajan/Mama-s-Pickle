@@ -254,10 +254,10 @@ function initCartCounter() {
 }
 
 /**
- * Populates and binds a Figma 584:925 Quantity Pill + 584:966 Hover Dropdown component.
- * - Shows dropdown while cursor hovers over the button/dropdown container (`mouseenter`),
- *   and hides it when the cursor leaves (`mouseleave`).
- * - Clicking "More" expands options 11..20.
+ * Populates and binds a Quantity Pill + Hover/Tap Dropdown component (options 1–10).
+ * - Shows dropdown on hover (`mouseenter`) or pill tap, and closes on `mouseleave`,
+ *   option selection, or outside click.
+ * - Dynamically aligns left/right/center within viewport boundaries.
  * @param {HTMLElement} controlEl - The `.mp-qty-control` container element
  * @param {object} config
  * @param {number} config.currentQty
@@ -270,30 +270,92 @@ function setupQuantityHoverDropdown(controlEl, { currentQty = 1, onSelectQty, on
   const qtyValEl = controlEl.querySelector('[data-qty-val], [data-pdp-qty-val], [data-cart-item-qty]');
   const removeBtn = controlEl.querySelector('[data-qty-remove], [data-pdp-qty-remove], [data-cart-item-remove]');
   const optionsListEl = controlEl.querySelector('[data-qty-options], [data-pdp-qty-options]');
-  const moreWrapEl = controlEl.querySelector('.mp-qty-dropdown__more-wrap');
-  const moreBtn = controlEl.querySelector('[data-qty-more], [data-pdp-qty-more]');
+  const dropdownEl = controlEl.querySelector('.mp-qty-dropdown');
+  const pillEl = controlEl.querySelector('.mp-qty-pill');
 
   controlEl._qtyCallbacks = { onSelectQty, onRemove };
-  if (typeof controlEl._maxOption !== 'number' || currentQty <= 10) {
-    controlEl._maxOption = currentQty > 10 ? 20 : 10;
-  }
+
+  const positionDropdown = () => {
+    if (!dropdownEl) return;
+    const anchorRect = (pillEl || controlEl).getBoundingClientRect();
+    const containerEl = controlEl.closest('.cart-main-col, .pdp-info, main');
+    const containerRect = containerEl ? containerEl.getBoundingClientRect() : null;
+    const vw = window.innerWidth;
+    const vh = window.innerHeight;
+    const edgePad = 12;
+
+    const boundLeft = containerRect ? Math.max(edgePad, containerRect.left) : edgePad;
+    const boundRight = containerRect ? Math.min(vw - edgePad, containerRect.right) : vw - edgePad;
+
+    dropdownEl.style.left = '';
+    dropdownEl.style.right = '';
+    dropdownEl.style.top = '';
+    dropdownEl.style.bottom = '';
+    dropdownEl.style.transform = '';
+
+    const ddWidth = dropdownEl.offsetWidth || 320;
+    const ddHeight = dropdownEl.offsetHeight || 52;
+
+    const spaceOnRight = boundRight - anchorRect.left;
+    const spaceOnLeft = anchorRect.right - boundLeft;
+
+    // Dynamic alignment: align left-to-right if space on right, else align right-to-left if space on left, else center & clamp
+    if (spaceOnRight >= ddWidth) {
+      dropdownEl.style.left = '0';
+      dropdownEl.style.right = 'auto';
+      dropdownEl.style.transform = 'none';
+    } else if (spaceOnLeft >= ddWidth) {
+      dropdownEl.style.right = '0';
+      dropdownEl.style.left = 'auto';
+      dropdownEl.style.transform = 'none';
+    } else {
+      const centerX = anchorRect.left + anchorRect.width / 2;
+      const halfWidth = ddWidth / 2;
+      let shift = 0;
+      if (centerX - halfWidth < edgePad) {
+        shift = edgePad - (centerX - halfWidth);
+      } else if (centerX + halfWidth > vw - edgePad) {
+        shift = vw - edgePad - (centerX + halfWidth);
+      }
+      dropdownEl.style.left = '50%';
+      dropdownEl.style.right = 'auto';
+      dropdownEl.style.transform = `translateX(calc(-50% + ${Math.round(shift)}px))`;
+    }
+
+    // Vertical flip if bottom edge would clip and top has room
+    if (anchorRect.bottom + 8 + ddHeight > vh - edgePad && anchorRect.top - 8 - ddHeight >= edgePad) {
+      dropdownEl.style.top = 'auto';
+      dropdownEl.style.bottom = 'calc(100% + 4px)';
+    }
+  };
+
+  const openDropdown = () => {
+    controlEl.classList.add('is-dropdown-open');
+    positionDropdown();
+  };
+
+  const closeDropdown = () => {
+    controlEl.classList.remove('is-dropdown-open');
+  };
 
   const renderOptions = (selectedQty) => {
-    if (qtyValEl) qtyValEl.textContent = String(selectedQty);
+    const safeQty = Math.max(1, Math.min(10, Number(selectedQty) || 1));
+    if (qtyValEl) qtyValEl.textContent = String(safeQty);
     if (!optionsListEl) return;
 
-    const maxOpt = controlEl._maxOption || 10;
     optionsListEl.innerHTML = '';
-    for (let q = 1; q <= maxOpt; q += 1) {
+    for (let q = 1; q <= 10; q += 1) {
       const optBtn = document.createElement('button');
       optBtn.type = 'button';
       optBtn.setAttribute('role', 'option');
-      optBtn.setAttribute('aria-selected', String(q === selectedQty));
-      optBtn.className = `mp-qty-dropdown__option ${q === selectedQty ? 'is-selected' : ''}`;
+      optBtn.setAttribute('aria-selected', String(q === safeQty));
+      optBtn.className = `mp-qty-dropdown__option ${q === safeQty ? 'is-selected' : ''}`;
       optBtn.textContent = String(q);
 
       optBtn.addEventListener('click', (e) => {
         e.stopPropagation();
+        if (qtyValEl) qtyValEl.textContent = String(q);
+        closeDropdown();
         const cb = controlEl._qtyCallbacks?.onSelectQty;
         if (typeof cb === 'function') {
           cb(q);
@@ -302,32 +364,17 @@ function setupQuantityHoverDropdown(controlEl, { currentQty = 1, onSelectQty, on
 
       optionsListEl.appendChild(optBtn);
     }
-
-    if (moreWrapEl) {
-      moreWrapEl.classList.toggle('is-hidden', maxOpt > 10);
-    }
   };
 
   controlEl._renderOptions = renderOptions;
+  controlEl._positionDropdown = positionDropdown;
   renderOptions(currentQty);
-
-  if (moreBtn && !moreBtn.hasAttribute('data-bound')) {
-    moreBtn.setAttribute('data-bound', 'true');
-    moreBtn.addEventListener('click', (e) => {
-      e.stopPropagation();
-      controlEl._maxOption = 20;
-      const latestQty = Number.parseInt(qtyValEl?.textContent || '1', 10) || 1;
-      if (typeof controlEl._renderOptions === 'function') {
-        controlEl._renderOptions(latestQty);
-      }
-    });
-  }
 
   if (removeBtn && !removeBtn.hasAttribute('data-bound')) {
     removeBtn.setAttribute('data-bound', 'true');
     removeBtn.addEventListener('click', (e) => {
       e.stopPropagation();
-      controlEl.classList.remove('is-dropdown-open');
+      closeDropdown();
       const cb = controlEl._qtyCallbacks?.onRemove;
       if (typeof cb === 'function') {
         cb();
@@ -335,26 +382,37 @@ function setupQuantityHoverDropdown(controlEl, { currentQty = 1, onSelectQty, on
     });
   }
 
-  // Hover behavior: show dropdown while cursor is hovering on the button/dropdown, hide on mouseleave
   if (!controlEl.hasAttribute('data-hover-bound')) {
     controlEl.setAttribute('data-hover-bound', 'true');
 
-    controlEl.addEventListener('mouseenter', () => {
-      controlEl.classList.add('is-dropdown-open');
-    });
+    controlEl.addEventListener('mouseenter', openDropdown);
+    controlEl.addEventListener('mouseleave', closeDropdown);
 
-    controlEl.addEventListener('mouseleave', () => {
-      controlEl.classList.remove('is-dropdown-open');
-    });
-
-    // Also allow click/tap on the pill itself to toggle on touch devices
-    const pillEl = controlEl.querySelector('.mp-qty-pill');
     if (pillEl) {
       pillEl.addEventListener('click', (e) => {
         if (e.target.closest('button')) return;
-        controlEl.classList.toggle('is-dropdown-open');
+        e.stopPropagation();
+        if (controlEl.classList.contains('is-dropdown-open')) {
+          closeDropdown();
+        } else {
+          openDropdown();
+        }
       });
     }
+
+    const syncIfOpen = () => {
+      if (controlEl.classList.contains('is-dropdown-open')) {
+        positionDropdown();
+      }
+    };
+
+    window.addEventListener('resize', syncIfOpen);
+    window.addEventListener('scroll', syncIfOpen, { passive: true });
+    document.addEventListener('click', (e) => {
+      if (!controlEl.contains(e.target)) {
+        closeDropdown();
+      }
+    });
   }
 }
 
@@ -1277,29 +1335,63 @@ function initReelsGallery() {
     track.scrollLeft = 0;
     let rafId = null;
     let io = null;
+    let mobileResizeTimer = null;
 
-    const findCenteredReelIndex = () => {
-      const trackRect = track.getBoundingClientRect();
-      const centerX = trackRect.left + trackRect.width / 2;
-      let bestIndex = 0;
-      let bestDist = Infinity;
+    const mobileMetrics = {
+      cardWidth: 210,
+      cardHeight: 373,
+      gap: 16,
+      radius: 24,
+    };
+
+    const measureMobile = () => {
+      const card = cards[0];
+      mobileMetrics.cardWidth = card ? card.offsetWidth : mobileMetrics.cardWidth;
+      mobileMetrics.cardHeight = card ? card.offsetHeight : mobileMetrics.cardHeight;
+      mobileMetrics.gap = readGap();
+      const radiusValue = window.getComputedStyle(section).getPropertyValue('--reel-radius');
+      const parsedRadius = parseFloat(radiusValue);
+      mobileMetrics.radius = Number.isFinite(parsedRadius) ? parsedRadius : 24;
+      cards.forEach((c) => {
+        if (c) c.style.transformOrigin = 'center bottom';
+      });
+    };
+
+    const applyMobileStagger = (focus) => {
+      const safeFocus = Math.max(0, Math.min(count - 1, focus));
 
       for (let i = 0; i < count; i += 1) {
-        const rect = items[i].getBoundingClientRect();
-        const itemCenter = rect.left + rect.width / 2;
-        const dist = Math.abs(itemCenter - centerX);
-        if (dist < bestDist) {
-          bestDist = dist;
-          bestIndex = i;
+        const s = coverflowScale(i - safeFocus);
+        const opacity = coverflowOpacity(i - safeFocus);
+        const handleShift = (1 - s) * mobileMetrics.cardHeight;
+
+        cards[i].style.transform = `scale(${s})`;
+        cards[i].style.borderRadius = `${mobileMetrics.radius / s}px`;
+        if (handles[i]) {
+          handles[i].style.transform = `translate3d(0, ${handleShift}px, 0)`;
+        }
+        items[i].style.opacity = String(opacity);
+        items[i].style.zIndex = String(80 - Math.round(Math.abs(i - safeFocus) * 8));
+      }
+
+      const nearest = Math.round(safeFocus);
+      if (inView) {
+        for (let i = nearest - 1; i <= nearest + 1; i += 1) {
+          if (videos[i]) ensureSource(videos[i]);
         }
       }
-      return bestIndex;
+      setActiveReel(nearest);
+    };
+
+    const getFocusFromScroll = () => {
+      const step = mobileMetrics.cardWidth + mobileMetrics.gap;
+      if (step <= 0) return 0;
+      return Math.max(0, Math.min(count - 1, track.scrollLeft / step));
     };
 
     const syncFromScroll = () => {
       rafId = null;
-      const nearest = findCenteredReelIndex();
-      setActiveReel(nearest);
+      applyMobileStagger(getFocusFromScroll());
     };
 
     const onTrackScroll = () => {
@@ -1307,16 +1399,26 @@ function initReelsGallery() {
       rafId = window.requestAnimationFrame(syncFromScroll);
     };
 
+    const onMobileResize = () => {
+      if (desktopMq.matches) return;
+      clearTimeout(mobileResizeTimer);
+      mobileResizeTimer = setTimeout(() => {
+        measureMobile();
+        applyMobileStagger(getFocusFromScroll());
+      }, 120);
+    };
+
     const itemClickHandlers = items.map((item, idx) => {
       const handler = () => {
-        setActiveReel(idx);
-        item.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+        const step = mobileMetrics.cardWidth + mobileMetrics.gap;
+        track.scrollTo({ left: idx * step, behavior: 'smooth' });
       };
       item.addEventListener('click', handler);
       return { item, handler };
     });
 
     track.addEventListener('scroll', onTrackScroll, { passive: true });
+    window.addEventListener('resize', onMobileResize);
 
     if (typeof window.IntersectionObserver !== 'undefined') {
       io = new window.IntersectionObserver(
@@ -1331,9 +1433,12 @@ function initReelsGallery() {
       setInView(true);
     }
 
-    setActiveReel(0);
+    measureMobile();
+    applyMobileStagger(0);
 
     return () => {
+      clearTimeout(mobileResizeTimer);
+      window.removeEventListener('resize', onMobileResize);
       if (rafId !== null) {
         window.cancelAnimationFrame(rafId);
         rafId = null;
@@ -1346,6 +1451,7 @@ function initReelsGallery() {
         io.disconnect();
         io = null;
       }
+      clearInlineStyles();
       pauseAll();
     };
   };
@@ -2472,11 +2578,6 @@ function initCartPage() {
 
           <div class="mp-qty-dropdown" role="listbox" aria-label="Select quantity for ${item.name}">
             <div class="mp-qty-dropdown__list" data-qty-options></div>
-            <div class="mp-qty-dropdown__more-wrap">
-              <button type="button" class="mp-qty-dropdown__more" data-qty-more>
-                <span>More</span>
-              </button>
-            </div>
           </div>
         </div>
       `;
@@ -2589,15 +2690,17 @@ function initCartPage() {
         }
         return;
       }
+      placeOrderBtn.disabled = true;
       if (placeOrderLabel) {
         placeOrderLabel.textContent = 'Order Placed ✓';
-        setTimeout(() => {
-          placeOrderLabel.textContent = 'Place Order';
-        }, 3000);
       }
       if (orderStatusEl) {
         orderStatusEl.textContent = '✓ Thank you! Your order has been received.';
       }
+      saveCartItems([]);
+      setTimeout(() => {
+        window.location.href = 'index.html#shop-products';
+      }, 1000);
     });
   }
 
