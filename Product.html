@@ -5,6 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Chicken Pickle — Mama’s Pickles</title>
   <meta name="description" content="Explore handcrafted Indian pickles from Mama’s Pickles — made with cold-pressed gingelly oil and authentic South Indian spices." />
+  <link rel="preload" href="assets/fonts/hornbill/hornbill-trial-bold.ttf" as="font" type="font/ttf" crossorigin />
+  <link rel="preload" href="assets/fonts/quicksand-variable-wght.ttf" as="font" type="font/ttf" crossorigin />
   <link rel="stylesheet" href="css/style.css" />
   <link rel="stylesheet" href="css/responsive.css" />
   <link rel="stylesheet" href="css/animations.css" />
@@ -50,7 +52,7 @@
       <!-- Desktop Navigation Menu (>= 1024px) -->
       <ul class="navbar__menu" data-node-id="I1147:4585;1023:315">
         <li class="navbar__menu-item" data-node-id="I1147:4585;1023:316">
-          <a href="index.html" class="navbar__link is-active" data-node-id="I1147:4585;1023:317">Home</a>
+          <a href="index.html" class="navbar__link" data-node-id="I1147:4585;1023:317">Home</a>
         </li>
         <li class="navbar__menu-item navbar__menu-item--shop" data-node-id="I1147:4585;1023:318">
           <button type="button" class="navbar__link" aria-haspopup="true" aria-expanded="false" data-nav-shop data-node-id="I1147:4585;1023:319">Shop</button>
@@ -86,7 +88,7 @@
         </div>
         <ul class="mobile-drawer__list">
           <li><a href="index.html" class="mobile-drawer__link">Home</a></li>
-          <li><button type="button" class="mobile-drawer__link is-active" data-nav-shop-mobile>Shop</button></li>
+          <li><button type="button" class="mobile-drawer__link" data-nav-shop-mobile>Shop</button></li>
           <li><a href="our-story.html" class="mobile-drawer__link">Our Story</a></li>
           <li><a href="contact-us.html" class="mobile-drawer__link">Contact Us</a></li>
         </ul>
@@ -132,7 +134,14 @@
             <!-- Left: Interactive Product Image Gallery -->
             <div class="pdp-gallery" data-node-id="1147:4593">
               <div class="pdp-gallery__stage" data-node-id="1147:4594">
-                <div class="pdp-gallery__main-wrap" data-node-id="1147:4595">
+                <div
+                  class="pdp-gallery__main-wrap"
+                  role="button"
+                  tabindex="0"
+                  aria-label="Open product image gallery preview"
+                  data-pdp-main-trigger
+                  data-node-id="1147:4595"
+                >
                   <img
                     src="assets/images/products/pickle-chicken-front-with-bg-350g.png"
                     alt="Chicken Pickle (350g) jar in kitchen setting"
@@ -140,25 +149,6 @@
                     data-pdp-main-img
                   />
                 </div>
-                <button
-                  type="button"
-                  class="pdp-gallery__prev is-hidden"
-                  aria-label="Previous product image"
-                  aria-hidden="true"
-                  tabindex="-1"
-                  data-pdp-prev
-                >
-                  <img src="assets/icons/icon-chevron-left.svg" alt="" class="pdp-gallery__next-icon" width="36" height="36" />
-                </button>
-                <button
-                  type="button"
-                  class="pdp-gallery__next"
-                  aria-label="Next product image"
-                  data-pdp-next
-                  data-node-id="1147:4596"
-                >
-                  <img src="assets/icons/icon-chevron-right.svg" alt="" class="pdp-gallery__next-icon" width="36" height="36" />
-                </button>
               </div>
 
               <!-- 5 Gallery Thumbnails -->
@@ -516,6 +506,46 @@
       </div>
     </div>
   </footer>
+
+  <!-- Product Gallery Preview Lightbox Popup -->
+  <div
+    class="pdp-lightbox"
+    id="pdp-gallery-lightbox"
+    role="dialog"
+    aria-modal="true"
+    aria-hidden="true"
+    aria-label="Product image gallery preview"
+    data-pdp-lightbox
+  >
+    <div class="pdp-lightbox__backdrop" data-pdp-lightbox-close></div>
+    <div class="pdp-lightbox__dialog">
+      <div class="pdp-lightbox__header">
+        <div class="pdp-lightbox__meta">
+          <span class="pdp-lightbox__title" data-pdp-lightbox-title>Product Gallery</span>
+          <span class="pdp-lightbox__counter" data-pdp-lightbox-counter>1 / 5</span>
+        </div>
+        <button
+          type="button"
+          class="pdp-lightbox__close"
+          aria-label="Close gallery preview"
+          data-pdp-lightbox-close
+        >
+          <img src="assets/icons/icon-close.svg" alt="" width="24" height="24" />
+        </button>
+      </div>
+
+      <div class="pdp-lightbox__stage" data-pdp-lightbox-stage>
+        <img src="" alt="" class="pdp-lightbox__img" data-pdp-lightbox-img />
+      </div>
+
+      <div
+        class="pdp-lightbox__thumbs"
+        role="tablist"
+        aria-label="Gallery preview thumbnails"
+        data-pdp-lightbox-thumbs
+      ></div>
+    </div>
+  </div>
 
   <!-- GSAP & ScrollTrigger per AGENT.md Section 2 -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>

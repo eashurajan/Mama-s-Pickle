@@ -408,21 +408,8 @@ function initShopNavDropdown() {
   if (drawerShopLink) {
     const parentLi = drawerShopLink.closest('li');
     if (parentLi && !parentLi.querySelector('.mobile-drawer__sublist')) {
-      parentLi.classList.add('mobile-drawer__shop-item');
-
-      const linkRow = document.createElement('div');
-      linkRow.className = 'mobile-drawer__link-row';
-
-      const toggleBtn = document.createElement('button');
-      toggleBtn.type = 'button';
-      toggleBtn.className = 'mobile-drawer__shop-toggle';
-      toggleBtn.setAttribute('aria-label', 'Toggle Shop pickle categories');
-      toggleBtn.setAttribute('aria-expanded', 'false');
-      toggleBtn.innerHTML = '<img src="assets/icons/icon-chevron-down.svg" alt="" width="16" height="16" />';
-
-      parentLi.insertBefore(linkRow, drawerShopLink);
-      linkRow.appendChild(drawerShopLink);
-      linkRow.appendChild(toggleBtn);
+      parentLi.classList.add('mobile-drawer__shop-item', 'is-expanded');
+      drawerShopLink.setAttribute('aria-expanded', 'true');
 
       const sublist = document.createElement('ul');
       sublist.className = 'mobile-drawer__sublist';
@@ -431,7 +418,6 @@ function initShopNavDropdown() {
           (item) => `
           <li>
             <a href="product.html?product=${encodeURIComponent(item.slug)}" class="mobile-drawer__sublink" data-product-slug="${item.slug}">
-              <img src="${item.icon}" alt="" class="mobile-drawer__subicon" width="24" height="24" />
               <span>${item.name}</span>
             </a>
           </li>
@@ -444,10 +430,9 @@ function initShopNavDropdown() {
         e.preventDefault();
         e.stopPropagation();
         const expanded = parentLi.classList.toggle('is-expanded');
-        toggleBtn.setAttribute('aria-expanded', String(expanded));
+        drawerShopLink.setAttribute('aria-expanded', String(expanded));
       };
 
-      toggleBtn.addEventListener('click', toggleShopSubmenu);
       drawerShopLink.addEventListener('click', toggleShopSubmenu);
     }
   }
@@ -1608,10 +1593,19 @@ function initProductDetailPage() {
   const pdpView = pdpMain.querySelector('[data-pdp-view]');
 
   const headingEl = pdpMain.querySelector('[data-pdp-heading]');
+  const galleryEl = pdpMain.querySelector('.pdp-gallery');
+  const mainTriggerEl = pdpMain.querySelector('[data-pdp-main-trigger]');
   const mainImgEl = pdpMain.querySelector('[data-pdp-main-img]');
-  const prevImgBtn = pdpMain.querySelector('[data-pdp-prev]');
-  const nextImgBtn = pdpMain.querySelector('[data-pdp-next]');
   const thumbsContainer = pdpMain.querySelector('[data-pdp-thumbs]');
+
+  const lightboxEl = document.querySelector('[data-pdp-lightbox]');
+  const lightboxTitleEl = lightboxEl?.querySelector('[data-pdp-lightbox-title]');
+  const lightboxCounterEl = lightboxEl?.querySelector('[data-pdp-lightbox-counter]');
+  const lightboxImgEl = lightboxEl?.querySelector('[data-pdp-lightbox-img]');
+  const lightboxStageEl = lightboxEl?.querySelector('[data-pdp-lightbox-stage]');
+  const lightboxThumbsEl = lightboxEl?.querySelector('[data-pdp-lightbox-thumbs]');
+  const lightboxCloseEls = lightboxEl?.querySelectorAll('[data-pdp-lightbox-close]') || [];
+  const lightboxCloseBtn = lightboxEl?.querySelector('button[data-pdp-lightbox-close]');
 
   const sizeButtons = pdpMain.querySelectorAll('[data-pdp-size-btn]');
   const variantImg350 = pdpMain.querySelector('[data-pdp-variant-img="350g"]');
@@ -1646,6 +1640,8 @@ function initProductDetailPage() {
   let activeGalleryIndex = 0;
   let isAddedOnPdp = false;
   let activeQuantity = 1;
+  let isLightboxOpen = false;
+  let isCursorOverGallery = false;
 
   if (notFoundLinks) {
     notFoundLinks.innerHTML = productsData
@@ -1731,20 +1727,6 @@ function initProductDetailPage() {
     mainImgEl.alt = currentItem.alt;
     mainImgEl.classList.toggle('is-contain', safeIndex !== 0);
 
-    if (prevImgBtn) {
-      const hasPrev = safeIndex > 0;
-      prevImgBtn.classList.toggle('is-hidden', !hasPrev);
-      prevImgBtn.setAttribute('aria-hidden', String(!hasPrev));
-      prevImgBtn.tabIndex = hasPrev ? 0 : -1;
-    }
-
-    if (nextImgBtn) {
-      const hasNext = safeIndex < gallery.length - 1;
-      nextImgBtn.classList.toggle('is-hidden', !hasNext);
-      nextImgBtn.setAttribute('aria-hidden', String(!hasNext));
-      nextImgBtn.tabIndex = hasNext ? 0 : -1;
-    }
-
     thumbsContainer.innerHTML = gallery
       .map((item, idx) => {
         const isActive = idx === safeIndex;
@@ -1776,6 +1758,106 @@ function initProductDetailPage() {
         renderGallery();
       });
     });
+
+    if (isLightboxOpen) {
+      renderLightbox();
+    }
+  };
+
+  const stepGallery = (delta) => {
+    if (!activeProduct) return;
+    const gallery = activeProduct.sizes[activeSizeKey]?.gallery || [];
+    if (!gallery.length) return;
+    activeGalleryIndex = (activeGalleryIndex + delta + gallery.length) % gallery.length;
+    renderGallery();
+  };
+
+  const renderLightbox = () => {
+    if (!lightboxEl || !activeProduct) return;
+    const sizeData = activeProduct.sizes[activeSizeKey] || activeProduct.sizes['350g'];
+    const gallery = sizeData.gallery || [];
+    if (!gallery.length) return;
+
+    const safeIndex = ((activeGalleryIndex % gallery.length) + gallery.length) % gallery.length;
+    const currentItem = gallery[safeIndex];
+
+    if (lightboxTitleEl) {
+      lightboxTitleEl.textContent = `${activeProduct.name} (${activeSizeKey})`;
+    }
+    if (lightboxCounterEl) {
+      lightboxCounterEl.textContent = `${safeIndex + 1} / ${gallery.length}`;
+    }
+    if (lightboxImgEl) {
+      lightboxImgEl.src = currentItem.src;
+      lightboxImgEl.alt = currentItem.alt;
+    }
+
+    if (lightboxThumbsEl) {
+      lightboxThumbsEl.innerHTML = gallery
+        .map((item, idx) => {
+          const isActive = idx === safeIndex;
+          const isContainThumb = idx !== 0;
+          return `
+            <button
+              type="button"
+              role="tab"
+              aria-selected="${isActive}"
+              aria-label="Preview image ${idx + 1}: ${item.alt}"
+              class="pdp-lightbox__thumb ${isActive ? 'is-active' : ''}"
+              data-pdp-lightbox-thumb="${idx}"
+            >
+              <img
+                src="${item.src}"
+                alt="${item.alt}"
+                class="pdp-lightbox__thumb-img ${isContainThumb ? 'is-contain' : ''}"
+              />
+            </button>
+          `;
+        })
+        .join('');
+
+      lightboxThumbsEl.querySelectorAll('[data-pdp-lightbox-thumb]').forEach((btn) => {
+        btn.addEventListener('click', () => {
+          const nextIdx = Number(btn.getAttribute('data-pdp-lightbox-thumb')) || 0;
+          activeGalleryIndex = nextIdx;
+          renderGallery();
+        });
+      });
+
+      const activeThumb = lightboxThumbsEl.querySelector('.is-active');
+      if (activeThumb && typeof activeThumb.scrollIntoView === 'function') {
+        activeThumb.scrollIntoView({ block: 'nearest', inline: 'center', behavior: 'smooth' });
+      }
+    }
+  };
+
+  const openLightbox = () => {
+    if (!lightboxEl || !activeProduct) return;
+    isLightboxOpen = true;
+    renderLightbox();
+    lightboxEl.classList.add('is-open');
+    lightboxEl.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+    if (window.__lenisInstance && typeof window.__lenisInstance.stop === 'function') {
+      window.__lenisInstance.stop();
+    }
+    if (lightboxCloseBtn) {
+      lightboxCloseBtn.focus({ preventScroll: true });
+    }
+  };
+
+  const closeLightbox = () => {
+    if (!lightboxEl || !isLightboxOpen) return;
+    isLightboxOpen = false;
+    lightboxEl.classList.remove('is-open');
+    lightboxEl.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+    if (window.__lenisInstance && typeof window.__lenisInstance.start === 'function') {
+      window.__lenisInstance.start();
+    }
+    if (mainTriggerEl) {
+      mainTriggerEl.focus({ preventScroll: true });
+    }
   };
 
   const updateSizeSelection = (sizeKey) => {
@@ -1923,23 +2005,93 @@ function initProductDetailPage() {
     renderProductBySlug(slug, { scrollToTop: true });
   };
 
-  if (prevImgBtn) {
-    prevImgBtn.addEventListener('click', () => {
-      if (!activeProduct || activeGalleryIndex <= 0) return;
-      activeGalleryIndex -= 1;
-      renderGallery();
+  if (galleryEl) {
+    galleryEl.addEventListener('mouseenter', () => {
+      isCursorOverGallery = true;
+    });
+    galleryEl.addEventListener('mouseleave', () => {
+      isCursorOverGallery = false;
     });
   }
 
-  if (nextImgBtn) {
-    nextImgBtn.addEventListener('click', () => {
-      if (!activeProduct) return;
-      const gallery = activeProduct.sizes[activeSizeKey]?.gallery || [];
-      if (activeGalleryIndex >= gallery.length - 1) return;
-      activeGalleryIndex += 1;
-      renderGallery();
+  if (mainTriggerEl) {
+    mainTriggerEl.addEventListener('click', openLightbox);
+    mainTriggerEl.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        openLightbox();
+      }
     });
   }
+
+  lightboxCloseEls.forEach((el) => {
+    el.addEventListener('click', closeLightbox);
+  });
+
+  if (lightboxStageEl) {
+    let touchStartX = 0;
+    lightboxStageEl.addEventListener(
+      'touchstart',
+      (e) => {
+        if (e.changedTouches && e.changedTouches.length) {
+          touchStartX = e.changedTouches[0].clientX;
+        }
+      },
+      { passive: true }
+    );
+    lightboxStageEl.addEventListener('touchend', (e) => {
+      if (!e.changedTouches || !e.changedTouches.length) return;
+      const deltaX = e.changedTouches[0].clientX - touchStartX;
+      if (Math.abs(deltaX) > 40) {
+        stepGallery(deltaX < 0 ? 1 : -1);
+      }
+    });
+  }
+
+  document.addEventListener('keydown', (e) => {
+    if (!activeProduct) return;
+    if (isLightboxOpen) {
+      if (e.key === 'Escape') {
+        e.preventDefault();
+        closeLightbox();
+        return;
+      }
+      if (e.key === 'ArrowLeft') {
+        e.preventDefault();
+        stepGallery(-1);
+        return;
+      }
+      if (e.key === 'ArrowRight') {
+        e.preventDefault();
+        stepGallery(1);
+        return;
+      }
+      return;
+    }
+
+    const isFocusedInGallery = galleryEl && galleryEl.contains(document.activeElement);
+    if (!isCursorOverGallery && !isFocusedInGallery) {
+      return;
+    }
+
+    const activeTag = document.activeElement?.tagName;
+    if (
+      activeTag === 'INPUT' ||
+      activeTag === 'TEXTAREA' ||
+      activeTag === 'SELECT' ||
+      document.activeElement?.isContentEditable
+    ) {
+      return;
+    }
+
+    if (e.key === 'ArrowLeft') {
+      e.preventDefault();
+      stepGallery(-1);
+    } else if (e.key === 'ArrowRight') {
+      e.preventDefault();
+      stepGallery(1);
+    }
+  });
 
   sizeButtons.forEach((btn) => {
     btn.addEventListener('click', () => {
