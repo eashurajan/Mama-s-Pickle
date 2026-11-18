@@ -376,7 +376,7 @@ function initShopNavDropdown() {
   ];
 
   // 1. Desktop Shop Dropdown
-  const desktopShopLink = document.querySelector('[data-nav-shop], .navbar__menu-item a[href="Shop.html"]');
+  const desktopShopLink = document.querySelector('[data-nav-shop], .navbar__menu-item a[href="index.html#shop-products"]');
   if (desktopShopLink) {
     const parentLi = desktopShopLink.closest('.navbar__menu-item');
     if (parentLi && !parentLi.querySelector('.nav-shop-dropdown')) {
@@ -390,7 +390,7 @@ function initShopNavDropdown() {
           ${shopMenuItems
             .map(
               (item) => `
-            <a href="product.html?product=${encodeURIComponent(item.slug)}" class="nav-shop-dropdown__item" data-product-slug="${item.slug}" role="menuitem">
+            <a href="Product.html?product=${encodeURIComponent(item.slug)}" class="nav-shop-dropdown__item" data-product-slug="${item.slug}" role="menuitem">
               <img src="${item.icon}" alt="" class="nav-shop-dropdown__icon" width="32" height="32" />
               <span class="nav-shop-dropdown__label">${item.name}</span>
             </a>
@@ -404,7 +404,7 @@ function initShopNavDropdown() {
   }
 
   // 2. Tablet & Mobile Drawer Shop Accordion
-  const drawerShopLink = document.querySelector('[data-nav-shop-mobile], .mobile-drawer__list a[href="Shop.html"]');
+  const drawerShopLink = document.querySelector('[data-nav-shop-mobile], .mobile-drawer__list a[href="index.html#shop-products"]');
   if (drawerShopLink) {
     const parentLi = drawerShopLink.closest('li');
     if (parentLi && !parentLi.querySelector('.mobile-drawer__sublist')) {
@@ -417,7 +417,7 @@ function initShopNavDropdown() {
         .map(
           (item) => `
           <li>
-            <a href="product.html?product=${encodeURIComponent(item.slug)}" class="mobile-drawer__sublink" data-product-slug="${item.slug}">
+            <a href="Product.html?product=${encodeURIComponent(item.slug)}" class="mobile-drawer__sublink" data-product-slug="${item.slug}">
               <span>${item.name}</span>
             </a>
           </li>
@@ -1647,7 +1647,7 @@ function initProductDetailPage() {
     notFoundLinks.innerHTML = productsData
       .map(
         (item) =>
-          `<a href="product.html?product=${encodeURIComponent(item.slug)}" class="pdp-not-found__pill" data-not-found-slug="${item.slug}">${item.name}</a>`
+          `<a href="Product.html?product=${encodeURIComponent(item.slug)}" class="pdp-not-found__pill" data-not-found-slug="${item.slug}">${item.name}</a>`
       )
       .join('');
 
@@ -2272,7 +2272,7 @@ function initCartPage() {
       const article = document.createElement('article');
       article.className = 'cart-item';
       article.setAttribute('data-cart-item-slug', item.slug);
-      const productUrl = `product.html?product=${encodeURIComponent(item.slug)}`;
+      const productUrl = `Product.html?product=${encodeURIComponent(item.slug)}`;
       const itemSize = item.size || '350g';
 
       article.innerHTML = `
