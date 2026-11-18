@@ -1,0 +1,947 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mama’s Pickles — Taste the Little Magic of Homemade Pickles</title>
+  <meta name="description" content="Taste the little magic of Mama’s Pickles. Handcrafted Non-Veg and Vegetarian Indian pickles made with authentic spices and homemade love." />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/responsive.css" />
+  <link rel="stylesheet" href="css/animations.css" />
+</head>
+<body class="home-page" data-node-id="1145:1630">
+
+  <!-- ======================================================================
+       1. HERO BANNER & NAVBAR (Figma Nodes: 1145:1631 / 1032:365 / 1085:10315)
+       ====================================================================== -->
+  <header class="hero-banner" data-node-id="1145:1631">
+    <nav class="navbar" aria-label="Main Navigation" data-node-id="1145:1634">
+      <!-- Hamburger Menu Button (Visible on Tablet & Mobile: < 1024px) -->
+      <button
+        type="button"
+        class="navbar__hamburger"
+        aria-label="Open navigation menu"
+        aria-expanded="false"
+        aria-controls="mobile-nav-drawer"
+        data-nav-toggle
+      >
+        <img src="assets/icons/icon-hamburger.svg" alt="" width="24" height="24" />
+      </button>
+
+      <!-- Brand Logo -->
+      <a href="Home.html" class="navbar__logo" aria-label="Mama's Pickles Home" data-node-id="I1145:1634;1023:289">
+        <img
+          src="assets/icons/logo-nav.svg"
+          alt="Mama's Pickles"
+          class="navbar__logo-img navbar__logo-img--desktop"
+          width="113"
+          height="51"
+        />
+        <img
+          src="assets/icons/logo-nav-mobile.svg"
+          alt="Mama's Pickles"
+          class="navbar__logo-img navbar__logo-img--mobile"
+          width="98"
+          height="44"
+        />
+      </a>
+
+      <!-- Desktop Navigation Menu (>= 1024px) -->
+      <ul class="navbar__menu" data-node-id="I1145:1634;1023:315">
+        <li class="navbar__menu-item" data-node-id="I1145:1634;1023:316">
+          <a href="Home.html" class="navbar__link is-active" aria-current="page" data-node-id="I1145:1634;1023:317">Home</a>
+        </li>
+        <li class="navbar__menu-item navbar__menu-item--shop" data-node-id="I1145:1634;1023:318">
+          <button type="button" class="navbar__link" aria-haspopup="true" aria-expanded="false" data-nav-shop data-node-id="I1145:1634;1023:319">Shop</button>
+        </li>
+        <li class="navbar__menu-item" data-node-id="I1145:1634;1023:320">
+          <a href="OurStory.html" class="navbar__link" data-node-id="I1145:1634;1023:321">Our Story</a>
+        </li>
+        <li class="navbar__menu-item" data-node-id="I1145:1634;1023:322">
+          <a href="Contactus.html" class="navbar__link" data-node-id="I1145:1634;1023:323">Contact Us</a>
+        </li>
+      </ul>
+
+      <!-- Cart Action Button (Figma Node: 515:201 — Default: 515:200 / Active: 515:199) -->
+      <a href="Cart.html" class="navbar__cart" aria-label="Shopping Cart" aria-disabled="true" data-cart-btn data-node-id="I1145:1634;1023:324">
+        <span class="navbar__cart-icon" data-node-id="I1145:1634;1023:324;519:450">
+          <img src="assets/icons/icon-cart-default.svg" alt="" class="navbar__cart-img navbar__cart-img--default" width="24" height="24" />
+          <img src="assets/icons/icon-cart.svg" alt="" class="navbar__cart-img navbar__cart-img--active" width="24" height="24" />
+        </span>
+        <span class="navbar__cart-counter" data-cart-count data-node-id="I1145:1634;1023:324;515:203">1</span>
+      </a>
+    </nav>
+
+    <!-- Mobile / Tablet Navigation Drawer -->
+    <div class="mobile-drawer" id="mobile-nav-drawer" aria-hidden="true" data-nav-drawer>
+      <div class="mobile-drawer__backdrop" data-nav-close></div>
+      <div class="mobile-drawer__panel">
+        <div class="mobile-drawer__header">
+          <img src="assets/icons/logo-nav.svg" alt="Mama's Pickles" width="98" height="44" />
+          <button type="button" class="mobile-drawer__close" aria-label="Close navigation menu" data-nav-close>
+            <img src="assets/icons/icon-close.svg" alt="" width="24" height="24" />
+          </button>
+        </div>
+        <ul class="mobile-drawer__list">
+          <li><a href="Home.html" class="mobile-drawer__link is-active">Home</a></li>
+          <li><button type="button" class="mobile-drawer__link" data-nav-shop-mobile>Shop</button></li>
+          <li><a href="OurStory.html" class="mobile-drawer__link">Our Story</a></li>
+          <li><a href="Contactus.html" class="mobile-drawer__link">Contact Us</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Hero Title & Video Container -->
+    <div class="hero-banner__body">
+      <h1 class="hero-banner__title" data-hero-title data-node-id="1145:1633">
+        <span class="hero-banner__title-dark">Taste the Little Magic of </span>
+        <span class="hero-banner__title-brand">Mama’s Pickles.</span>
+      </h1>
+
+      <div class="hero-banner__video-card" data-hero-video data-node-id="1145:1632">
+        <video
+          class="hero-banner__video"
+          src="assets/videos/hero-video.mp4"
+          poster="assets/images/hero/hero-video-poster.png"
+          autoplay
+          muted
+          playsinline
+          preload="auto"
+        ></video>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- ====================================================================
+         2. PRODUCT SECTION (Figma Nodes: 1145:1635 / 1032:369 / 1085:10319)
+         ==================================================================== -->
+    <section class="product-section" id="shop-products" aria-labelledby="product-section-heading" data-node-id="1145:1635">
+      <div class="product-section__header" data-node-id="1145:1636">
+        <h2 class="product-section__title" id="product-section-heading" data-node-id="1145:1637">
+          <span class="product-section__title-desktop">
+            <span class="product-section__title-dark">The Magic of </span>
+            <span class="product-section__title-brand">Mama’s Kitchen</span>
+          </span>
+          <span class="product-section__title-compact" aria-hidden="true">
+            <span class="product-section__title-dark">A little magic of </span>
+            <span class="product-section__title-brand">mama’s pickle</span>
+          </span>
+        </h2>
+
+        <!-- Category Filter Chips (Figma Node: 286:94 — Desktop & Mobile, Default & Active) -->
+        <div class="product-chips" role="tablist" aria-label="Filter pickles by category" data-node-id="1145:1638">
+          <button
+            type="button"
+            role="tab"
+            aria-selected="true"
+            class="product-chip product-chip--all is-active"
+            data-pickle-filter="all"
+            data-node-id="1145:1639"
+          >
+            <img src="assets/icons/chip-single-default-desktop.svg" alt="" class="product-chip__bg product-chip__bg--default" width="84" height="51" />
+            <picture class="product-chip__bg product-chip__bg--active">
+              <source media="(max-width: 767px)" srcset="assets/icons/chip-single-active-mobile.svg" />
+              <img src="assets/icons/chip-single-active-desktop.svg" alt="" width="84" height="51" />
+            </picture>
+            <span class="product-chip__label">All Pickle</span>
+          </button>
+
+          <button
+            type="button"
+            role="tab"
+            aria-selected="false"
+            class="product-chip product-chip--veg"
+            data-pickle-filter="veg"
+            data-node-id="1145:1640"
+          >
+            <img src="assets/icons/chip-double-default-desktop.svg" alt="" class="product-chip__bg product-chip__bg--default" width="100" height="50" />
+            <picture class="product-chip__bg product-chip__bg--active">
+              <source media="(max-width: 767px)" srcset="assets/icons/chip-double-active-mobile.svg" />
+              <img src="assets/icons/chip-double-active-desktop.svg" alt="" width="100" height="50" />
+            </picture>
+            <span class="product-chip__label">Vegetarian</span>
+          </button>
+
+          <button
+            type="button"
+            role="tab"
+            aria-selected="false"
+            class="product-chip product-chip--meat"
+            data-pickle-filter="non-veg"
+            data-node-id="1145:1641"
+          >
+            <img src="assets/icons/chip-triple-default-desktop.svg" alt="" class="product-chip__bg product-chip__bg--default" width="140" height="50" />
+            <picture class="product-chip__bg product-chip__bg--active">
+              <source media="(max-width: 767px)" srcset="assets/icons/chip-triple-active-mobile.svg" />
+              <img src="assets/icons/chip-triple-active-desktop.svg" alt="" width="140" height="50" />
+            </picture>
+            <span class="product-chip__label">Meat & Seafood</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- 9 Product Grid (Each card links to Product.html?product=<slug>) -->
+      <div class="product-grid" data-product-grid data-node-id="1145:1642">
+        <!-- 1. Chicken Pickle -->
+        <article class="product-card" data-category="non-veg" data-product-slug="chicken-pickle" data-node-id="1145:1643">
+          <a href="Product.html?product=chicken-pickle" class="product-card__link" aria-label="View Chicken Pickle details">
+            <div class="product-card__media" data-node-id="I1145:1643;239:497">
+              <img
+                src="assets/images/products/Pickle type=Chicken Front, Variant=Png, SIzes=350g.png"
+                alt="Chicken Pickle jar"
+                class="product-card__img"
+              />
+              <img
+                src="assets/images/products/Pickle type=Chicken Front, Variant=With Bg, SIzes=350g.png"
+                alt=""
+                aria-hidden="true"
+                class="product-card__hover-img"
+                loading="lazy"
+              />
+            </div>
+            <div class="product-card__info" data-node-id="I1145:1643;239:500">
+              <div class="product-card__meta">
+                <h3 class="product-card__name">Chicken Pickle</h3>
+                <div class="product-card__rating-row">
+                  <span class="product-card__rating">
+                    <img src="assets/icons/icon-star.svg" alt="Rated" class="product-card__star" width="12" height="12" />
+                    <span class="product-card__score">4.1</span>
+                  </span>
+                  <span class="product-card__reviews">(2400) Reviews</span>
+                </div>
+              </div>
+              <p class="product-card__price">₹499</p>
+            </div>
+          </a>
+        </article>
+
+        <!-- 2. Mutton Pickle -->
+        <article class="product-card" data-category="non-veg" data-product-slug="mutton-pickle" data-node-id="1145:1644">
+          <a href="Product.html?product=mutton-pickle" class="product-card__link" aria-label="View Mutton Pickle details">
+            <div class="product-card__media" data-node-id="I1145:1644;239:497">
+              <img
+                src="assets/images/products/Pickle type=Mutton Front, Variant=Png, SIzes=350g.png"
+                alt="Mutton Pickle jar"
+                class="product-card__img"
+              />
+              <img
+                src="assets/images/products/Pickle type=Mutton Front, Variant=With Bg, SIzes=350g.png"
+                alt=""
+                aria-hidden="true"
+                class="product-card__hover-img"
+                loading="lazy"
+              />
+            </div>
+            <div class="product-card__info" data-node-id="I1145:1644;239:500">
+              <div class="product-card__meta">
+                <h3 class="product-card__name">Mutton Pickle</h3>
+                <div class="product-card__rating-row">
+                  <span class="product-card__rating">
+                    <img src="assets/icons/icon-star.svg" alt="Rated" class="product-card__star" width="12" height="12" />
+                    <span class="product-card__score">4.1</span>
+                  </span>
+                  <span class="product-card__reviews">(2400) Reviews</span>
+                </div>
+              </div>
+              <p class="product-card__price">₹579</p>
+            </div>
+          </a>
+        </article>
+
+        <!-- 3. Fish Pickle -->
+        <article class="product-card" data-category="non-veg" data-product-slug="fish-pickle" data-node-id="1145:1645">
+          <a href="Product.html?product=fish-pickle" class="product-card__link" aria-label="View Fish Pickle details">
+            <div class="product-card__media" data-node-id="I1145:1645;239:497">
+              <img
+                src="assets/images/products/Pickle type=Fish Front, Variant=Png, SIzes=350g.png"
+                alt="Fish Pickle jar"
+                class="product-card__img"
+              />
+              <img
+                src="assets/images/products/Pickle type=Fish Front, Variant=With Bg, SIzes=350g.png"
+                alt=""
+                aria-hidden="true"
+                class="product-card__hover-img"
+                loading="lazy"
+              />
+            </div>
+            <div class="product-card__info" data-node-id="I1145:1645;239:500">
+              <div class="product-card__meta">
+                <h3 class="product-card__name">Fish Pickle</h3>
+                <div class="product-card__rating-row">
+                  <span class="product-card__rating">
+                    <img src="assets/icons/icon-star.svg" alt="Rated" class="product-card__star" width="12" height="12" />
+                    <span class="product-card__score">4.1</span>
+                  </span>
+                  <span class="product-card__reviews">(2400) Reviews</span>
+                </div>
+              </div>
+              <p class="product-card__price">₹399</p>
+            </div>
+          </a>
+        </article>
+
+        <!-- 4. Prawn Pickle -->
+        <article class="product-card" data-category="non-veg" data-product-slug="prawn-pickle" data-node-id="1145:1646">
+          <a href="Product.html?product=prawn-pickle" class="product-card__link" aria-label="View Prawn Pickle details">
+            <div class="product-card__media" data-node-id="I1145:1646;239:497">
+              <img
+                src="assets/images/products/Pickle type=Prawn Front, Variant=Png, SIzes=350g.png"
+                alt="Prawn Pickle jar"
+                class="product-card__img"
+              />
+              <img
+                src="assets/images/products/Pickle type=Prawn Front, Variant=With Bg, SIzes=350g.png"
+                alt=""
+                aria-hidden="true"
+                class="product-card__hover-img"
+                loading="lazy"
+              />
+            </div>
+            <div class="product-card__info" data-node-id="I1145:1646;239:500">
+              <div class="product-card__meta">
+                <h3 class="product-card__name">Prawn Pickle</h3>
+                <div class="product-card__rating-row">
+                  <span class="product-card__rating">
+                    <img src="assets/icons/icon-star.svg" alt="Rated" class="product-card__star" width="12" height="12" />
+                    <span class="product-card__score">4.1</span>
+                  </span>
+                  <span class="product-card__reviews">(2400) Reviews</span>
+                </div>
+              </div>
+              <p class="product-card__price">₹479</p>
+            </div>
+          </a>
+        </article>
+
+        <!-- 5. Squid Pickle -->
+        <article class="product-card" data-category="non-veg" data-product-slug="squid-pickle" data-node-id="1145:1647">
+          <a href="Product.html?product=squid-pickle" class="product-card__link" aria-label="View Squid Pickle details">
+            <div class="product-card__media" data-node-id="I1145:1647;239:497">
+              <img
+                src="assets/images/products/Pickle type=Squid Front, Variant=Png, SIzes=350g.png"
+                alt="Squid Pickle jar"
+                class="product-card__img"
+              />
+              <img
+                src="assets/images/products/Pickle type=Squid Front, Variant=With Bg, SIzes=350g.png"
+                alt=""
+                aria-hidden="true"
+                class="product-card__hover-img"
+                loading="lazy"
+              />
+            </div>
+            <div class="product-card__info" data-node-id="I1145:1647;239:500">
+              <div class="product-card__meta">
+                <h3 class="product-card__name">Squid Pickle</h3>
+                <div class="product-card__rating-row">
+                  <span class="product-card__rating">
+                    <img src="assets/icons/icon-star.svg" alt="Rated" class="product-card__star" width="12" height="12" />
+                    <span class="product-card__score">4.1</span>
+                  </span>
+                  <span class="product-card__reviews">(2400) Reviews</span>
+                </div>
+              </div>
+              <p class="product-card__price">₹449</p>
+            </div>
+          </a>
+        </article>
+
+        <!-- 6. Tomato Pickle -->
+        <article class="product-card" data-category="veg" data-product-slug="tomato-pickle" data-node-id="1145:1648">
+          <a href="Product.html?product=tomato-pickle" class="product-card__link" aria-label="View Tomato Pickle details">
+            <div class="product-card__media" data-node-id="I1145:1648;239:497">
+              <img
+                src="assets/images/products/Pickle type=Tomato Front, Variant=Png, SIzes=350g.png"
+                alt="Tomato Pickle jar"
+                class="product-card__img"
+              />
+              <img
+                src="assets/images/products/Pickle type=Tomato Front, Variant=With Bg, SIzes=350g.png"
+                alt=""
+                aria-hidden="true"
+                class="product-card__hover-img"
+                loading="lazy"
+              />
+            </div>
+            <div class="product-card__info" data-node-id="I1145:1648;239:500">
+              <div class="product-card__meta">
+                <h3 class="product-card__name">Tomato Pickle</h3>
+                <div class="product-card__rating-row">
+                  <span class="product-card__rating">
+                    <img src="assets/icons/icon-star.svg" alt="Rated" class="product-card__star" width="12" height="12" />
+                    <span class="product-card__score">4.1</span>
+                  </span>
+                  <span class="product-card__reviews">(2400) Reviews</span>
+                </div>
+              </div>
+              <p class="product-card__price">₹199</p>
+            </div>
+          </a>
+        </article>
+
+        <!-- 7. Mango Pickle -->
+        <article class="product-card" data-category="veg" data-product-slug="mango-pickle" data-node-id="1145:1649">
+          <a href="Product.html?product=mango-pickle" class="product-card__link" aria-label="View Mango Pickle details">
+            <div class="product-card__media" data-node-id="I1145:1649;239:497">
+              <img
+                src="assets/images/products/Pickle type=Mango Front, Variant=Png, SIzes=350g.png"
+                alt="Mango Pickle jar"
+                class="product-card__img"
+              />
+              <img
+                src="assets/images/products/Pickle type=Mango Front, Variant=With Bg, SIzes=350g.png"
+                alt=""
+                aria-hidden="true"
+                class="product-card__hover-img"
+                loading="lazy"
+              />
+            </div>
+            <div class="product-card__info" data-node-id="I1145:1649;239:500">
+              <div class="product-card__meta">
+                <h3 class="product-card__name">Mango Pickle</h3>
+                <div class="product-card__rating-row">
+                  <span class="product-card__rating">
+                    <img src="assets/icons/icon-star.svg" alt="Rated" class="product-card__star" width="12" height="12" />
+                    <span class="product-card__score">4.1</span>
+                  </span>
+                  <span class="product-card__reviews">(2400) Reviews</span>
+                </div>
+              </div>
+              <p class="product-card__price">₹229</p>
+            </div>
+          </a>
+        </article>
+
+        <!-- 8. Lemon Pickle -->
+        <article class="product-card" data-category="veg" data-product-slug="lemon-pickle" data-node-id="1145:1650">
+          <a href="Product.html?product=lemon-pickle" class="product-card__link" aria-label="View Lemon Pickle details">
+            <div class="product-card__media" data-node-id="I1145:1650;239:497">
+              <img
+                src="assets/images/products/Pickle type=Lemon Front, Variant=Png, SIzes=350g.png"
+                alt="Lemon Pickle jar"
+                class="product-card__img"
+              />
+              <img
+                src="assets/images/products/Pickle type=Lemon Front, Variant=With Bg, SIzes=350g.png"
+                alt=""
+                aria-hidden="true"
+                class="product-card__hover-img"
+                loading="lazy"
+              />
+            </div>
+            <div class="product-card__info" data-node-id="I1145:1650;239:500">
+              <div class="product-card__meta">
+                <h3 class="product-card__name">Lemon Pickle</h3>
+                <div class="product-card__rating-row">
+                  <span class="product-card__rating">
+                    <img src="assets/icons/icon-star.svg" alt="Rated" class="product-card__star" width="12" height="12" />
+                    <span class="product-card__score">4.1</span>
+                  </span>
+                  <span class="product-card__reviews">(2400) Reviews</span>
+                </div>
+              </div>
+              <p class="product-card__price">₹199</p>
+            </div>
+          </a>
+        </article>
+
+        <!-- 9. Garlic Pickle -->
+        <article class="product-card" data-category="veg" data-product-slug="garlic-pickle" data-node-id="1145:1651">
+          <a href="Product.html?product=garlic-pickle" class="product-card__link" aria-label="View Garlic Pickle details">
+            <div class="product-card__media" data-node-id="I1145:1651;239:497">
+              <img
+                src="assets/images/products/Pickle type=Garlic Front, Variant=Png, SIzes=350g.png"
+                alt="Garlic Pickle jar"
+                class="product-card__img"
+              />
+              <img
+                src="assets/images/products/Pickle type=Garlic Front, Variant=With Bg, SIzes=350g.png"
+                alt=""
+                aria-hidden="true"
+                class="product-card__hover-img"
+                loading="lazy"
+              />
+            </div>
+            <div class="product-card__info" data-node-id="I1145:1651;239:500">
+              <div class="product-card__meta">
+                <h3 class="product-card__name">Garlic Pickle</h3>
+                <div class="product-card__rating-row">
+                  <span class="product-card__rating">
+                    <img src="assets/icons/icon-star.svg" alt="Rated" class="product-card__star" width="12" height="12" />
+                    <span class="product-card__score">4.1</span>
+                  </span>
+                  <span class="product-card__reviews">(2400) Reviews</span>
+                </div>
+              </div>
+              <p class="product-card__price">₹249</p>
+            </div>
+          </a>
+        </article>
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         3. PROMOTION BANNER (Figma Nodes: 1154:7147 / 1154:7199 / 1154:7251)
+         ==================================================================== -->
+    <section class="promo-section" aria-label="Combo Offers" data-promo-slider data-node-id="1154:7147">
+      <div class="promo-section__track" data-promo-track>
+        <!-- Slide 1: Get 5 Non-Veg pickle for ₹1499 -->
+        <article class="promo-slide promo-slide--nonveg" data-node-id="1154:7148">
+          <picture class="promo-slide__picture">
+            <source media="(max-width: 767px)" srcset="assets/images/promotion-banner/promo-banner-nonveg-mobile.png" />
+            <source media="(max-width: 1023px)" srcset="assets/images/promotion-banner/promo-banner-nonveg-tablet.png" />
+            <img
+              src="assets/images/promotion-banner/promo-banner-nonveg-desktop.png"
+              alt="5 Non-Veg Pickle jars — Prawn, Mutton, Chicken, Fish, and Squid"
+              class="promo-slide__bg"
+              loading="lazy"
+            />
+          </picture>
+          <div class="promo-slide__overlay" data-node-id="1154:7150">
+            <div class="promo-slide__content" data-node-id="1154:7151">
+              <h2 class="promo-slide__title" data-node-id="1154:7152">Get 5 Non-Veg pickle for ₹1499</h2>
+              <a href="Product.html?product=chicken-pickle" class="promo-btn promo-btn--red" data-node-id="1154:7153">
+                <span class="promo-btn__shine" aria-hidden="true">
+                  <span class="promo-btn__beam promo-btn__beam--1"></span>
+                  <span class="promo-btn__beam promo-btn__beam--2"></span>
+                  <span class="promo-btn__beam promo-btn__beam--white"></span>
+                </span>
+                <span class="promo-btn__label" data-node-id="1154:7154">Get It Now</span>
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Slide 2: Get 4 Veg pickle for ₹699 -->
+        <article class="promo-slide promo-slide--veg" data-node-id="1154:7159">
+          <picture class="promo-slide__picture">
+            <source media="(max-width: 767px)" srcset="assets/images/promotion-banner/promo-banner-veg-mobile.png" />
+            <source media="(max-width: 1023px)" srcset="assets/images/promotion-banner/promo-banner-veg-tablet.png" />
+            <img
+              src="assets/images/promotion-banner/promo-banner-veg-desktop.png"
+              alt="4 Vegetarian Pickle jars — Tomato, Mango, Lemon, and Garlic"
+              class="promo-slide__bg"
+              loading="lazy"
+            />
+          </picture>
+          <div class="promo-slide__overlay" data-node-id="1154:7161">
+            <div class="promo-slide__content" data-node-id="1154:7162">
+              <h2 class="promo-slide__title" data-node-id="1154:7163">Get 4 Veg pickle for ₹699</h2>
+              <a href="Product.html?product=mango-pickle" class="promo-btn promo-btn--green" data-node-id="1154:7164">
+                <span class="promo-btn__shine" aria-hidden="true">
+                  <span class="promo-btn__beam promo-btn__beam--green-1"></span>
+                  <span class="promo-btn__beam promo-btn__beam--green-2"></span>
+                  <span class="promo-btn__beam promo-btn__beam--white"></span>
+                </span>
+                <span class="promo-btn__label promo-btn__label--hornbill" data-node-id="1154:7165">Get It Now</span>
+              </a>
+            </div>
+          </div>
+        </article>
+      </div>
+
+      <!-- Progress Dots for Promo Banner -->
+      <div class="promo-section__dots" role="tablist" aria-label="Promotion Banner Slides" data-node-id="1154:7222">
+        <button
+          type="button"
+          class="slider-dot is-active"
+          aria-label="Show Non-Veg Pickle Combo Offer"
+          aria-selected="true"
+          data-promo-dot="0"
+        >
+          <img src="assets/icons/dot-active-sm.svg" alt="" class="slider-dot__icon slider-dot__icon--active" width="18" height="18" />
+          <img src="assets/icons/dot-inactive-sm.svg" alt="" class="slider-dot__icon slider-dot__icon--inactive" width="18" height="18" />
+        </button>
+        <button
+          type="button"
+          class="slider-dot"
+          aria-label="Show Vegetarian Pickle Combo Offer"
+          aria-selected="false"
+          data-promo-dot="1"
+        >
+          <img src="assets/icons/dot-active-sm.svg" alt="" class="slider-dot__icon slider-dot__icon--active" width="18" height="18" />
+          <img src="assets/icons/dot-inactive-sm.svg" alt="" class="slider-dot__icon slider-dot__icon--inactive" width="18" height="18" />
+        </button>
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         4. PEOPLE WORDS — TESTIMONIALS (Figma Nodes: 1145:1680 / 1032:397 / 1085:10359)
+         ==================================================================== -->
+    <section class="testimonials-section" aria-labelledby="testimonials-heading" data-node-id="1145:1680">
+      <div class="testimonials-section__header" data-node-id="1145:1681">
+        <h2 class="testimonials-section__title" id="testimonials-heading" data-node-id="1145:1682">
+          Real Words<br />from Real People
+        </h2>
+      </div>
+
+      <div class="testimonials-section__viewport" data-node-id="1145:1684">
+        <div class="testimonials-track" data-testimonials-track data-node-id="1154:5822">
+          <!-- Card 1: Priya Ramesh -->
+          <article class="testimonial-card" data-node-id="1154:5823">
+            <p class="testimonial-card__quote" data-node-id="1154:5824">
+              “The taste reminds me of homemade pickles. The spices are perfectly balanced, and every bite feels special.”
+            </p>
+            <div class="testimonial-card__avatar" data-node-id="1154:5825">
+              <img src="assets/icons/testimonial-bg-1.svg" alt="" class="testimonial-card__avatar-bg" width="106" height="130" />
+              <img src="assets/images/testimonials/testimonial-priya.png" alt="Priya Ramesh" class="testimonial-card__avatar-img" width="106" height="130" loading="lazy" />
+            </div>
+            <p class="testimonial-card__author testimonial-card__author--purple" data-node-id="1154:5828">Priya Ramesh</p>
+          </article>
+
+          <!-- Card 2: Arjun Suresh -->
+          <article class="testimonial-card" data-node-id="1154:5829">
+            <p class="testimonial-card__quote" data-node-id="1154:5830">
+              “The mutton pickle has such a rich flavour. A little on the side with hot rice makes the whole meal better.”
+            </p>
+            <div class="testimonial-card__avatar" data-node-id="1154:5831">
+              <img src="assets/icons/testimonial-bg-2.svg" alt="" class="testimonial-card__avatar-bg" width="106" height="130" />
+              <img src="assets/images/testimonials/testimonial-arjun.png" alt="Arjun Suresh" class="testimonial-card__avatar-img" width="106" height="130" loading="lazy" />
+            </div>
+            <p class="testimonial-card__author testimonial-card__author--teal" data-node-id="1154:5834">Arjun Suresh</p>
+          </article>
+
+          <!-- Card 3: Ananya Krishnan -->
+          <article class="testimonial-card" data-node-id="1154:5835">
+            <p class="testimonial-card__quote" data-node-id="1154:5836">
+              “I love the spicy, tangy taste of the prawn pickle. It adds so much flavour to even a simple lunch.”
+            </p>
+            <div class="testimonial-card__avatar" data-node-id="1154:5837">
+              <img src="assets/icons/testimonial-bg-3.svg" alt="" class="testimonial-card__avatar-bg" width="106" height="130" />
+              <img src="assets/images/testimonials/testimonial-ananya.png" alt="Ananya Krishnan" class="testimonial-card__avatar-img" width="106" height="130" loading="lazy" />
+            </div>
+            <p class="testimonial-card__author testimonial-card__author--olive" data-node-id="1154:5840">Ananya Krishnan</p>
+          </article>
+
+          <!-- Card 4: Rahul Rajan -->
+          <article class="testimonial-card" data-node-id="1154:5841">
+            <p class="testimonial-card__quote" data-node-id="1154:5842">
+              “The fish pickle pairs beautifully with curd rice and dosa. It has become one of my favourite additions to the table.”
+            </p>
+            <div class="testimonial-card__avatar" data-node-id="1154:5843">
+              <img src="assets/icons/testimonial-bg-4.svg" alt="" class="testimonial-card__avatar-bg" width="106" height="130" />
+              <img src="assets/images/testimonials/testimonial-rahul.png" alt="Rahul Rajan" class="testimonial-card__avatar-img" width="106" height="130" loading="lazy" />
+            </div>
+            <p class="testimonial-card__author testimonial-card__author--brown" data-node-id="1154:5846">Rahul Rajan</p>
+          </article>
+
+          <!-- Card 5: Meera Mohan -->
+          <article class="testimonial-card" data-node-id="1154:5847">
+            <p class="testimonial-card__quote testimonial-card__quote--muted" data-node-id="1154:5848">
+              “I wanted to try something different, and the squid pickle was a great choice. Bold spices and a flavour that stands out.”
+            </p>
+            <div class="testimonial-card__avatar" data-node-id="1154:5849">
+              <img src="assets/icons/testimonial-bg-5.svg" alt="" class="testimonial-card__avatar-bg" width="106" height="130" />
+              <img src="assets/images/testimonials/testimonial-meera.png" alt="Meera Mohan" class="testimonial-card__avatar-img" width="106" height="130" loading="lazy" />
+            </div>
+            <p class="testimonial-card__author testimonial-card__author--teal" data-node-id="1154:5852">Meera Mohan</p>
+          </article>
+
+          <!-- Card 6: Kavya Srinivas -->
+          <article class="testimonial-card" data-node-id="1154:5853">
+            <p class="testimonial-card__quote testimonial-card__quote--muted" data-node-id="1154:5854">
+              “Everyone at home enjoys Mama’s Pickles. It is an easy way to bring extra flavour to our everyday meals.”
+            </p>
+            <div class="testimonial-card__avatar" data-node-id="1154:5855">
+              <img src="assets/icons/testimonial-bg-6.svg" alt="" class="testimonial-card__avatar-bg" width="106" height="130" />
+              <img src="assets/images/testimonials/testimonial-kavya.png" alt="Kavya Srinivas" class="testimonial-card__avatar-img" width="106" height="130" loading="lazy" />
+            </div>
+            <p class="testimonial-card__author testimonial-card__author--purple" data-node-id="1154:5858">Kavya Srinivas</p>
+          </article>
+
+          <!-- Card 7: Vikram Mahesh -->
+          <article class="testimonial-card" data-node-id="1154:5859">
+            <p class="testimonial-card__quote testimonial-card__quote--muted" data-node-id="1154:5860">
+              “On busy days, I don't have to prepare an extra side dish. A spoonful of pickle makes my meal more satisfying.”
+            </p>
+            <div class="testimonial-card__avatar" data-node-id="1154:5861">
+              <img src="assets/icons/testimonial-bg-7.svg" alt="" class="testimonial-card__avatar-bg" width="106" height="130" />
+              <img src="assets/images/testimonials/testimonial-vikram.png" alt="Vikram Mahesh" class="testimonial-card__avatar-img" width="106" height="130" loading="lazy" />
+            </div>
+            <p class="testimonial-card__author testimonial-card__author--teal" data-node-id="1154:5864">Vikram Mahesh</p>
+          </article>
+
+          <!-- Card 8: Neha Prakash -->
+          <article class="testimonial-card" data-node-id="1154:5865">
+            <p class="testimonial-card__quote testimonial-card__quote--muted" data-node-id="1154:5866">
+              “The combination of spice, tanginess, and rich flavour makes me want to come back for more. Great with a simple plate of rice.”
+            </p>
+            <div class="testimonial-card__avatar" data-node-id="1154:5867">
+              <img src="assets/icons/testimonial-bg-8.svg" alt="" class="testimonial-card__avatar-bg" width="106" height="130" />
+              <img src="assets/images/testimonials/testimonial-neha.png" alt="Neha Prakash" class="testimonial-card__avatar-img" width="106" height="130" loading="lazy" />
+            </div>
+            <p class="testimonial-card__author testimonial-card__author--olive" data-node-id="1154:5870">Neha Prakash</p>
+          </article>
+        </div>
+
+        <!-- Edge Blur Overlays (Desktop & Tablet) -->
+        <div class="testimonials-section__blur testimonials-section__blur--left" aria-hidden="true" data-node-id="1154:5206"></div>
+        <div class="testimonials-section__blur testimonials-section__blur--right" aria-hidden="true" data-node-id="1154:5208"></div>
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         5. JOURNEY MILESTONES — SPLIT-SCREEN SLIDER (Figma Nodes: 1204:3100 & 1208:1223)
+         ==================================================================== -->
+    <section class="journey-section" aria-label="Our Brand Journey" data-journey-section data-node-id="1204:3100">
+      <!-- Left Section (50% Desktop): Synchronized Content Slider + Process Dots -->
+      <div class="journey-content-col" data-journey-content-col data-node-id="1204:3101">
+        <div class="journey-content-viewport">
+          <div class="journey-content-track" data-journey-content-track data-node-id="1206:3785">
+            <!-- Slide 1: Customer Milestone -->
+            <article class="journey-content-slide" data-journey-slide="0" data-node-id="1206:3786">
+              <div class="journey-slide__master">
+                <div class="journey-slide__text-group">
+                  <div class="journey-slide__heading-wrap">
+                    <p class="journey-slide__tag">Customer Milestone</p>
+                    <h2 class="journey-slide__title">
+                      <span>1000 </span>
+                      <span class="journey-slide__plus">+ </span>
+                      <span>Happy Customer</span>
+                    </h2>
+                  </div>
+                  <p class="journey-slide__desc">
+                    A growing community of pickle lovers built through homemade flavors and word of mouth recommendations.
+                  </p>
+                </div>
+                <a href="OurStory.html" class="journey-slide__btn">Learn More</a>
+              </div>
+            </article>
+
+            <!-- Slide 2: Growth Milestone -->
+            <article class="journey-content-slide" data-journey-slide="1" data-node-id="1206:3795">
+              <div class="journey-slide__master">
+                <div class="journey-slide__text-group">
+                  <div class="journey-slide__heading-wrap">
+                    <p class="journey-slide__tag">Growth Milestone</p>
+                    <h2 class="journey-slide__title">2× Customer Growth</h2>
+                  </div>
+                  <p class="journey-slide__desc">
+                    Grew from 500 customers in January 2025 to 1,000 customers within just three months, driven by word-of-mouth recommendations.
+                  </p>
+                </div>
+                <a href="OurStory.html" class="journey-slide__btn">Learn More</a>
+              </div>
+            </article>
+
+            <!-- Slide 3: Retail Expansion -->
+            <article class="journey-content-slide" data-journey-slide="2" data-node-id="1206:3804">
+              <div class="journey-slide__master">
+                <div class="journey-slide__text-group">
+                  <div class="journey-slide__heading-wrap">
+                    <p class="journey-slide__tag">Retail Expansion</p>
+                    <h2 class="journey-slide__title">
+                      <span class="journey-slide__title-desktop">Local Store Partnerships</span>
+                      <span class="journey-slide__title-compact" aria-hidden="true">Retail Expansion</span>
+                    </h2>
+                  </div>
+                  <p class="journey-slide__desc">
+                    Partnered with local stores in Coimbatore to make Mama’s Pickles accessible to more customers.
+                  </p>
+                </div>
+                <a href="OurStory.html" class="journey-slide__btn">Learn More</a>
+              </div>
+            </article>
+
+            <!-- Slide 4: Regional Reach -->
+            <article class="journey-content-slide" data-journey-slide="3" data-node-id="1206:3813">
+              <div class="journey-slide__master">
+                <div class="journey-slide__text-group">
+                  <div class="journey-slide__heading-wrap">
+                    <p class="journey-slide__tag">Regional Reach</p>
+                    <h2 class="journey-slide__title">Expanding Across South India</h2>
+                  </div>
+                  <p class="journey-slide__desc journey-slide__desc--tight">
+                    From its neighbourhood beginnings, the brand has expanded its customer reach across <strong>Palakkad, Andhra,</strong> and <strong>Bangalore</strong>.
+                  </p>
+                </div>
+                <a href="OurStory.html" class="journey-slide__btn">Learn More</a>
+              </div>
+            </article>
+          </div>
+        </div>
+
+        <!-- Shared Process Dot Navigation -->
+        <div class="journey-slide__dots" role="tablist" aria-label="Journey Milestones" data-node-id="1206:3466">
+          <button type="button" role="tab" aria-selected="true" class="journey-dot is-active" aria-label="Milestone 1: 1000+ Happy Customers" data-journey-dot="0">
+            <img src="assets/icons/dot-active.svg" alt="" class="journey-dot__img journey-dot__img--active" width="28" height="28" />
+            <img src="assets/icons/dot-inactive.svg" alt="" class="journey-dot__img journey-dot__img--inactive" width="28" height="28" />
+          </button>
+          <button type="button" role="tab" aria-selected="false" class="journey-dot" aria-label="Milestone 2: 2x Customer Growth" data-journey-dot="1">
+            <img src="assets/icons/dot-active.svg" alt="" class="journey-dot__img journey-dot__img--active" width="28" height="28" />
+            <img src="assets/icons/dot-inactive.svg" alt="" class="journey-dot__img journey-dot__img--inactive" width="28" height="28" />
+          </button>
+          <button type="button" role="tab" aria-selected="false" class="journey-dot" aria-label="Milestone 3: Retail Expansion" data-journey-dot="2">
+            <img src="assets/icons/dot-active.svg" alt="" class="journey-dot__img journey-dot__img--active" width="28" height="28" />
+            <img src="assets/icons/dot-inactive.svg" alt="" class="journey-dot__img journey-dot__img--inactive" width="28" height="28" />
+          </button>
+          <button type="button" role="tab" aria-selected="false" class="journey-dot" aria-label="Milestone 4: Regional Reach" data-journey-dot="3">
+            <img src="assets/icons/dot-active.svg" alt="" class="journey-dot__img journey-dot__img--active" width="28" height="28" />
+            <img src="assets/icons/dot-inactive.svg" alt="" class="journey-dot__img journey-dot__img--inactive" width="28" height="28" />
+          </button>
+        </div>
+      </div>
+
+      <!-- Right Section (50% Desktop): Synchronized Image Slider with Wavy Edge -->
+      <div class="journey-media-col" data-journey-media-col>
+        <div class="journey-media-masked">
+          <div class="journey-media-track" data-journey-media-track>
+            <div class="journey-media-slide">
+              <img
+                src="assets/images/journey/journey-slide-1.png"
+                alt="Friends enjoying meals together with Mama's Pickles"
+                class="journey-slide__img"
+                draggable="false"
+                loading="lazy"
+              />
+            </div>
+            <div class="journey-media-slide">
+              <img
+                src="assets/images/journey/journey-slide-2.png"
+                alt="Growing community enjoying Mama's Pickles"
+                class="journey-slide__img"
+                draggable="false"
+                loading="lazy"
+              />
+            </div>
+            <div class="journey-media-slide">
+              <img
+                src="assets/images/journey/journey-slide-3.png"
+                alt="Local store partnerships in Coimbatore"
+                class="journey-slide__img"
+                draggable="false"
+                loading="lazy"
+              />
+            </div>
+            <div class="journey-media-slide">
+              <img
+                src="assets/images/journey/journey-slide-4.png"
+                alt="Mama's Pickles expanding across South India"
+                class="journey-slide__img"
+                draggable="false"
+                loading="lazy"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         6. SOCIAL GALLERY — INFINITE HORIZONTAL REELS (Figma Node: 1211:1388)
+         ==================================================================== -->
+    <section class="social-gallery" aria-labelledby="social-gallery-heading" data-social-gallery data-node-id="1211:1388">
+      <div class="social-gallery__header" data-node-id="1211:1389">
+        <h2 class="social-gallery__title" id="social-gallery-heading" data-node-id="1211:1390">Social Gallery</h2>
+      </div>
+
+      <div class="social-gallery__viewport" data-reels-viewport>
+        <div class="social-gallery__reels" data-reels-gallery data-node-id="1211:1392">
+          <!-- 14 reels (7 original + 7 cloned) populated programmatically by initReelsGallery() -->
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ======================================================================
+       7. FOOTER (Figma Nodes: 1145:1850 / 1121:5923 / 1121:6134)
+       ====================================================================== -->
+  <footer class="site-footer" data-node-id="1145:1850">
+    <div class="site-footer__main" data-node-id="1145:1851">
+      <div class="site-footer__top" data-node-id="1145:1852">
+        <!-- Newsletter Subscription -->
+        <div class="site-footer__newsletter" data-node-id="1145:1853">
+          <p class="site-footer__newsletter-text" data-node-id="1145:1854">
+            Join our community to get exclusive updates just for you.
+          </p>
+          <form class="site-footer__form" data-newsletter-form novalidate data-node-id="1145:1855">
+            <label for="newsletter-email" class="sr-only">Your Email</label>
+            <input
+              type="email"
+              id="newsletter-email"
+              name="email"
+              class="site-footer__input"
+              placeholder="Your Email"
+              required
+              data-node-id="1145:1856"
+            />
+            <button type="submit" class="site-footer__submit" data-node-id="1145:1857">
+              <span data-node-id="1145:1858">Subscribe</span>
+            </button>
+          </form>
+        </div>
+
+        <!-- Navigation & Social Links -->
+        <div class="site-footer__nav-col" data-node-id="1145:1859">
+          <ul class="site-footer__links" data-node-id="1145:1860">
+            <li data-node-id="1145:1861">
+              <a href="Shop.html" class="site-footer__link" data-node-id="1145:1862">Shop</a>
+            </li>
+            <li data-node-id="1145:1863">
+              <a href="OurStory.html" class="site-footer__link" data-node-id="1145:1864">Our Story</a>
+            </li>
+            <li data-node-id="1145:1865">
+              <a href="Contactus.html" class="site-footer__link" data-node-id="1145:1866">Contact</a>
+            </li>
+          </ul>
+
+          <div class="site-footer__socials" data-node-id="1145:1867">
+            <a href="#facebook" class="site-footer__social-link" aria-label="Facebook" data-node-id="1145:1868">
+              <img src="assets/icons/social-facebook.svg" alt="" width="32" height="32" />
+            </a>
+            <a href="#x" class="site-footer__social-link" aria-label="X (Twitter)" data-node-id="1145:1871">
+              <img src="assets/icons/social-x.svg" alt="" width="32" height="32" />
+            </a>
+            <a href="#instagram" class="site-footer__social-link" aria-label="Instagram" data-node-id="1145:1874">
+              <img src="assets/icons/social-instagram.svg" alt="" width="32" height="32" />
+            </a>
+            <a href="#linkedin" class="site-footer__social-link" aria-label="LinkedIn" data-node-id="1145:1877">
+              <img src="assets/icons/social-linkedin.svg" alt="" width="32" height="32" />
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Copyright & Legal Links -->
+      <div class="site-footer__bottom" data-node-id="1145:1880">
+        <div class="site-footer__copyright" data-node-id="1145:1881">
+          <p class="site-footer__copyright-text" data-node-id="1145:1882">
+            <span data-node-id="1145:1883">©2026,️</span>
+            <span data-node-id="1145:1884">Mama’s Pickles</span>
+          </p>
+        </div>
+
+        <ul class="site-footer__legal" data-node-id="1145:1885">
+          <li><a href="#privacy" class="site-footer__legal-link" data-node-id="1145:1886">Privacy Policy</a></li>
+          <li><a href="#terms" class="site-footer__legal-link" data-node-id="1145:1887">Terms &amp; Conditions</a></li>
+          <li><a href="#shipping" class="site-footer__legal-link" data-node-id="1145:1888">Shipping Policy</a></li>
+          <li><a href="#refund" class="site-footer__legal-link" data-node-id="1145:1889">Return &amp; Refund Policy</a></li>
+          <li><a href="#cancellation" class="site-footer__legal-link" data-node-id="1145:1890">Cancellation Policy</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Footer Brand Banner -->
+    <div class="site-footer__brand-banner" data-node-id="1145:1891">
+      <div class="site-footer__brand-wrap" data-node-id="1145:1892">
+        <div class="site-footer__brand-mark" data-node-id="1145:1893">
+          <img src="assets/icons/logo-footer-mark.svg" alt="" class="site-footer__mark-img" width="160" height="191" />
+        </div>
+        <div class="site-footer__brand-text" data-node-id="1145:1905">
+          <img src="assets/icons/logo-footer-text.svg" alt="Mama's Pickle" class="site-footer__text-img" width="1062" height="137" />
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- GSAP & ScrollTrigger per AGENT.md Section 2 -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+  <script src="js/products-data.js" defer></script>
+  <script src="js/components.js" defer></script>
+  <script src="js/animations.js" defer></script>
+  <script src="js/main.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,358 @@
+/* ==========================================================================
+   Design System — Typography Tokens (Figma Nodes: 997:3037 & 1032:790)
+   Typography variables support responsive modes — Desktop (>=1024px),
+   Tablet (768px–1023px), and Mobile (360px–767px) — so font sizes and
+   line heights scale per breakpoint.
+   ========================================================================== */
+
+@font-face {
+  font-family: 'Quicksand';
+  src: url('../assets/fonts/Quicksand-VariableFont_wght.ttf') format('truetype');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Hornbill Trial';
+  src: url('../assets/fonts/hornbill/HornbillTrial-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Hornbill Trial';
+  src: url('../assets/fonts/hornbill/HornbillTrial-Italic.ttf') format('truetype');
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Hornbill Trial';
+  src: url('../assets/fonts/hornbill/HornbillTrial-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Hornbill Trial';
+  src: url('../assets/fonts/hornbill/HornbillTrial-BoldItalic.ttf') format('truetype');
+  font-weight: 700;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Hornbill Trial';
+  src: url('../assets/fonts/hornbill/HornbillTrial-Black.ttf') format('truetype');
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Hornbill Trial';
+  src: url('../assets/fonts/hornbill/HornbillTrial-BlackItalic.ttf') format('truetype');
+  font-weight: 900;
+  font-style: italic;
+  font-display: swap;
+}
+
+:root {
+  /* Font Families */
+  --font-display: 'Hornbill Trial', 'Red Hat Display', Georgia, serif;
+  --font-heading: 'Hornbill Trial', 'Red Hat Display', Georgia, serif;
+  --font-sans: 'Quicksand', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-body: 'Quicksand', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-doc: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+
+  /* Font Weights */
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-bold: 700;
+
+  /* Letter Spacing */
+  --tracking-tight: -0.03em; /* -3% / -3 in Figma spec */
+  --tracking-normal: 0em;
+
+  /* ------------------------------------------------------------------------
+     Desktop Typography Tokens (Default >= 1024px)
+     ------------------------------------------------------------------------ */
+  /* Display / Large — Hornbill Trial Bold 48/56 (-3) */
+  --fs-display-lg: 48px;
+  --lh-display-lg: 56px;
+
+  /* Heading Lg — Hornbill Trial Bold 36/44 (-3) */
+  --fs-heading-lg: 36px;
+  --lh-heading-lg: 44px;
+
+  /* Heading Md — Hornbill Trial Bold 32/40 (-3) */
+  --fs-heading-md: 32px;
+  --lh-heading-md: 40px;
+
+  /* Heading Sm — Hornbill Trial Bold 24/32 (-3) [16/24 in 997:3037] */
+  --fs-heading-sm: 24px;
+  --lh-heading-sm: 32px;
+
+  /* Heading Md Variant — Quicksand Bold 32/40 (-3) */
+  --fs-heading-md-variant: 32px;
+  --lh-heading-md-variant: 40px;
+
+  /* Heading Sm Italics — Hornbill Trial / Quicksand Bold Italic 16/24 (-3) */
+  --fs-heading-sm-italics: 16px;
+  --lh-heading-sm-italics: 24px;
+
+  /* Heading Sm Underlined — Hornbill Trial Bold 16/24 (0) */
+  --fs-heading-sm-underlined: 16px;
+  --lh-heading-sm-underlined: 24px;
+
+  /* Label — Hornbill Trial Bold 12/20 (0) */
+  --fs-label: 12px;
+  --lh-label: 20px;
+
+  /* Button Lg — Quicksand Bold 16/24 (0) */
+  --fs-button-lg: 16px;
+  --lh-button-lg: 24px;
+
+  /* Button Sm — Quicksand Bold 12/20 (0) */
+  --fs-button-sm: 12px;
+  --lh-button-sm: 20px;
+
+  /* Title Lg (Title/Large) — Quicksand Bold 20/28 (0) */
+  --fs-title-lg: 20px;
+  --lh-title-lg: 28px;
+
+  /* Title Md (Title/Medium) — Quicksand Bold 16/24 (0) */
+  --fs-title-md: 16px;
+  --lh-title-md: 24px;
+
+  /* Title Sm (Title/Small) — Quicksand Bold 14/20 (0) */
+  --fs-title-sm: 14px;
+  --lh-title-sm: 20px;
+
+  /* Body Lg — Quicksand Medium 18/28 (0) */
+  --fs-body-lg: 18px;
+  --lh-body-lg: 28px;
+
+  /* Body Md — Quicksand Medium 16/24 (0) */
+  --fs-body-md: 16px;
+  --lh-body-md: 24px;
+
+  /* Body — Quicksand Bold 12/16 (0) */
+  --fs-body: 12px;
+  --lh-body: 16px;
+
+  /* Title Sm Prominent (Title/Small Prominent) — Quicksand Bold 14/20 (0) */
+  --fs-title-sm-prominent: 14px;
+  --lh-title-sm-prominent: 20px;
+}
+
+/* --------------------------------------------------------------------------
+   Tablet Breakpoint (768px – 1023px) per AGENT.md & Figma 1032:790
+   -------------------------------------------------------------------------- */
+@media (max-width: 1023px) {
+  :root {
+    --fs-display-lg: 40px;
+    --lh-display-lg: 48px;
+
+    --fs-heading-lg: 32px;
+    --lh-heading-lg: 40px;
+
+    --fs-heading-md: 28px;
+    --lh-heading-md: 36px;
+
+    --fs-heading-sm: 24px;
+    --lh-heading-sm: 32px;
+
+    --fs-heading-md-variant: 28px;
+    --lh-heading-md-variant: 36px;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Mobile Breakpoint (360px – 767px) per AGENT.md & Figma 1032:790
+   -------------------------------------------------------------------------- */
+@media (max-width: 767px) {
+  :root {
+    --fs-display-lg: 32px;
+    --lh-display-lg: 40px;
+
+    --fs-heading-lg: 28px;
+    --lh-heading-lg: 36px;
+
+    --fs-heading-md: 24px;
+    --lh-heading-md: 32px;
+
+    --fs-heading-sm: 24px;
+    --lh-heading-sm: 32px;
+
+    --fs-heading-md-variant: 24px;
+    --lh-heading-md-variant: 32px;
+  }
+}
+
+/* ==========================================================================
+   Reusable Typography Classes
+   ========================================================================== */
+
+.display-large,
+.typo-display-lg {
+  font-family: var(--font-heading);
+  font-weight: var(--font-weight-bold);
+  font-size: var(--fs-display-lg);
+  line-height: var(--lh-display-lg);
+  letter-spacing: var(--tracking-tight);
+}
+
+.heading-lg,
+.typo-heading-lg {
+  font-family: var(--font-heading);
+  font-weight: var(--font-weight-bold);
+  font-size: var(--fs-heading-lg);
+  line-height: var(--lh-heading-lg);
+  letter-spacing: var(--tracking-tight);
+}
+
+.heading-md,
+.typo-heading-md {
+  font-family: var(--font-heading);
+  font-weight: var(--font-weight-bold);
+  font-size: var(--fs-heading-md);
+  line-height: var(--lh-heading-md);
+  letter-spacing: var(--tracking-tight);
+}
+
+.heading-sm,
+.typo-heading-sm {
+  font-family: var(--font-heading);
+  font-weight: var(--font-weight-bold);
+  font-size: var(--fs-heading-sm);
+  line-height: var(--lh-heading-sm);
+  letter-spacing: var(--tracking-tight);
+}
+
+.heading-md-variant,
+.typo-heading-md-variant {
+  font-family: var(--font-sans);
+  font-weight: var(--font-weight-bold);
+  font-size: var(--fs-heading-md-variant);
+  line-height: var(--lh-heading-md-variant);
+  letter-spacing: var(--tracking-tight);
+}
+
+.heading-sm-italics,
+.typo-heading-sm-italics {
+  font-family: var(--font-heading);
+  font-weight: var(--font-weight-bold);
+  font-style: italic;
+  font-size: var(--fs-heading-sm-italics);
+  line-height: var(--lh-heading-sm-italics);
+  letter-spacing: var(--tracking-tight);
+}
+
+.heading-sm-underlined,
+.typo-heading-sm-underlined {
+  font-family: var(--font-heading);
+  font-weight: var(--font-weight-bold);
+  font-size: var(--fs-heading-sm-underlined);
+  line-height: var(--lh-heading-sm-underlined);
+  letter-spacing: var(--tracking-normal);
+  text-decoration: underline;
+}
+
+.label,
+.typo-label {
+  font-family: var(--font-heading);
+  font-weight: var(--font-weight-bold);
+  font-size: var(--fs-label);
+  line-height: var(--lh-label);
+  letter-spacing: var(--tracking-normal);
+}
+
+.button-lg,
+.typo-button-lg {
+  font-family: var(--font-sans);
+  font-weight: var(--font-weight-bold);
+  font-size: var(--fs-button-lg);
+  line-height: var(--lh-button-lg);
+  letter-spacing: var(--tracking-normal);
+}
+
+.button-sm,
+.typo-button-sm {
+  font-family: var(--font-sans);
+  font-weight: var(--font-weight-bold);
+  font-size: var(--fs-button-sm);
+  line-height: var(--lh-button-sm);
+  letter-spacing: var(--tracking-normal);
+}
+
+.title-lg,
+.title-large,
+.typo-title-lg {
+  font-family: var(--font-sans);
+  font-weight: var(--font-weight-bold);
+  font-size: var(--fs-title-lg);
+  line-height: var(--lh-title-lg);
+  letter-spacing: var(--tracking-normal);
+}
+
+.title-md,
+.title-medium,
+.typo-title-md {
+  font-family: var(--font-sans);
+  font-weight: var(--font-weight-bold);
+  font-size: var(--fs-title-md);
+  line-height: var(--lh-title-md);
+  letter-spacing: var(--tracking-normal);
+}
+
+.title-sm,
+.title-small,
+.typo-title-sm {
+  font-family: var(--font-sans);
+  font-weight: var(--font-weight-bold);
+  font-size: var(--fs-title-sm);
+  line-height: var(--lh-title-sm);
+  letter-spacing: var(--tracking-normal);
+}
+
+.body-lg,
+.typo-body-lg {
+  font-family: var(--font-sans);
+  font-weight: var(--font-weight-medium);
+  font-size: var(--fs-body-lg);
+  line-height: var(--lh-body-lg);
+  letter-spacing: var(--tracking-normal);
+}
+
+.body-md,
+.typo-body-md {
+  font-family: var(--font-sans);
+  font-weight: var(--font-weight-medium);
+  font-size: var(--fs-body-md);
+  line-height: var(--lh-body-md);
+  letter-spacing: var(--tracking-normal);
+}
+
+.body,
+.typo-body {
+  font-family: var(--font-sans);
+  font-weight: var(--font-weight-bold);
+  font-size: var(--fs-body);
+  line-height: var(--lh-body);
+  letter-spacing: var(--tracking-normal);
+}
+
+.title-sm-prominent,
+.title-small-prominent,
+.typo-title-sm-prominent {
+  font-family: var(--font-sans);
+  font-weight: var(--font-weight-bold);
+  font-size: var(--fs-title-sm-prominent);
+  line-height: var(--lh-title-sm-prominent);
+  letter-spacing: var(--tracking-normal);
+}

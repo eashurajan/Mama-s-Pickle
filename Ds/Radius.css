@@ -1,0 +1,38 @@
+/* ==========================================================================
+   Design System — Border Radius Tokens (Figma Node: 1001:3520)
+   Radius tokens for corner rounding. Used for cards, inputs, pill-shaped
+   buttons, badges, and fully rounded elements.
+   ========================================================================== */
+
+:root {
+  --radius-4: 4px;
+  --radius-8: 8px;
+  --radius-12: 12px;
+  --radius-16: 16px;
+  --radius-24: 24px;
+  --radius-32: 32px;
+  --radius-100: 100px;
+
+  /* Direct Figma variable name aliases */
+  --4: 4px;
+  --8: 8px;
+  --12: 12px;
+  --16: 16px;
+  --24: 24px;
+  --32: 32px;
+  --100: 100px;
+  --radius-pill: 100px;
+}
+
+/* ==========================================================================
+   Reusable Radius Utility Classes
+   ========================================================================== */
+
+.radius-4 { border-radius: var(--radius-4); }
+.radius-8 { border-radius: var(--radius-8); }
+.radius-12 { border-radius: var(--radius-12); }
+.radius-16 { border-radius: var(--radius-16); }
+.radius-24 { border-radius: var(--radius-24); }
+.radius-32 { border-radius: var(--radius-32); }
+.radius-100,
+.radius-pill { border-radius: var(--radius-100); }

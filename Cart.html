@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cart — Mama’s Pickles</title>
+  <meta name="description" content="Review your selected handcrafted Indian pickles in your Mama’s Pickles shopping cart." />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/responsive.css" />
+  <link rel="stylesheet" href="css/animations.css" />
+</head>
+<body class="cart-page" data-node-id="992:2239">
+
+  <!-- ======================================================================
+       CART PAGE LAYOUT
+       (Figma Nodes: 992:2239 Desktop / 1059:5498 Tablet / 1063:9581 Mobile)
+       ====================================================================== -->
+  <main class="cart-layout" id="cart-main" data-node-id="992:2240">
+
+    <!-- ====================================================================
+         1. LEFT / TOP COLUMN: CART HEADER, ADDED ITEMS & RECENTLY VIEWED
+         (Figma Nodes: 992:2241 Desktop / 1059:5500 Tablet / 1063:9582 Mobile)
+         ==================================================================== -->
+    <div class="cart-main-col" data-node-id="992:2241">
+
+      <!-- 1A. Back Button & Cart Heading (Figma Nodes: 1009:1763 / 1059:5501 / 1063:9583) -->
+      <header class="cart-header" data-node-id="1009:1763">
+        <a
+          href="Home.html#shop-products"
+          class="pdp-back-btn"
+          aria-label="Go back"
+          data-cart-back
+          data-node-id="1009:1764"
+        >
+          <img src="assets/icons/icon-back.svg" alt="" width="24" height="24" />
+        </a>
+        <h1 class="cart-header__title" data-node-id="1009:1769">Cart</h1>
+      </header>
+
+      <!-- 1B. Cart Added Products List (Figma Nodes: 992:2249 / 1059:5508 / 1063:9590) -->
+      <section class="cart-items-section" aria-label="Items in your cart" data-node-id="992:2249">
+        <div class="cart-items-list" data-cart-items-list>
+
+          <!-- Default Item 1: Chicken Pickle (Figma Node: 992:2250) -->
+          <article class="cart-item" data-cart-item-slug="chicken-pickle" data-node-id="992:2250">
+            <div class="cart-item__info" data-node-id="992:2251">
+              <a href="Product.html?product=chicken-pickle" class="cart-item__media" data-node-id="992:2252">
+                <img
+                  src="assets/images/products/Pickle type=Chicken Front, Variant=Png, SIzes=350g.png"
+                  alt="Chicken Pickle"
+                  class="cart-item__img"
+                />
+              </a>
+              <div class="cart-item__details" data-node-id="992:2254">
+                <div class="cart-item__title-group" data-node-id="992:2255">
+                  <a href="Product.html?product=chicken-pickle" class="cart-item__name-link">
+                    <h2 class="cart-item__name" data-node-id="992:2256">Chicken Pickle</h2>
+                  </a>
+                  <p class="cart-item__desc" data-node-id="992:2257">
+                    Spicy, tangy chicken pickle made with traditional Indian spices.
+                  </p>
+                </div>
+                <p class="cart-item__price" data-cart-item-price data-node-id="992:2258">₹ 499</p>
+              </div>
+            </div>
+
+            <!-- Green Quantity & Remove Pill (Figma Node: 584:925) -->
+            <div class="mp-qty-control cart-item__action" data-cart-qty-wrap data-node-id="584:925">
+              <div class="mp-qty-pill">
+                <div class="mp-qty-pill__label" data-node-id="584:962">
+                  <span>Qnty :</span>
+                  <span data-cart-item-qty>1</span>
+                </div>
+                <button
+                  type="button"
+                  class="mp-qty-pill__remove"
+                  aria-label="Remove Chicken Pickle from cart"
+                  data-cart-item-remove
+                  data-node-id="584:959"
+                >
+                  <img src="assets/icons/icon-close.svg" alt="" width="12" height="12" />
+                </button>
+              </div>
+              <div class="mp-qty-dropdown" role="listbox" aria-label="Select quantity">
+                <div class="mp-qty-dropdown__list" data-qty-options></div>
+                <div class="mp-qty-dropdown__more-wrap">
+                  <button type="button" class="mp-qty-dropdown__more" data-qty-more><span>More</span></button>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Default Item 2: Prawn Pickle (Figma Node: 1017:1628) -->
+          <article class="cart-item" data-cart-item-slug="prawn-pickle" data-node-id="1017:1628">
+            <div class="cart-item__info" data-node-id="1017:1629">
+              <a href="Product.html?product=prawn-pickle" class="cart-item__media" data-node-id="1017:1630">
+                <img
+                  src="assets/images/products/Pickle type=Prawn Front, Variant=Png, SIzes=350g.png"
+                  alt="Prawn Pickle"
+                  class="cart-item__img"
+                />
+              </a>
+              <div class="cart-item__details" data-node-id="1017:1632">
+                <div class="cart-item__title-group" data-node-id="1017:1633">
+                  <a href="Product.html?product=prawn-pickle" class="cart-item__name-link">
+                    <h2 class="cart-item__name" data-node-id="1017:1634">Prawn Pickle</h2>
+                  </a>
+                  <p class="cart-item__desc" data-node-id="1017:1635">
+                    Spicy, tangy chicken pickle made with traditional Indian spices.
+                  </p>
+                </div>
+                <p class="cart-item__price" data-cart-item-price data-node-id="1017:1636">₹ 479</p>
+              </div>
+            </div>
+
+            <div class="mp-qty-control cart-item__action" data-cart-qty-wrap>
+              <div class="mp-qty-pill">
+                <div class="mp-qty-pill__label">
+                  <span>Qnty :</span>
+                  <span data-cart-item-qty>1</span>
+                </div>
+                <button
+                  type="button"
+                  class="mp-qty-pill__remove"
+                  aria-label="Remove Prawn Pickle from cart"
+                  data-cart-item-remove
+                >
+                  <img src="assets/icons/icon-close.svg" alt="" width="12" height="12" />
+                </button>
+              </div>
+              <div class="mp-qty-dropdown" role="listbox" aria-label="Select quantity">
+                <div class="mp-qty-dropdown__list" data-qty-options></div>
+                <div class="mp-qty-dropdown__more-wrap">
+                  <button type="button" class="mp-qty-dropdown__more" data-qty-more><span>More</span></button>
+                </div>
+              </div>
+            </div>
+          </article>
+
+        </div>
+
+        <!-- Empty Cart State (Figma Node: 1236:2196) -->
+        <div class="cart-empty is-hidden" data-cart-empty data-node-id="1236:2206">
+          <div class="cart-empty__illustration" data-node-id="1236:2350">
+            <img
+              src="assets/icons/cart-empty-bag.svg"
+              alt=""
+              width="100"
+              height="129.832"
+              class="cart-empty__img"
+            />
+          </div>
+          <div class="cart-empty__copy" data-node-id="1236:2363">
+            <h2 class="cart-empty__title" data-node-id="1236:2360">I’m empty now</h2>
+            <p class="cart-empty__text" data-node-id="1236:2361">
+              Your cart is waiting for something delicious.
+            </p>
+          </div>
+        </div>
+
+        <!-- Scalloped Weavy Divider (Figma Nodes: 992:2270 / 1059:5529 / 1063:9611) -->
+        <div class="cart-weave" aria-hidden="true" data-node-id="992:2270">
+          <picture>
+            <source media="(max-width: 767px)" srcset="assets/icons/cart-weave-top-mobile.svg" />
+            <img src="assets/icons/cart-weave-top.svg" alt="" class="cart-weave__img" />
+          </picture>
+        </div>
+      </section>
+
+      <!-- 1C. Recently Viewed Section (Figma Nodes: 992:2271 / 1059:5530 / 1063:9612) -->
+      <section class="cart-recently-viewed" aria-labelledby="cart-recent-heading" data-node-id="992:2271">
+        <h2 class="cart-recently-viewed__title" id="cart-recent-heading" data-node-id="992:2272">
+          Recently viewed
+        </h2>
+
+        <div class="cart-recently-viewed__grid" data-cart-recent-grid data-node-id="992:2273">
+          <!-- Populated & enhanced by js/components.js (Fish Pickle, Squid Pickle, Mutton Pickle) -->
+        </div>
+      </section>
+
+    </div>
+
+    <!-- ====================================================================
+         2. RIGHT / BOTTOM PANEL: CART TOTAL
+         (Figma Nodes: 992:2337 Desktop / 1059:5596 Tablet / 1063:9678 Mobile)
+         ==================================================================== -->
+    <aside class="cart-total-panel" aria-labelledby="cart-total-heading" data-node-id="992:2337">
+      <div class="cart-total-panel__inner" data-node-id="1059:5639">
+        <h2 class="cart-total-panel__title" id="cart-total-heading" data-node-id="992:2338">
+          Cart Total
+        </h2>
+
+        <div class="cart-total-panel__splits" data-node-id="992:2339">
+          <div class="cart-total-panel__row" data-node-id="992:2340">
+            <span class="cart-total-panel__label" data-node-id="992:2341">
+              Shipping (4-6 Business day)
+            </span>
+            <span class="cart-total-panel__value" data-cart-shipping data-node-id="992:2342">
+              Free
+            </span>
+          </div>
+
+          <div class="cart-total-panel__row" data-node-id="992:2343">
+            <span class="cart-total-panel__label" data-node-id="992:2344">
+              Tax
+            </span>
+            <span class="cart-total-panel__value" data-cart-tax data-node-id="992:2345">
+              60
+            </span>
+          </div>
+
+          <div class="cart-total-panel__row" data-node-id="992:2346">
+            <span class="cart-total-panel__label" data-node-id="992:2347">
+              Subtotal
+            </span>
+            <span class="cart-total-panel__value" data-cart-subtotal data-node-id="992:2348">
+              ₹ 400
+            </span>
+          </div>
+        </div>
+
+        <button type="button" class="cart-total-panel__btn" data-cart-place-order data-node-id="1135:1239">
+          <span data-cart-place-order-label data-node-id="1135:1240">Place Order</span>
+        </button>
+        <p class="cart-total-panel__status" aria-live="polite" data-cart-order-status></p>
+      </div>
+    </aside>
+
+  </main>
+
+  <!-- GSAP & ScrollTrigger per AGENT.md Section 2 -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+  <script src="js/products-data.js" defer></script>
+  <script src="js/components.js" defer></script>
+  <script src="js/animations.js" defer></script>
+  <script src="js/main.js" defer></script>
+</body>
+</html>

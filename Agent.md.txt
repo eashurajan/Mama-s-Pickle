@@ -1,0 +1,190 @@
+Agent.md
+
+# AGENT.md — Ecommerce Website Development Instructions
+
+## 1. Project Overview
+
+Build a premium, modern Ecommerce website for an Mama's pickle company.
+
+### Project Goals
+- Create a visually appealing website.
+- Prioritize user experience and conversion.
+- Maintain a premium visual identity.
+- Ensure smooth interactions and animations.
+- Optimize for performance and SEO.
+
+---
+
+## 2. Technology Stack
+
+Use the following technologies:
+
+- HTML5 for structure.
+- CSS3 for styling.
+- Vanilla JavaScript for interactions.
+- GSAP for animations and smooth horizontal page scroll .
+- ScrollTrigger for scroll-based animations.
+
+### Restrictions
+- Do not introduce React or other frameworks.
+- Avoid unnecessary third-party dependencies.
+- Do not use jQuery.
+- Use existing project dependencies wherever possible.
+
+---
+
+## 3. Project Architecture
+
+Follow this folder structure:
+
+```text
+project/
+│
+├── Home.html
+├── Shop.html
+├── OurStory.html
+├── Contactus.html
+│
+├── css/
+│   ├── style.css
+│   ├── responsive.css
+│   └── animations.css
+├── Ds/
+│   ├── Typography.css
+│   ├── Spacing.css
+│   ├── Stroke.css
+│   ├── Radius.css
+│   └── Color.css
+│
+├── js/
+│   ├── main.js
+│   ├── animations.js
+│   └── components.js
+│
+├── assets/
+│   ├── images/
+│   ├── videos/
+│   ├── icons/
+│   └── fonts/
+│
+└── AGENT.md
+```
+
+Do not change this architecture without a valid reason.
+
+---
+
+## 4. Coding Standards
+
+### HTML
+- Use semantic HTML5 elements.
+- Maintain proper heading hierarchy.
+- Use accessible labels and alt attributes.
+- Avoid unnecessary wrapper elements.
+
+### CSS
+- Use reusable CSS classes.
+- Follow a consistent naming convention.
+- Use CSS variables for colors, spacing and typography.
+- Avoid excessive specificity.
+- Avoid inline styles unless necessary.
+
+### JavaScript
+- Use modern ES6+ syntax.
+- Write reusable functions.
+- Avoid duplicate event listeners.
+- Keep DOM manipulation organized.
+- Use meaningful variable and function names.
+- comments overanimation to understand the code by others
+
+---
+
+## 5. Design Guidelines
+
+- Follow the provided Figma designs and references.
+- Maintain consistent spacing and typography.
+- Use the established color palette.
+- Maintain visual consistency across pages.
+- Avoid introducing unapproved design elements.
+- Prioritize responsive layouts.
+
+### Responsive Breakpoints
+- Mobile: 360px–767px
+- Tablet: 768px–1023px
+- Desktop: 1024px and above
+
+---
+
+## 6. Animation Guidelines
+
+Use GSAP for complex animations.
+
+### Animation Principles
+- Prioritize smooth and natural movement.
+- Use ScrollTrigger for scroll-based interactions.
+- Avoid unnecessary animations.
+- Maintain consistent easing.
+- Avoid animating layout-heavy properties when possible.
+- Ensure animations do not interfere with usability.
+
+### Performance
+- Prefer transform and opacity animations.
+- Avoid excessive scroll event listeners.
+- Clean up ScrollTriggers when necessary.
+- Respect prefers-reduced-motion.
+
+---
+
+## 7. Component Reusability
+
+Create reusable components for repeated UI elements.
+
+Examples:
+- Navbar
+- Footer
+- Product cards
+- Service cards
+- Buttons
+- Testimonials
+
+Do not duplicate code when a reusable implementation is practical.
+
+---
+
+## 8. Development Workflow
+
+Before implementing a feature:
+
+1. Inspect the existing project structure.
+2. Understand the existing code.
+3. Identify the files that need modification.
+4. Check whether reusable components already exist.
+5. Plan the implementation.
+
+During implementation:
+
+1. Follow the existing coding conventions.
+2. Avoid modifying unrelated sections.
+3. Reuse existing assets and dependencies.
+4. Maintain responsive behavior.
+5. Test interactions and animations.
+
+After implementation:
+
+1. Check for console errors.
+2. Verify responsive layouts.
+3. Test all interactive elements.
+4. Check animation performance.
+5. Confirm that existing features still work.
+
+---
+
+## 9. Important Rules
+
+- Never delete existing functionality without approval.
+- Never replace existing assets without checking their usage.
+- Assets from figma design should be organized as folder/files and maintained with clear names 
+- Do not invent content when actual content is provided.
+- Do not modify global styles unnecessarily.
+- Ask for clarification when requirements are ambiguous.
+- Explain significant architectural changes before implementing them.

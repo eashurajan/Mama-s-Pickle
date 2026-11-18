@@ -1,0 +1,18 @@
+<svg preserveAspectRatio="none" overflow="visible" style="display: block;" width="100" height="129.832" viewBox="0 0 100 129.832" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="Frame 2147259065">
+<path id="Rectangle 240648945" d="M72.6499 39.251V23.7494C72.6499 11.3235 62.5767 1.25029 50.1508 1.25029C37.7249 1.25029 27.6517 11.3235 27.6517 23.7494V39.251" stroke-width="2.50058" stroke-linecap="round" stroke="#19212E"/>
+<g id="Vector 23">
+<path d="M4.57764e-05 43.0874V129.832H100V43.0874H87.5244H12.4757H4.57764e-05Z" fill="#8B151B"/>
+<path d="M4.57764e-05 43.0874H12.4757V15.407L6.23785 34.9004L4.57764e-05 43.0874Z" fill="#FF8C92"/>
+<path d="M87.5244 43.0874H100L94.347 34.9004L87.5244 15.407V43.0874Z" fill="#FF8C92"/>
+<path d="M12.4757 43.0874H87.5244V15.407H12.4757V43.0874Z" fill="#FFADB1"/>
+</g>
+<g id="Frame 2147259064">
+<circle id="Ellipse 9" cx="27.6516" cy="54.6604" r="3.72053" fill="#FFADB1"/>
+<circle id="Ellipse 10" cx="72.3485" cy="54.6604" r="3.72053" fill="#FFADB1"/>
+<circle id="Ellipse 11" cx="27.6516" cy="23.4032" r="3.72053" fill="#8B151B"/>
+<circle id="Ellipse 12" cx="72.3485" cy="23.4032" r="3.72053" fill="#8B151B"/>
+</g>
+<path id="Rectangle 240648944" d="M72.4992 55.2758V39.7742C72.4992 27.3483 62.426 17.2751 50.0001 17.2751C37.5742 17.2751 27.501 27.3483 27.501 39.7742V55.2758" stroke-width="2.50058" stroke-linecap="round" stroke="#19212E"/>
+</g>
+</svg>

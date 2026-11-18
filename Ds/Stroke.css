@@ -1,0 +1,35 @@
+/* ==========================================================================
+   Design System — Stroke Weight Tokens (Figma Node: 1001:3480)
+   Stroke weight tokens used for borders, dividers, and outline styling
+   across UI elements.
+   ========================================================================== */
+
+:root {
+  --stroke-1: 1px;
+  --stroke-2: 2px;
+  --stroke-3: 3px;
+
+  /* Descriptive aliases */
+  --stroke-weight-1: 1px;
+  --stroke-weight-2: 2px;
+  --stroke-weight-3: 3px;
+}
+
+/* ==========================================================================
+   Reusable Stroke Utility Classes
+   ========================================================================== */
+
+.stroke-1 {
+  border-width: var(--stroke-1);
+  border-style: solid;
+}
+
+.stroke-2 {
+  border-width: var(--stroke-2);
+  border-style: solid;
+}
+
+.stroke-3 {
+  border-width: var(--stroke-3);
+  border-style: solid;
+}

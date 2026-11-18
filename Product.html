@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Chicken Pickle — Mama’s Pickles</title>
+  <meta name="description" content="Explore handcrafted Indian pickles from Mama’s Pickles — made with cold-pressed gingelly oil and authentic South Indian spices." />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/responsive.css" />
+  <link rel="stylesheet" href="css/animations.css" />
+</head>
+<body class="product-page" data-node-id="1147:4584">
+
+  <!-- ======================================================================
+       1. NAVBAR (Figma Nodes: 1147:4585 / 1063:6408 / 1063:10166)
+       ====================================================================== -->
+  <header class="pdp-header">
+    <nav class="navbar navbar--pdp" aria-label="Main Navigation" data-node-id="1147:4585">
+      <!-- Hamburger Menu Button (Visible on Tablet & Mobile: < 1024px) -->
+      <button
+        type="button"
+        class="navbar__hamburger"
+        aria-label="Open navigation menu"
+        aria-expanded="false"
+        aria-controls="mobile-nav-drawer"
+        data-nav-toggle
+      >
+        <img src="assets/icons/icon-hamburger.svg" alt="" width="24" height="24" />
+      </button>
+
+      <!-- Brand Logo -->
+      <a href="Home.html" class="navbar__logo" aria-label="Mama's Pickles Home" data-node-id="I1147:4585;1023:289">
+        <img
+          src="assets/icons/logo-nav.svg"
+          alt="Mama's Pickles"
+          class="navbar__logo-img navbar__logo-img--desktop"
+          width="113"
+          height="51"
+        />
+        <img
+          src="assets/icons/logo-nav-mobile.svg"
+          alt="Mama's Pickles"
+          class="navbar__logo-img navbar__logo-img--mobile"
+          width="98"
+          height="44"
+        />
+      </a>
+
+      <!-- Desktop Navigation Menu (>= 1024px) -->
+      <ul class="navbar__menu" data-node-id="I1147:4585;1023:315">
+        <li class="navbar__menu-item" data-node-id="I1147:4585;1023:316">
+          <a href="Home.html" class="navbar__link is-active" data-node-id="I1147:4585;1023:317">Home</a>
+        </li>
+        <li class="navbar__menu-item navbar__menu-item--shop" data-node-id="I1147:4585;1023:318">
+          <button type="button" class="navbar__link" aria-haspopup="true" aria-expanded="false" data-nav-shop data-node-id="I1147:4585;1023:319">Shop</button>
+        </li>
+        <li class="navbar__menu-item" data-node-id="I1147:4585;1023:320">
+          <a href="OurStory.html" class="navbar__link" data-node-id="I1147:4585;1023:321">Our Story</a>
+        </li>
+        <li class="navbar__menu-item" data-node-id="I1147:4585;1023:322">
+          <a href="Contactus.html" class="navbar__link" data-node-id="I1147:4585;1023:323">Contact Us</a>
+        </li>
+      </ul>
+
+      <!-- Cart Action Button (Figma Node: 515:201 — Default: 515:200 / Active: 515:199) -->
+      <a href="Cart.html" class="navbar__cart" aria-label="Shopping Cart" aria-disabled="true" data-cart-btn data-node-id="I1147:4585;1023:324">
+        <span class="navbar__cart-icon" data-node-id="I1147:4585;1023:324;519:450">
+          <img src="assets/icons/icon-cart-default.svg" alt="" class="navbar__cart-img navbar__cart-img--default" width="24" height="24" />
+          <img src="assets/icons/icon-cart.svg" alt="" class="navbar__cart-img navbar__cart-img--active" width="24" height="24" />
+        </span>
+        <span class="navbar__cart-counter" data-cart-count data-node-id="I1147:4585;1023:324;515:203">1</span>
+      </a>
+    </nav>
+
+    <!-- Mobile / Tablet Navigation Drawer -->
+    <div class="mobile-drawer" id="mobile-nav-drawer" aria-hidden="true" data-nav-drawer>
+      <div class="mobile-drawer__backdrop" data-nav-close></div>
+      <div class="mobile-drawer__panel">
+        <div class="mobile-drawer__header">
+          <img src="assets/icons/logo-nav.svg" alt="Mama's Pickles" width="98" height="44" />
+          <button type="button" class="mobile-drawer__close" aria-label="Close navigation menu" data-nav-close>
+            <img src="assets/icons/icon-close.svg" alt="" width="24" height="24" />
+          </button>
+        </div>
+        <ul class="mobile-drawer__list">
+          <li><a href="Home.html" class="mobile-drawer__link">Home</a></li>
+          <li><button type="button" class="mobile-drawer__link is-active" data-nav-shop-mobile>Shop</button></li>
+          <li><a href="OurStory.html" class="mobile-drawer__link">Our Story</a></li>
+          <li><a href="Contactus.html" class="mobile-drawer__link">Contact Us</a></li>
+        </ul>
+      </div>
+    </div>
+  </header>
+
+  <main id="pdp-main">
+    <!-- ====================================================================
+         PRODUCT NOT FOUND STATE (Shown only when URL slug does not exist)
+         ==================================================================== -->
+    <section class="pdp-not-found is-hidden" aria-live="polite" data-pdp-not-found>
+      <div class="pdp-not-found__card">
+        <p class="pdp-not-found__tag">Product Not Found</p>
+        <h1 class="pdp-not-found__title">We couldn’t find that pickle jar!</h1>
+        <p class="pdp-not-found__desc">
+          The pickle URL you visited doesn’t match our kitchen catalogue. Choose one of our handcrafted pickles below or return to the homepage.
+        </p>
+        <div class="pdp-not-found__links" data-pdp-not-found-links></div>
+        <a href="Home.html#shop-products" class="btn btn--lg btn--primary">Back to All Pickles</a>
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         DYNAMIC PRODUCT DETAIL CONTENT (Hidden if Product Not Found)
+         ==================================================================== -->
+    <div data-pdp-view>
+      <!-- 2. PRODUCT DETAIL HERO SECTION (Figma Nodes: 1147:4586 / 1059:5028 / 1063:9919) -->
+      <section class="pdp-detail" aria-labelledby="pdp-main-heading" data-node-id="1147:4586">
+        <div class="pdp-detail__inner">
+          <!-- Back Button & Product Heading -->
+          <div class="pdp-title-bar" data-node-id="1147:4587">
+            <a href="Home.html#shop-products" class="pdp-back-btn" aria-label="Back to products" data-node-id="1147:4588">
+              <img src="assets/icons/icon-back.svg" alt="" width="24" height="24" />
+            </a>
+            <h1 class="pdp-title-bar__heading" id="pdp-main-heading" data-pdp-heading data-node-id="1147:4591">
+              Chicken Pickle
+            </h1>
+          </div>
+
+          <!-- Two-Column Gallery + Product Info -->
+          <div class="pdp-content" data-node-id="1147:4592">
+            <!-- Left: Interactive Product Image Gallery -->
+            <div class="pdp-gallery" data-node-id="1147:4593">
+              <div class="pdp-gallery__stage" data-node-id="1147:4594">
+                <div class="pdp-gallery__main-wrap" data-node-id="1147:4595">
+                  <img
+                    src="assets/images/products/Pickle type=Chicken Front, Variant=With Bg, SIzes=350g.png"
+                    alt="Chicken Pickle (350g) jar in kitchen setting"
+                    class="pdp-gallery__main-img"
+                    data-pdp-main-img
+                  />
+                </div>
+                <button
+                  type="button"
+                  class="pdp-gallery__prev is-hidden"
+                  aria-label="Previous product image"
+                  aria-hidden="true"
+                  tabindex="-1"
+                  data-pdp-prev
+                >
+                  <img src="assets/icons/icon-chevron-left.svg" alt="" class="pdp-gallery__next-icon" width="36" height="36" />
+                </button>
+                <button
+                  type="button"
+                  class="pdp-gallery__next"
+                  aria-label="Next product image"
+                  data-pdp-next
+                  data-node-id="1147:4596"
+                >
+                  <img src="assets/icons/icon-chevron-right.svg" alt="" class="pdp-gallery__next-icon" width="36" height="36" />
+                </button>
+              </div>
+
+              <!-- 5 Gallery Thumbnails -->
+              <div class="pdp-gallery__thumbs" role="tablist" aria-label="Product gallery thumbnails" data-pdp-thumbs data-node-id="1147:4599">
+                <!-- Populated dynamically by js/components.js -->
+              </div>
+            </div>
+
+            <!-- Right: Selected Product Info -->
+            <div class="pdp-info-wrap" data-node-id="1147:4610">
+              <div class="pdp-info" data-node-id="1147:4611">
+                <!-- Available Jar Sizes Selector (350g & 200g) -->
+                <div class="pdp-variants" role="radiogroup" aria-label="Available jar sizes" data-pdp-variants data-node-id="1147:4612">
+                  <button
+                    type="button"
+                    role="radio"
+                    aria-checked="true"
+                    class="pdp-variant-card is-active"
+                    data-pdp-size-btn="350g"
+                    data-node-id="1147:4613"
+                  >
+                    <span class="pdp-variant-card__media" data-node-id="1147:4614">
+                      <img
+                        src="assets/images/products/Pickle type=Chicken Front, Variant=Png, SIzes=350g.png"
+                        alt="350g jar"
+                        class="pdp-variant-card__img"
+                        data-pdp-variant-img="350g"
+                      />
+                    </span>
+                    <span class="pdp-variant-card__label" data-node-id="1147:4617">350g</span>
+                  </button>
+
+                  <button
+                    type="button"
+                    role="radio"
+                    aria-checked="false"
+                    class="pdp-variant-card"
+                    data-pdp-size-btn="200g"
+                    data-node-id="1147:4618"
+                  >
+                    <span class="pdp-variant-card__media" data-node-id="1147:4619">
+                      <img
+                        src="assets/images/products/Pickle type=Chicken Front, Variant=Png, SIzes=200g.png"
+                        alt="200g jar"
+                        class="pdp-variant-card__img pdp-variant-card__img--200"
+                        data-pdp-variant-img="200g"
+                      />
+                    </span>
+                    <span class="pdp-variant-card__label" data-node-id="1147:4622">200g</span>
+                  </button>
+                </div>
+
+                <!-- Detailed Product Info Block -->
+                <div class="pdp-details-block" data-node-id="1147:4623">
+                  <div class="pdp-top-info" data-node-id="1147:4624">
+                    <div class="pdp-summary" data-node-id="1147:4625">
+                      <div class="pdp-title-rating" data-node-id="1147:4626">
+                        <div class="pdp-title-row" data-node-id="1147:4627">
+                          <h2 class="pdp-title-row__name" data-pdp-title data-node-id="1147:4628">Chicken Pickle</h2>
+                          <span class="pdp-title-row__size" data-pdp-size-label data-node-id="1147:4629">( 350g )</span>
+                        </div>
+
+                        <div class="pdp-rating-row" data-node-id="1147:4630">
+                          <span class="pdp-rating-row__badge" data-node-id="1147:4631">
+                            <img src="assets/icons/icon-star.svg" alt="Rated" width="12" height="12" />
+                            <span class="pdp-rating-row__score" data-pdp-rating-score data-node-id="1147:4634">4.1</span>
+                          </span>
+                          <span class="pdp-rating-row__reviews" data-pdp-rating-reviews data-node-id="1147:4635">(2400) Reviews</span>
+                        </div>
+                      </div>
+
+                      <p class="pdp-short-desc" data-pdp-short-desc data-node-id="1147:4636">
+                        Spicy, tangy chicken pickle made with traditional Indian spices.
+                      </p>
+                    </div>
+
+                    <!-- Price -->
+                    <div class="pdp-price-wrap" data-node-id="1147:4637">
+                      <p class="pdp-price" data-pdp-price data-node-id="1147:4638">₹ 400</p>
+                    </div>
+
+                    <!-- Taste Profile -->
+                    <div class="pdp-taste" data-node-id="1147:4639">
+                      <span class="pdp-taste__label" data-node-id="1147:4640">Taste Profile</span>
+                      <span class="pdp-taste__value" data-pdp-taste data-node-id="1147:4641">Spicy, tangy, sour, savory, or mild</span>
+                    </div>
+                  </div>
+
+                  <!-- Check Delivery Availability -->
+                  <div class="pdp-delivery" data-node-id="1147:4642">
+                    <p class="pdp-delivery__label" data-node-id="1147:4643">
+                      Check delivery availability at your address below
+                    </p>
+                    <form class="pdp-delivery__bar" data-pdp-pincode-form novalidate data-node-id="1147:4644">
+                      <label for="pdp-pincode-input" class="sr-only">Enter your PIN code</label>
+                      <input
+                        type="text"
+                        id="pdp-pincode-input"
+                        class="pdp-delivery__input"
+                        placeholder="Enter your PIN code"
+                        inputmode="numeric"
+                        maxlength="6"
+                        data-pdp-pincode-input
+                        data-node-id="1147:4645"
+                      />
+                      <button type="submit" class="pdp-delivery__btn" data-node-id="1147:4646">
+                        <span data-node-id="1147:4647">Check</span>
+                      </button>
+                    </form>
+                    <p class="pdp-delivery__status" aria-live="polite" data-pdp-pincode-status></p>
+                  </div>
+
+                  <!-- Add to Cart / Quantity Dropdown Component (Figma Node: 584:904) -->
+                  <div class="pdp-actions" data-pdp-cart-action-wrap>
+                    <button
+                      type="button"
+                      class="pdp-add-btn"
+                      data-pdp-add-to-cart
+                      data-node-id="1147:4648"
+                    >
+                      <span data-pdp-add-label data-node-id="I1147:4648;581:240">Add to Cart</span>
+                    </button>
+
+                    <!-- Green Quantity Pill + Hover Dropdown (Shown when added to cart, Node: 584:925) -->
+                    <div class="mp-qty-control is-hidden" data-pdp-qty-control data-node-id="584:925">
+                      <div class="mp-qty-pill" data-pdp-qty-pill>
+                        <div class="mp-qty-pill__label" data-node-id="584:962">
+                          <span data-node-id="584:963">Qnty :</span>
+                          <span data-pdp-qty-val data-node-id="584:964">1</span>
+                        </div>
+                        <button
+                          type="button"
+                          class="mp-qty-pill__remove"
+                          aria-label="Remove from cart"
+                          data-pdp-qty-remove
+                          data-node-id="584:959"
+                        >
+                          <img src="assets/icons/icon-close.svg" alt="" width="12" height="12" />
+                        </button>
+                      </div>
+
+                      <!-- Hover Dropdown Menu (Figma Node: 584:966) -->
+                      <div class="mp-qty-dropdown" role="listbox" aria-label="Select quantity" data-pdp-qty-dropdown data-node-id="584:966">
+                        <div class="mp-qty-dropdown__list" data-pdp-qty-options data-node-id="584:967">
+                          <!-- Options 1..10 populated by JS -->
+                        </div>
+                        <div class="mp-qty-dropdown__more-wrap" data-node-id="584:988">
+                          <button type="button" class="mp-qty-dropdown__more" data-pdp-qty-more data-node-id="584:989">
+                            <span data-node-id="584:990">More</span>
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==================================================================
+           3. PRODUCT DESCRIPTION SECTION (Figma Nodes: 1147:4649 / 1059:5093 / 1063:9984)
+           ================================================================== -->
+      <section class="pdp-description-section" aria-labelledby="pdp-desc-heading" data-node-id="1147:4649">
+        <!-- Top Scalloped Weave Decoration -->
+        <div class="pdp-weave pdp-weave--top" aria-hidden="true" data-node-id="1154:7293">
+          <picture>
+            <source media="(max-width: 767px)" srcset="assets/icons/weave-top-mobile.svg" />
+            <img src="assets/icons/weave-top.svg" alt="" class="pdp-weave__img" />
+          </picture>
+        </div>
+
+        <h2 class="pdp-description-section__title" id="pdp-desc-heading" data-node-id="1147:4650">
+          Product Description
+        </h2>
+
+        <div class="pdp-description-card" data-node-id="1147:4651">
+          <!-- Row 1: Key Ingredients -->
+          <div class="pdp-desc-row" data-node-id="1147:4652">
+            <h3 class="pdp-desc-row__label" data-node-id="1147:4653">Key Ingredients</h3>
+            <p class="pdp-desc-row__value" data-pdp-ingredients data-node-id="1147:4654">
+              Chicken, Edible Vegetable Oil (Gingelly Oil), Red Chilli, Salt, Garlic, Ginger, Mustard Seeds, Fenugreek Seeds, Curry Leaves, Spices &amp; Condiments.
+            </p>
+          </div>
+
+          <!-- Row 2: Preparation Style -->
+          <div class="pdp-desc-row" data-node-id="1147:4655">
+            <h3 class="pdp-desc-row__label" data-node-id="1147:4656">Preparation Style</h3>
+            <p class="pdp-desc-row__value" data-pdp-preparation data-node-id="1147:4657">
+              Prepared with chicken, gingelly oil, and a traditional blend of Indian spices. Red chilli, garlic, ginger, mustard seeds, and aromatic curry leaves bring together a rich, savoury flavour with a distinctive spicy kick.
+            </p>
+          </div>
+
+          <!-- Row 3: Pairing Suggestions -->
+          <div class="pdp-desc-row" data-node-id="1147:4658">
+            <h3 class="pdp-desc-row__label" data-node-id="1147:4659">Pairing Suggestions</h3>
+            <p class="pdp-desc-row__value" data-pdp-pairing data-node-id="1147:4660">
+              <span>Enjoy Mama’s Chicken Pickle with </span>
+              <strong class="pdp-desc-row__strong">steamed rice, curd rice, dosa, idli, chapati, or your favorite South Indian meal.</strong>
+              <span> A flavorful accompaniment for everyday lunches and dinners.</span>
+            </p>
+          </div>
+
+          <!-- Row 4: Shelf Life -->
+          <div class="pdp-desc-row" data-node-id="1147:4661">
+            <h3 class="pdp-desc-row__label" data-node-id="1147:4662">Shelf Life</h3>
+            <p class="pdp-desc-row__value" data-pdp-shelf-life data-node-id="1147:4663">
+              <strong class="pdp-desc-row__strong">Best before 6 months</strong>
+              <span> from the date of packing, subject to confirmation against your validated shelf life and applicable labelling requirements.</span>
+            </p>
+          </div>
+
+          <!-- Row 5: Storage Instructions -->
+          <div class="pdp-desc-row" data-node-id="1147:4664">
+            <h3 class="pdp-desc-row__label" data-node-id="1147:4665">Storage Instructions</h3>
+            <p class="pdp-desc-row__value" data-pdp-storage data-node-id="1147:4666">
+              <strong class="pdp-desc-row__strong">Store in a cool, dry place away from direct sunlight. </strong>
+              <span>Refrigerate after opening and use a clean, dry spoon when serving.</span>
+            </p>
+          </div>
+
+          <!-- Row 6: Nutritional Information -->
+          <div class="pdp-desc-row" data-node-id="1147:4667">
+            <h3 class="pdp-desc-row__label" data-node-id="1147:4668">Nutritional Information</h3>
+            <div class="pdp-desc-row__value" data-node-id="1147:4669">
+              <p class="pdp-desc-row__strong" data-pdp-nutrition-heading>Approximate values per 100 g:</p>
+              <p data-pdp-nutrition-values>
+                Energy: 298 kcal, Protein: 18 g, Carbohydrate: 4 g, Total Fat: 24 g, Saturated Fat: 6 g, Trans Fat: 0 g, Sodium: 1,200 mg.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Bottom Scalloped Weave Decoration -->
+        <div class="pdp-weave pdp-weave--bottom" aria-hidden="true" data-node-id="1154:7302">
+          <picture>
+            <source media="(max-width: 767px)" srcset="assets/icons/weave-bottom-mobile.svg" />
+            <img src="assets/icons/weave-bottom.svg" alt="" class="pdp-weave__img" />
+          </picture>
+        </div>
+      </section>
+
+      <!-- ==================================================================
+           4. RELATED PRODUCTS — PERSONALIZED SUGGESTIONS (Figma Nodes: 1147:4672 / 1059:5116 / 1063:10007)
+           ================================================================== -->
+      <section class="pdp-suggestions" aria-labelledby="pdp-suggestions-heading" data-node-id="1147:4672">
+        <div class="pdp-suggestions__inner">
+          <div class="pdp-suggestions__header" data-node-id="1147:4673">
+            <h2 class="pdp-suggestions__title" id="pdp-suggestions-heading" data-node-id="1147:4674">
+              Suggestion based on Customer Favourites
+            </h2>
+            <p class="pdp-suggestions__subtitle" data-node-id="1147:4675">
+              Popular pickles across the catalogue
+            </p>
+          </div>
+
+          <div class="pdp-suggestions__grid" data-pdp-related-grid data-node-id="1147:4676">
+            <!-- Dynamically rendered by js/components.js using reusable product card template -->
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <!-- ======================================================================
+       5. FOOTER (Figma Nodes: 1147:4761 / 1121:5853 / 1121:6064)
+       ====================================================================== -->
+  <footer class="site-footer" data-node-id="1147:4761">
+    <div class="site-footer__main" data-node-id="1147:4762">
+      <div class="site-footer__top" data-node-id="1147:4763">
+        <!-- Newsletter Subscription -->
+        <div class="site-footer__newsletter" data-node-id="1147:4764">
+          <p class="site-footer__newsletter-text" data-node-id="1147:4765">
+            Join our community to get exclusive updates just for you.
+          </p>
+          <form class="site-footer__form" data-newsletter-form novalidate data-node-id="1147:4766">
+            <label for="pdp-newsletter-email" class="sr-only">Your Email</label>
+            <input
+              type="email"
+              id="pdp-newsletter-email"
+              name="email"
+              class="site-footer__input"
+              placeholder="Your Email"
+              required
+              data-node-id="1147:4767"
+            />
+            <button type="submit" class="site-footer__submit" data-node-id="1147:4768">
+              <span data-node-id="1147:4769">Subscribe</span>
+            </button>
+          </form>
+        </div>
+
+        <!-- Navigation & Social Links -->
+        <div class="site-footer__nav-col" data-node-id="1147:4770">
+          <ul class="site-footer__links" data-node-id="1147:4771">
+            <li data-node-id="1147:4772">
+              <a href="Shop.html" class="site-footer__link" data-node-id="1147:4773">Shop</a>
+            </li>
+            <li data-node-id="1147:4774">
+              <a href="OurStory.html" class="site-footer__link" data-node-id="1147:4775">Our Story</a>
+            </li>
+            <li data-node-id="1147:4776">
+              <a href="Contactus.html" class="site-footer__link" data-node-id="1147:4777">Contact</a>
+            </li>
+          </ul>
+
+          <div class="site-footer__socials" data-node-id="1147:4778">
+            <a href="#facebook" class="site-footer__social-link" aria-label="Facebook" data-node-id="1147:4779">
+              <img src="assets/icons/social-facebook.svg" alt="" width="32" height="32" />
+            </a>
+            <a href="#x" class="site-footer__social-link" aria-label="X (Twitter)" data-node-id="1147:4782">
+              <img src="assets/icons/social-x.svg" alt="" width="32" height="32" />
+            </a>
+            <a href="#instagram" class="site-footer__social-link" aria-label="Instagram" data-node-id="1147:4785">
+              <img src="assets/icons/social-instagram.svg" alt="" width="32" height="32" />
+            </a>
+            <a href="#linkedin" class="site-footer__social-link" aria-label="LinkedIn" data-node-id="1147:4788">
+              <img src="assets/icons/social-linkedin.svg" alt="" width="32" height="32" />
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Copyright & Legal Links -->
+      <div class="site-footer__bottom" data-node-id="1147:4791">
+        <div class="site-footer__copyright" data-node-id="1147:4792">
+          <p class="site-footer__copyright-text" data-node-id="1147:4793">
+            <span data-node-id="1147:4794">©2026,️</span>
+            <span data-node-id="1147:4795">Mama’s Pickles</span>
+          </p>
+        </div>
+
+        <ul class="site-footer__legal" data-node-id="1147:4796">
+          <li><a href="#privacy" class="site-footer__legal-link" data-node-id="1147:4797">Privacy Policy</a></li>
+          <li><a href="#terms" class="site-footer__legal-link" data-node-id="1147:4798">Terms &amp; Conditions</a></li>
+          <li><a href="#shipping" class="site-footer__legal-link" data-node-id="1147:4799">Shipping Policy</a></li>
+          <li><a href="#refund" class="site-footer__legal-link" data-node-id="1147:4800">Return &amp; Refund Policy</a></li>
+          <li><a href="#cancellation" class="site-footer__legal-link" data-node-id="1147:4801">Cancellation Policy</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Footer Brand Banner -->
+    <div class="site-footer__brand-banner" data-node-id="1147:4802">
+      <div class="site-footer__brand-wrap" data-node-id="1147:4803">
+        <div class="site-footer__brand-mark" data-node-id="1147:4804">
+          <img src="assets/icons/logo-footer-mark.svg" alt="" class="site-footer__mark-img" width="160" height="191" />
+        </div>
+        <div class="site-footer__brand-text" data-node-id="1147:4816">
+          <img src="assets/icons/logo-footer-text.svg" alt="Mama's Pickle" class="site-footer__text-img" width="1062" height="137" />
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- GSAP & ScrollTrigger per AGENT.md Section 2 -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+  <script src="js/products-data.js" defer></script>
+  <script src="js/components.js" defer></script>
+  <script src="js/animations.js" defer></script>
+  <script src="js/main.js" defer></script>
+</body>
+</html>

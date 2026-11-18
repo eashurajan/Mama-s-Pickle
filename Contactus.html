@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact Us — Mama’s Pickles</title>
+  <meta name="description" content="Get in touch with Mama’s Pickles — reach out for order inquiries, retail partnerships, careers, or customer support." />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/responsive.css" />
+  <link rel="stylesheet" href="css/animations.css" />
+</head>
+<body class="contact-page" data-node-id="1025:1434">
+
+  <!-- ======================================================================
+       1. NAVBAR (Figma Nodes: 1025:1435 Desktop / 1063:6460 Tablet / 1063:8444 Mobile)
+       ====================================================================== -->
+  <header class="pdp-header">
+    <nav class="navbar navbar--pdp" aria-label="Main Navigation" data-node-id="1025:1435">
+      <!-- Hamburger Menu Button (Visible on Tablet & Mobile: < 1024px) -->
+      <button
+        type="button"
+        class="navbar__hamburger"
+        aria-label="Open navigation menu"
+        aria-expanded="false"
+        aria-controls="mobile-nav-drawer"
+        data-nav-toggle
+      >
+        <img src="assets/icons/icon-hamburger.svg" alt="" width="24" height="24" />
+      </button>
+
+      <!-- Brand Logo -->
+      <a href="Home.html" class="navbar__logo" aria-label="Mama's Pickles Home" data-node-id="I1025:1435;1023:935">
+        <img
+          src="assets/icons/logo-nav.svg"
+          alt="Mama's Pickles"
+          class="navbar__logo-img navbar__logo-img--desktop"
+          width="113"
+          height="51"
+        />
+        <img
+          src="assets/icons/logo-nav-mobile.svg"
+          alt="Mama's Pickles"
+          class="navbar__logo-img navbar__logo-img--mobile"
+          width="98"
+          height="44"
+        />
+      </a>
+
+      <!-- Desktop Navigation Menu (>= 1024px) -->
+      <ul class="navbar__menu" data-node-id="I1025:1435;1023:961">
+        <li class="navbar__menu-item" data-node-id="I1025:1435;1023:962">
+          <a href="Home.html" class="navbar__link" data-node-id="I1025:1435;1023:963">Home</a>
+        </li>
+        <li class="navbar__menu-item navbar__menu-item--shop" data-node-id="I1025:1435;1023:964">
+          <button type="button" class="navbar__link" aria-haspopup="true" aria-expanded="false" data-nav-shop data-node-id="I1025:1435;1023:965">Shop</button>
+        </li>
+        <li class="navbar__menu-item" data-node-id="I1025:1435;1023:966">
+          <a href="OurStory.html" class="navbar__link" data-node-id="I1025:1435;1023:967">Our Story</a>
+        </li>
+        <li class="navbar__menu-item" data-node-id="I1025:1435;1023:968">
+          <a href="Contactus.html" class="navbar__link is-active" aria-current="page" data-node-id="I1025:1435;1023:969">Contact Us</a>
+        </li>
+      </ul>
+
+      <!-- Cart Action Button (Figma Node: 515:201 — Default: 515:200 / Active: 515:199) -->
+      <a href="Cart.html" class="navbar__cart" aria-label="Shopping Cart" aria-disabled="true" data-cart-btn data-node-id="I1025:1435;1023:970">
+        <span class="navbar__cart-icon" data-node-id="I1025:1435;1023:970;519:450">
+          <img src="assets/icons/icon-cart-default.svg" alt="" class="navbar__cart-img navbar__cart-img--default" width="24" height="24" />
+          <img src="assets/icons/icon-cart.svg" alt="" class="navbar__cart-img navbar__cart-img--active" width="24" height="24" />
+        </span>
+        <span class="navbar__cart-counter" data-cart-count data-node-id="I1025:1435;1023:970;515:203">1</span>
+      </a>
+    </nav>
+
+    <!-- Mobile / Tablet Navigation Drawer -->
+    <div class="mobile-drawer" id="mobile-nav-drawer" aria-hidden="true" data-nav-drawer>
+      <div class="mobile-drawer__backdrop" data-nav-close></div>
+      <div class="mobile-drawer__panel">
+        <div class="mobile-drawer__header">
+          <img src="assets/icons/logo-nav.svg" alt="Mama's Pickles" width="98" height="44" />
+          <button type="button" class="mobile-drawer__close" aria-label="Close navigation menu" data-nav-close>
+            <img src="assets/icons/icon-close.svg" alt="" width="24" height="24" />
+          </button>
+        </div>
+        <ul class="mobile-drawer__list">
+          <li><a href="Home.html" class="mobile-drawer__link">Home</a></li>
+          <li><button type="button" class="mobile-drawer__link" data-nav-shop-mobile>Shop</button></li>
+          <li><a href="OurStory.html" class="mobile-drawer__link">Our Story</a></li>
+          <li><a href="Contactus.html" class="mobile-drawer__link is-active" aria-current="page">Contact Us</a></li>
+        </ul>
+      </div>
+    </div>
+  </header>
+
+  <!-- ======================================================================
+       2. CONTACT US MAIN SECTION
+       (Figma Nodes: 1025:1436 Desktop / 1059:5642 Tablet / 1063:8224 Mobile)
+       ====================================================================== -->
+  <main id="contact-main">
+    <section class="contact-section" aria-labelledby="contact-main-heading" data-node-id="1025:1436">
+
+      <!-- 2A. LEFT COLUMN: CONTACT DETAILS (Figma Nodes: 1025:1437 / 1059:5643 / 1063:8225) -->
+      <div class="contact-info" data-node-id="1025:1437">
+        <h1 class="contact-info__title" id="contact-main-heading" data-node-id="1025:1438">
+          Contact Us
+        </h1>
+
+        <div class="contact-info__grid" data-node-id="1025:1439">
+          <!-- Phone No -->
+          <div class="contact-info__item contact-info__item--phone" data-node-id="1025:1440">
+            <h2 class="contact-info__label" data-node-id="1025:1441">Phone No</h2>
+            <div class="contact-info__values" data-node-id="1025:1442">
+              <p class="contact-info__text" data-node-id="1025:1443">
+                <a href="tel:+919877579887" class="contact-info__link">+91 9877579887</a>
+              </p>
+              <p class="contact-info__text" data-node-id="1025:1444">
+                <a href="tel:+919645678643" class="contact-info__link">+91 9645678643</a>
+              </p>
+            </div>
+          </div>
+
+          <!-- Address -->
+          <div class="contact-info__item contact-info__item--address" data-node-id="1025:1445">
+            <h2 class="contact-info__label" data-node-id="1025:1446">Address</h2>
+            <p class="contact-info__text" data-node-id="1025:1447">
+              12/45, Market Road, Near Municipal Bus Stand, Palakkad, Kerala 678001, India.
+            </p>
+          </div>
+
+          <!-- Career -->
+          <div class="contact-info__item contact-info__item--career" data-node-id="1025:1448">
+            <h2 class="contact-info__label" data-node-id="1025:1449">Career</h2>
+            <p class="contact-info__text" data-node-id="1025:1450">
+              <a href="mailto:jobs@mamaspickles.com" class="contact-info__link">jobs@mamaspickles.com</a>
+            </p>
+          </div>
+
+          <!-- Email -->
+          <div class="contact-info__item contact-info__item--email" data-node-id="1025:1451">
+            <h2 class="contact-info__label" data-node-id="1025:1452">Email</h2>
+            <p class="contact-info__text contact-info__text--nowrap" data-node-id="1025:1453">
+              <a href="mailto:mamaspickle@gmail.com" class="contact-info__link">mamaspickle@gmail.com</a>
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2B. RIGHT COLUMN: SEND A MESSAGE FORM (Figma Nodes: 1025:1454 / 1059:5660 / 1063:8242) -->
+      <div class="contact-form-panel" data-node-id="1025:1454">
+        <div class="contact-form-panel__inner">
+          <h2 class="contact-form-panel__title" data-node-id="1025:1455">
+            Send a Message
+          </h2>
+
+          <form class="contact-form" data-contact-form novalidate data-node-id="1025:1456">
+            <!-- Row 1: Your Name & Email Address -->
+            <div class="contact-form__row" data-node-id="1025:1457">
+              <div class="contact-form__field" data-node-id="1025:1458">
+                <label for="contact-name" class="contact-form__label" data-node-id="1025:1459">
+                  Your name *
+                </label>
+                <div class="contact-form__input-wrap" data-node-id="1025:1460">
+                  <input
+                    type="text"
+                    id="contact-name"
+                    name="name"
+                    class="contact-form__input"
+                    placeholder="Enter your name"
+                    required
+                    autocomplete="name"
+                    data-node-id="1025:1461"
+                  />
+                </div>
+              </div>
+
+              <div class="contact-form__field" data-node-id="1025:1462">
+                <label for="contact-email" class="contact-form__label" data-node-id="1025:1463">
+                  Email address *
+                </label>
+                <div class="contact-form__input-wrap" data-node-id="1025:1464">
+                  <input
+                    type="email"
+                    id="contact-email"
+                    name="email"
+                    class="contact-form__input"
+                    placeholder="you@example.com"
+                    required
+                    autocomplete="email"
+                    data-node-id="1025:1465"
+                  />
+                </div>
+              </div>
+            </div>
+
+            <!-- Row 2: What can we help with? -->
+            <div class="contact-form__field" data-node-id="1025:1466">
+              <label for="contact-topic" class="contact-form__label" data-node-id="1025:1467">
+                What can we help with? *
+              </label>
+              <div class="contact-form__input-wrap contact-form__input-wrap--select" data-node-id="1025:1468">
+                <select
+                  id="contact-topic"
+                  name="topic"
+                  class="contact-form__select is-placeholder"
+                  required
+                  data-contact-select
+                  data-node-id="1025:1469"
+                >
+                  <option value="" selected disabled>Choose a topic</option>
+                  <option value="order-status">Order Status &amp; Delivery</option>
+                  <option value="product-inquiry">Product &amp; Ingredient Inquiry</option>
+                  <option value="retail-partnership">Bulk / Retail Store Partnership</option>
+                  <option value="careers">Careers at Mama’s Pickles</option>
+                  <option value="feedback">Feedback &amp; Suggestions</option>
+                </select>
+                <span class="contact-form__chevron" aria-hidden="true" data-node-id="1025:1470">
+                  <img src="assets/icons/icon-chevron-down.svg" alt="" width="18" height="18" />
+                </span>
+              </div>
+            </div>
+
+            <!-- Row 3: Order number (optional) -->
+            <div class="contact-form__field" data-node-id="1025:1472">
+              <label for="contact-order" class="contact-form__label" data-node-id="1025:1473">
+                Order number (optional)
+              </label>
+              <div class="contact-form__input-wrap" data-node-id="1025:1474">
+                <input
+                  type="text"
+                  id="contact-order"
+                  name="orderNumber"
+                  class="contact-form__input"
+                  placeholder="e.g. #MP1234"
+                  data-node-id="1025:1475"
+                />
+              </div>
+            </div>
+
+            <!-- Row 4: Your message * -->
+            <div class="contact-form__field" data-node-id="1025:1476">
+              <label for="contact-message" class="contact-form__label" data-node-id="1025:1477">
+                Your message *
+              </label>
+              <div class="contact-form__input-wrap contact-form__input-wrap--textarea" data-node-id="1025:1478">
+                <textarea
+                  id="contact-message"
+                  name="message"
+                  class="contact-form__textarea"
+                  placeholder="Tell us what’s on your mind…"
+                  rows="5"
+                  required
+                  data-node-id="1025:1479"
+                ></textarea>
+              </div>
+            </div>
+
+            <!-- Row 5: Privacy consent -->
+            <label class="contact-form__consent" for="contact-consent" data-node-id="1025:1480">
+              <input
+                type="checkbox"
+                id="contact-consent"
+                name="consent"
+                class="contact-form__checkbox-input sr-only"
+                required
+                data-contact-consent
+              />
+              <span class="contact-form__checkbox-box" aria-hidden="true" data-node-id="1063:8473"></span>
+              <span class="contact-form__consent-text" data-node-id="1025:1482">
+                I agree to the Privacy Policy and consent to being contacted about my inquiry.
+              </span>
+            </label>
+
+            <!-- Status / Feedback Message -->
+            <p class="contact-form__status" aria-live="polite" data-contact-status></p>
+
+            <!-- Row 6: Submit Button -->
+            <button type="submit" class="contact-form__submit" data-node-id="1135:1249">
+              <span data-contact-submit-label data-node-id="1135:1250">Send message</span>
+            </button>
+          </form>
+        </div>
+      </div>
+
+    </section>
+  </main>
+
+  <!-- ======================================================================
+       3. FOOTER (Figma Nodes: 1063:9048 / 1121:5783 / 1121:5994)
+       ====================================================================== -->
+  <footer class="site-footer" data-node-id="1063:9048">
+    <div class="site-footer__main" data-node-id="1063:9049">
+      <div class="site-footer__top" data-node-id="1063:9050">
+        <!-- Newsletter Subscription -->
+        <div class="site-footer__newsletter" data-node-id="1063:9051">
+          <p class="site-footer__newsletter-text" data-node-id="1063:9052">
+            Join our community to get exclusive updates just for you.
+          </p>
+          <form class="site-footer__form" data-newsletter-form novalidate data-node-id="1063:9053">
+            <label for="contact-newsletter-email" class="sr-only">Your Email</label>
+            <input
+              type="email"
+              id="contact-newsletter-email"
+              name="email"
+              class="site-footer__input"
+              placeholder="Your Email"
+              required
+              data-node-id="1063:9054"
+            />
+            <button type="submit" class="site-footer__submit" data-node-id="1063:9055">
+              <span data-node-id="1063:9056">Subscribe</span>
+            </button>
+          </form>
+        </div>
+
+        <!-- Navigation & Social Links -->
+        <div class="site-footer__nav-col" data-node-id="1063:9057">
+          <ul class="site-footer__links" data-node-id="1063:9058">
+            <li data-node-id="1063:9059">
+              <a href="Shop.html" class="site-footer__link" data-node-id="1063:9060">Shop</a>
+            </li>
+            <li data-node-id="1063:9061">
+              <a href="OurStory.html" class="site-footer__link" data-node-id="1063:9062">Our Story</a>
+            </li>
+            <li data-node-id="1063:9063">
+              <a href="Contactus.html" class="site-footer__link" data-node-id="1063:9064">Contact</a>
+            </li>
+          </ul>
+
+          <div class="site-footer__socials" data-node-id="1063:9065">
+            <a href="#facebook" class="site-footer__social-link" aria-label="Facebook" data-node-id="1063:9066">
+              <img src="assets/icons/social-facebook.svg" alt="" width="32" height="32" />
+            </a>
+            <a href="#x" class="site-footer__social-link" aria-label="X (Twitter)" data-node-id="1063:9069">
+              <img src="assets/icons/social-x.svg" alt="" width="32" height="32" />
+            </a>
+            <a href="#instagram" class="site-footer__social-link" aria-label="Instagram" data-node-id="1063:9072">
+              <img src="assets/icons/social-instagram.svg" alt="" width="32" height="32" />
+            </a>
+            <a href="#linkedin" class="site-footer__social-link" aria-label="LinkedIn" data-node-id="1063:9075">
+              <img src="assets/icons/social-linkedin.svg" alt="" width="32" height="32" />
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Copyright & Legal Links -->
+      <div class="site-footer__bottom" data-node-id="1063:9078">
+        <div class="site-footer__copyright" data-node-id="1063:9079">
+          <p class="site-footer__copyright-text" data-node-id="1063:9080">
+            <span data-node-id="1063:9081">©2026,️</span>
+            <span data-node-id="1063:9082">Mama’s Pickles</span>
+          </p>
+        </div>
+
+        <ul class="site-footer__legal" data-node-id="1063:9083">
+          <li><a href="#privacy" class="site-footer__legal-link" data-node-id="1063:9084">Privacy Policy</a></li>
+          <li><a href="#terms" class="site-footer__legal-link" data-node-id="1063:9085">Terms &amp; Conditions</a></li>
+          <li><a href="#shipping" class="site-footer__legal-link" data-node-id="1063:9086">Shipping Policy</a></li>
+          <li><a href="#refund" class="site-footer__legal-link" data-node-id="1063:9087">Return &amp; Refund Policy</a></li>
+          <li><a href="#cancellation" class="site-footer__legal-link" data-node-id="1063:9088">Cancellation Policy</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Footer Brand Banner -->
+    <div class="site-footer__brand-banner" data-node-id="1063:9089">
+      <div class="site-footer__brand-wrap" data-node-id="1063:9090">
+        <div class="site-footer__brand-mark" data-node-id="1063:9091">
+          <img src="assets/icons/logo-footer-mark.svg" alt="" class="site-footer__mark-img" width="160" height="191" />
+        </div>
+        <div class="site-footer__brand-text" data-node-id="1063:9103">
+          <img src="assets/icons/logo-footer-text.svg" alt="Mama's Pickle" class="site-footer__text-img" width="1062" height="137" />
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- GSAP & ScrollTrigger per AGENT.md Section 2 -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+  <script src="js/products-data.js" defer></script>
+  <script src="js/components.js" defer></script>
+  <script src="js/animations.js" defer></script>
+  <script src="js/main.js" defer></script>
+</body>
+</html>

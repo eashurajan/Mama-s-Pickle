@@ -1,0 +1,50 @@
+/* ==========================================================================
+   Animations Stylesheet — Mama's Pickle Ecommerce & Design System
+   Respects prefers-reduced-motion per AGENT.md Section 6.
+   ========================================================================== */
+
+.fade-up {
+  opacity: 0;
+  transform: translateY(20px);
+  will-change: transform, opacity;
+}
+
+.fade-up.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1),
+              transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.is-hidden {
+  display: none !important;
+}
+
+/* Promo CTA shine transition is handled in style.css (.promo-btn__shine) so it slides back to origin on mouseleave */
+
+/* Smooth transition for horizontal slider tracks when controlled via dots */
+.promo-section__track,
+.journey-section__track {
+  transition: transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.promo-section__track.is-gsap-controlled,
+.journey-section__track.is-gsap-controlled {
+  transition: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .fade-up {
+    opacity: 1;
+    transform: none;
+  }
+}

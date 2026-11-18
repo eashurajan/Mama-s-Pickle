@@ -1,0 +1,114 @@
+/* ==========================================================================
+   Design System — Color Tokens (Figma Node: 997:2859)
+   Mama's Pickle Ecommerce Design System
+   ========================================================================== */
+
+:root {
+  /* ------------------------------------------------------------------------
+     1. Brand
+     The primary brand color used across key interactive elements, logos,
+     and accent areas.
+     ------------------------------------------------------------------------ */
+  --color-brand: #8B151B;
+  --brand: #8B151B;
+
+  /* ------------------------------------------------------------------------
+     2. Neutral
+     Foundation neutrals — pure white and pure black — used as base values
+     throughout the system.
+     ------------------------------------------------------------------------ */
+  --color-neutral-light: #FFFFFF;
+  --color-neutral-dark: #000000;
+  --neutral-light: #FFFFFF;
+  --neutral-dark: #000000;
+
+  /* ------------------------------------------------------------------------
+     3. Text
+     Text color tokens for headings, body copy, links, and muted labels.
+     Ranges from high-contrast dark to subtle muted values.
+     ------------------------------------------------------------------------ */
+  --color-text-dark: #19212E;
+  --color-text-dark-sub: #5D5D5D;
+  --color-text-cold-gray: #556C8E;
+  --color-text-light: #FFFFFF;
+  --color-text-brand: #8B151B;
+  --color-text-brand-subtle: #FF8C92;
+
+  --text-dark: #19212E;
+  --text-dark-sub: #5D5D5D;
+  --text-cold-gray: #556C8E;
+  --text-light: #FFFFFF;
+  --text-brand: #8B151B;
+  --text-brand-subtle: #FF8C92;
+  --text-error: #FF2C2C;
+
+  /* ------------------------------------------------------------------------
+     4. Stroke
+     Border and divider colors for UI elements. Includes dark, light, muted,
+     and brand-accent stroke options.
+     ------------------------------------------------------------------------ */
+  --color-stroke-cold-gray: #D0DBEB;
+  --color-stroke-brand: #8B151B;
+  --color-stroke-brand-light: #D83E46;
+  --color-stroke-light: #FFFFFF;
+  --color-stroke-dark: #151111;
+
+  --stroke-cold-gray: #D0DBEB;
+  --stroke-brand: #8B151B;
+  --stroke-brand-light: #D83E46;
+  --stroke-light: #FFFFFF;
+  --stroke-dark: #151111;
+
+  /* ------------------------------------------------------------------------
+     5. Background
+     Background surface tokens for cards, sections, and page-level containers.
+     Spans from white through warm and cool grays to dark.
+     ------------------------------------------------------------------------ */
+  --color-bg-light-variant: #700F14;
+  --color-bg-brand: #8B151B;
+  --color-bg-variant: #8B151B;
+  --color-bg-light: #FDEEEE;
+  --color-bg-dark: #101010;
+  --color-bg-muted-gray: #EFF3F9;
+  --color-bg-white: #FFFFFF;
+  --color-bg-light-variant-green: #0F7E1C;
+
+  --bg-light-variant: #700F14;
+  --bg-brand: #8B151B;
+  --bg-variant: #8B151B;
+  --bg-light: #FDEEEE;
+  --bg-dark: #101010;
+  --bg-muted-gray: #EFF3F9;
+  --bg-white: #FFFFFF;
+  --bg-light-variant-green: #0F7E1C;
+}
+
+/* ==========================================================================
+   Reusable Color Utility Classes
+   ========================================================================== */
+
+/* Text Colors */
+.text-dark { color: var(--color-text-dark); }
+.text-dark-sub { color: var(--color-text-dark-sub); }
+.text-cold-gray { color: var(--color-text-cold-gray); }
+.text-light { color: var(--color-text-light); }
+.text-brand { color: var(--color-text-brand); }
+.text-brand-subtle { color: var(--color-text-brand-subtle); }
+
+/* Background Colors */
+.bg-brand { background-color: var(--color-bg-brand); }
+.bg-light-variant { background-color: var(--color-bg-light-variant); }
+.bg-light-variant-green { background-color: var(--color-bg-light-variant-green); }
+.bg-light { background-color: var(--color-bg-light); }
+.bg-dark { background-color: var(--color-bg-dark); }
+.bg-muted-gray { background-color: var(--color-bg-muted-gray); }
+.bg-white { background-color: var(--color-bg-white); }
+.bg-neutral-light { background-color: var(--color-neutral-light); }
+.bg-neutral-dark { background-color: var(--color-neutral-dark); }
+
+/* Stroke / Border Colors */
+.border-cold-gray { border-color: var(--color-stroke-cold-gray); }
+.border-brand { border-color: var(--color-stroke-brand); }
+.border-brand-light { border-color: var(--color-stroke-brand-light); }
+.border-light { border-color: var(--color-stroke-light); }
+.border-dark { border-color: var(--color-stroke-dark); }
