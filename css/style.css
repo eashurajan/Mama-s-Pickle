@@ -1,13 +1,13 @@
 /* ==========================================================================
    Main Stylesheet â€” Mama's Pickle Ecommerce & Design System
-   Imports all Design System token stylesheets from ../Ds/
+   Imports all Design System token stylesheets from ../ds/
    ========================================================================== */
 
-@import url('../Ds/Color.css');
-@import url('../Ds/Typography.css');
-@import url('../Ds/Spacing.css');
-@import url('../Ds/Stroke.css');
-@import url('../Ds/Radius.css');
+@import url('../ds/color.css');
+@import url('../ds/typography.css');
+@import url('../ds/spacing.css');
+@import url('../ds/stroke.css');
+@import url('../ds/radius.css');
 
 /* --------------------------------------------------------------------------
    CSS Reset & Base Styles
@@ -33,6 +33,24 @@ body {
   font-size: var(--fs-body-md);
   line-height: var(--lh-body-md);
   overflow-x: clip;
+}
+
+/* Lenis Smooth Scroll Base */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: clip;
 }
 
 .sr-only {
@@ -68,13 +86,19 @@ body {
   left: 0;
   right: 0;
   z-index: 90;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
   padding: var(--space-16) var(--space-80);
   width: 100%;
   background-color: transparent;
   transition: background-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.navbar__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 1320px;
+  margin-inline: auto;
 }
 
 .navbar.is-scrolled {
@@ -1736,12 +1760,18 @@ body.is-hero-playing .hero-banner__video-card {
 
 .site-footer__main {
   background-color: var(--color-brand);
+  padding: var(--space-80) var(--space-80) var(--space-24);
+  width: 100%;
+}
+
+.site-footer__inner {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   gap: var(--space-80);
-  padding: var(--space-80) var(--space-80) var(--space-24);
   width: 100%;
+  max-width: 1320px;
+  margin-inline: auto;
 }
 
 .site-footer__top {
@@ -1772,6 +1802,8 @@ body.is-hero-playing .hero-banner__video-card {
 }
 
 .site-footer__form {
+  position: relative;
+  overflow: hidden;
   background-color: var(--color-bg-light-variant);
   border-radius: var(--radius-100);
   padding: var(--space-6) var(--space-6) var(--space-6) var(--space-12);
@@ -1780,6 +1812,11 @@ body.is-hero-playing .hero-banner__video-card {
   display: flex;
   align-items: center;
   gap: var(--space-10);
+  transition: box-shadow 0.2s ease;
+}
+
+.site-footer__form[data-newsletter-state="invalid"] {
+  box-shadow: 0 0 0 1.5px rgba(255, 255, 255, 0.85);
 }
 
 .site-footer__input {
@@ -1801,6 +1838,10 @@ body.is-hero-playing .hero-banner__video-card {
 }
 
 .site-footer__submit {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
   background-color: var(--color-bg-white);
   color: var(--color-text-dark);
   border: none;
@@ -1811,13 +1852,42 @@ body.is-hero-playing .hero-banner__video-card {
   font-size: var(--fs-body-md);
   line-height: var(--lh-body-md);
   white-space: nowrap;
+  text-align: center;
   cursor: pointer;
   flex-shrink: 0;
   transition: background-color 0.2s ease, transform 0.2s ease;
 }
 
+.site-footer__submit span {
+  display: inline-block;
+}
+
 .site-footer__submit:hover {
   background-color: var(--color-bg-light);
+}
+
+.site-footer__form[data-newsletter-state="submitting"] .site-footer__input,
+.site-footer__form[data-newsletter-state="subscribed"] .site-footer__input {
+  pointer-events: none;
+}
+
+.site-footer__form[data-newsletter-state="subscribed"] .site-footer__input {
+  opacity: 0;
+}
+
+.site-footer__form[data-newsletter-state="subscribed"] .site-footer__submit {
+  position: absolute;
+  top: var(--space-6);
+  right: var(--space-6);
+  bottom: var(--space-6);
+  left: var(--space-6);
+  width: auto;
+  cursor: default;
+}
+
+.site-footer__form[data-newsletter-state="submitting"] .site-footer__submit:hover,
+.site-footer__form[data-newsletter-state="subscribed"] .site-footer__submit:hover {
+  background-color: var(--color-bg-white);
 }
 
 .site-footer__nav-col {
@@ -1945,7 +2015,8 @@ body.is-hero-playing .hero-banner__video-card {
   justify-content: center;
   gap: 43px;
   width: 100%;
-  max-width: 1280px;
+  max-width: 1320px;
+  margin-inline: auto;
 }
 
 .site-footer__brand-mark {
@@ -2138,8 +2209,7 @@ body.is-hero-playing .hero-banner__video-card {
   position: relative;
   background-color: transparent;
   box-shadow: none;
-  max-width: 1440px;
-  margin: 0 auto;
+  width: 100%;
   padding: var(--space-16) var(--space-80);
 }
 

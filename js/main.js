@@ -16,5 +16,6 @@ document.addEventListener('DOMContentLoaded', () => {
   if (typeof window.initProductDetailPage === 'function') window.initProductDetailPage();
   if (typeof window.initContactForm === 'function') window.initContactForm();
   if (typeof window.initCartPage === 'function') window.initCartPage();
+  if (typeof window.initSmoothScroll === 'function') window.initSmoothScroll();
   if (typeof window.initAnimations === 'function') window.initAnimations();
 });

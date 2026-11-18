@@ -146,7 +146,7 @@ function upsertCartItem({ slug, size = '350g', qty = 1, unitPrice, name, descrip
   const resolvedImg =
     image ||
     sizeObj?.jarImage ||
-    `assets/images/products/Pickle type=${product?.pickleType || 'Chicken'} Front, Variant=Png, SIzes=${size}.png`;
+    `assets/images/products/pickle-${(product?.pickleType || 'chicken').toLowerCase()}-front-png-${size}.png`;
 
   const existingIdx = items.findIndex(
     (item) => item.slug === slug && (item.size || '350g') === size
@@ -228,7 +228,7 @@ function syncCartBadges(animate = false) {
 
 /**
  * Initializes the navbar Cart button state (Default vs Active) and navigates
- * to Cart.html only when the cart icon is active (at least 1 product in cart).
+ * to cart.html only when the cart icon is active (at least 1 product in cart).
  */
 function initCartCounter() {
   syncCartBadges(false);
@@ -243,7 +243,7 @@ function initCartCounter() {
         return;
       }
       if (btn.tagName.toLowerCase() !== 'a') {
-        window.location.href = 'Cart.html';
+        window.location.href = 'cart.html';
       }
     });
   });
@@ -390,7 +390,7 @@ function initShopNavDropdown() {
           ${shopMenuItems
             .map(
               (item) => `
-            <a href="Product.html?product=${encodeURIComponent(item.slug)}" class="nav-shop-dropdown__item" data-product-slug="${item.slug}" role="menuitem">
+            <a href="product.html?product=${encodeURIComponent(item.slug)}" class="nav-shop-dropdown__item" data-product-slug="${item.slug}" role="menuitem">
               <img src="${item.icon}" alt="" class="nav-shop-dropdown__icon" width="32" height="32" />
               <span class="nav-shop-dropdown__label">${item.name}</span>
             </a>
@@ -430,7 +430,7 @@ function initShopNavDropdown() {
         .map(
           (item) => `
           <li>
-            <a href="Product.html?product=${encodeURIComponent(item.slug)}" class="mobile-drawer__sublink" data-product-slug="${item.slug}">
+            <a href="product.html?product=${encodeURIComponent(item.slug)}" class="mobile-drawer__sublink" data-product-slug="${item.slug}">
               <img src="${item.icon}" alt="" class="mobile-drawer__subicon" width="24" height="24" />
               <span>${item.name}</span>
             </a>
@@ -480,6 +480,13 @@ function initNavbarDrawer() {
     drawer.setAttribute('aria-hidden', String(!isOpen));
     toggleBtn.setAttribute('aria-expanded', String(isOpen));
     document.body.style.overflow = isOpen ? 'hidden' : '';
+    if (window.__lenisInstance) {
+      if (isOpen) {
+        window.__lenisInstance.stop();
+      } else {
+        window.__lenisInstance.start();
+      }
+    }
   };
 
   toggleBtn.addEventListener('click', () => {
@@ -893,43 +900,43 @@ function initReelsGallery() {
 
   const REELS_DATA = [
     {
-      video: 'assets/videos/Reel-1.mp4',
+      video: 'assets/videos/reel-1.mp4',
       poster: 'assets/images/social-gallery/reel-1.png',
       handle: 'thehungrytamilian',
       alt: 'Traditional pickle served on plate',
     },
     {
-      video: 'assets/videos/Reel-2.mp4',
+      video: 'assets/videos/reel-2.mp4',
       poster: 'assets/images/social-gallery/reel-2.png',
       handle: 'priyaskitchenstories',
       alt: 'Woman enjoying Mango Pickle',
     },
     {
-      video: 'assets/videos/Reel-3.mp4',
+      video: 'assets/videos/reel-3.mp4',
       poster: 'assets/images/social-gallery/reel-3.png',
       handle: 'foodiewithmeera',
       alt: "Paratha served with Mama's Pickle",
     },
     {
-      video: 'assets/videos/Reel-4.mp4',
+      video: 'assets/videos/reel-4.mp4',
       poster: 'assets/images/social-gallery/reel-4.png',
       handle: 'ananyasfooddiary',
       alt: "Woman showcasing Mama's Chicken Pickle",
     },
     {
-      video: 'assets/videos/Reel-5.mp4',
+      video: 'assets/videos/reel-5.mp4',
       poster: 'assets/images/social-gallery/reel-5.png',
       handle: 'chennaifoodtrails',
       alt: 'Serving Mutton Pickle on banana leaf',
     },
     {
-      video: 'assets/videos/Reel-6.mp4',
+      video: 'assets/videos/reel-6.mp4',
       poster: 'assets/images/social-gallery/reel-6.png',
       handle: 'thepicklelover',
       alt: "Customer enjoying Mama's Pickle jar",
     },
     {
-      video: 'assets/videos/Reel-7.mp4',
+      video: 'assets/videos/reel-7.mp4',
       poster: 'assets/images/social-gallery/reel-7.png',
       handle: 'homechefkavya',
       alt: 'Person eating samosa with pickle',
@@ -1254,29 +1261,132 @@ function initReelsGallery() {
 }
 
 /**
- * Initializes the Footer Newsletter subscription form interaction.
+ * Initializes the Footer Newsletter subscription form interaction as a
+ * reusable state-driven frontend demonstration component.
+ * States: "idle" | "invalid" | "submitting" | "subscribed"
+ * @param {ParentNode} [root=document]
  */
-function initNewsletterForm() {
-  const form = document.querySelector('[data-newsletter-form]');
-  if (!form) return;
+function initNewsletterForm(root = document) {
+  const forms = root.querySelectorAll('[data-newsletter-form]');
+  if (!forms.length) return;
 
-  form.addEventListener('submit', (e) => {
-    e.preventDefault();
+  const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+
+  forms.forEach((form) => {
+    if (form.dataset.newsletterBound === 'true') return;
+    form.dataset.newsletterBound = 'true';
+
     const input = form.querySelector('input[type="email"]');
-    const submitBtn = form.querySelector('button[type="submit"] span');
-    if (!input || !submitBtn) return;
+    const submitBtn = form.querySelector('button[type="submit"]');
+    const labelSpan = submitBtn ? submitBtn.querySelector('span') : null;
+    if (!input || !submitBtn || !labelSpan) return;
 
-    const emailValue = input.value.trim();
-    if (!emailValue || !emailValue.includes('@')) {
-      input.focus();
-      return;
-    }
+    const setState = (nextState) => {
+      form.setAttribute('data-newsletter-state', nextState);
+    };
 
-    submitBtn.textContent = 'Subscribed!';
-    input.value = '';
-    setTimeout(() => {
-      submitBtn.textContent = 'Subscribe';
-    }, 3000);
+    setState('idle');
+
+    input.addEventListener('input', () => {
+      if (form.getAttribute('data-newsletter-state') === 'invalid') {
+        input.removeAttribute('aria-invalid');
+        setState('idle');
+      }
+    });
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+
+      const currentState = form.getAttribute('data-newsletter-state');
+      if (currentState === 'submitting' || currentState === 'subscribed') {
+        return;
+      }
+
+      const emailValue = input.value.trim();
+      if (!emailValue || !emailPattern.test(emailValue)) {
+        setState('invalid');
+        input.setAttribute('aria-invalid', 'true');
+        input.focus();
+        return;
+      }
+
+      setState('submitting');
+      input.removeAttribute('aria-invalid');
+      input.readOnly = true;
+      input.tabIndex = -1;
+      submitBtn.disabled = true;
+
+      const formHeight = form.getBoundingClientRect().height;
+      form.style.minHeight = `${formHeight}px`;
+
+      const reducedMotion =
+        window.matchMedia &&
+        window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      if (reducedMotion || typeof window.gsap === 'undefined') {
+        labelSpan.textContent = 'Newsletter Subscribed';
+        setState('subscribed');
+        submitBtn.setAttribute('aria-label', 'Newsletter Subscribed');
+        return;
+      }
+
+      const formStyle = window.getComputedStyle(form);
+      const padRight = parseFloat(formStyle.paddingRight) || 6;
+      const btnRect = submitBtn.getBoundingClientRect();
+      const targetWidth = Math.max(btnRect.width, form.clientWidth - padRight * 2);
+
+      window.gsap.set(submitBtn, {
+        position: 'absolute',
+        top: padRight,
+        right: padRight,
+        bottom: padRight,
+        width: btnRect.width,
+      });
+
+      const tl = window.gsap.timeline({
+        onComplete: () => {
+          setState('subscribed');
+          submitBtn.setAttribute('aria-label', 'Newsletter Subscribed');
+          window.gsap.set(submitBtn, {
+            clearProps: 'position,top,right,bottom,width',
+          });
+          window.gsap.set(input, { clearProps: 'opacity' });
+          window.gsap.set(labelSpan, { clearProps: 'opacity' });
+        },
+      });
+
+      tl.to(
+        input,
+        {
+          opacity: 0,
+          duration: 0.25,
+          ease: 'power2.inOut',
+        },
+        0
+      )
+        .to(
+          submitBtn,
+          {
+            width: targetWidth,
+            duration: 0.45,
+            ease: 'power2.inOut',
+          },
+          0
+        )
+        .to(labelSpan, {
+          opacity: 0,
+          duration: 0.14,
+          ease: 'power2.inOut',
+          onComplete: () => {
+            labelSpan.textContent = 'Newsletter Subscribed';
+          },
+        })
+        .to(labelSpan, {
+          opacity: 1,
+          duration: 0.2,
+          ease: 'power2.inOut',
+        });
+    });
   });
 }
 
@@ -1482,7 +1592,7 @@ function renderSuggestedProductCard(product, onSelectProduct) {
 }
 
 /**
- * Initializes the dynamic Product Detail Page (Product.html) for all 9 pickle products.
+ * Initializes the dynamic Product Detail Page (product.html) for all 9 pickle products.
  */
 function initProductDetailPage() {
   const pdpMain = document.getElementById('pdp-main');
@@ -1541,7 +1651,7 @@ function initProductDetailPage() {
     notFoundLinks.innerHTML = productsData
       .map(
         (item) =>
-          `<a href="Product.html?product=${encodeURIComponent(item.slug)}" class="pdp-not-found__pill" data-not-found-slug="${item.slug}">${item.name}</a>`
+          `<a href="product.html?product=${encodeURIComponent(item.slug)}" class="pdp-not-found__pill" data-not-found-slug="${item.slug}">${item.name}</a>`
       )
       .join('');
 
@@ -1799,7 +1909,11 @@ function initProductDetailPage() {
     }
 
     if (scrollToTop) {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+      if (window.__lenisInstance) {
+        window.__lenisInstance.scrollTo(0);
+      } else {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
     }
   };
 
@@ -1881,7 +1995,7 @@ function initProductDetailPage() {
 }
 
 /**
- * Initializes the Contact Us Inquiry Form (Contactus.html).
+ * Initializes the Contact Us Inquiry Form (contact-us.html).
  */
 function initContactForm() {
   const form = document.querySelector('[data-contact-form]');
@@ -1943,7 +2057,7 @@ function initContactForm() {
 }
 
 /**
- * Initializes the interactive Cart Page (Cart.html)
+ * Initializes the interactive Cart Page (cart.html)
  * (Figma Nodes: 992:2239 Desktop, 1059:5498 Tablet, 1063:9581 Mobile).
  */
 function initCartPage() {
@@ -2006,7 +2120,7 @@ function initCartPage() {
       const article = document.createElement('article');
       article.className = 'cart-item';
       article.setAttribute('data-cart-item-slug', item.slug);
-      const productUrl = `Product.html?product=${encodeURIComponent(item.slug)}`;
+      const productUrl = `product.html?product=${encodeURIComponent(item.slug)}`;
       const itemSize = item.size || '350g';
 
       article.innerHTML = `

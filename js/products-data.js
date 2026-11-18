@@ -7,33 +7,37 @@
  * values, and storage instructions for all nine pickle products.
  */
 
-const buildGalleryForType = (typeName, sizeLabel) => [
-  {
-    src: `assets/images/products/Pickle type=${typeName} Front, Variant=With Bg, SIzes=${sizeLabel}.png`,
-    alt: `${typeName} Pickle (${sizeLabel}) jar in kitchen setting`,
-    bgClass: 'pdp-gallery__thumb--scene',
-  },
-  {
-    src: `assets/images/products/Pickle type=${typeName} Front, Variant=Png, SIzes=${sizeLabel}.png`,
-    alt: `${typeName} Pickle (${sizeLabel}) front jar view`,
-    bgClass: 'pdp-gallery__thumb--jar',
-  },
-  {
-    src: `assets/images/products/Pickle type=${typeName} Back, Variant=Png, SIzes=${sizeLabel}.png`,
-    alt: `${typeName} Pickle (${sizeLabel}) back jar view`,
-    bgClass: 'pdp-gallery__thumb--jar',
-  },
-  {
-    src: `assets/images/products/Pickle type=${typeName} Back, Variant=Ingredients, SIzes=${sizeLabel}.png`,
-    alt: `${typeName} Pickle (${sizeLabel}) ingredients and storage label`,
-    bgClass: 'pdp-gallery__thumb--label',
-  },
-  {
-    src: `assets/images/products/Pickle type=${typeName} Back, Variant=Label, SIzes=${sizeLabel}.png`,
-    alt: `${typeName} Pickle (${sizeLabel}) nutritional information label`,
-    bgClass: 'pdp-gallery__thumb--nutrition',
-  },
-];
+const buildGalleryForType = (typeName, sizeLabel) => {
+  const typeSlug = typeName.toLowerCase();
+  const sizeSlug = sizeLabel.toLowerCase();
+  return [
+    {
+      src: `assets/images/products/pickle-${typeSlug}-front-with-bg-${sizeSlug}.png`,
+      alt: `${typeName} Pickle (${sizeLabel}) jar in kitchen setting`,
+      bgClass: 'pdp-gallery__thumb--scene',
+    },
+    {
+      src: `assets/images/products/pickle-${typeSlug}-front-png-${sizeSlug}.png`,
+      alt: `${typeName} Pickle (${sizeLabel}) front jar view`,
+      bgClass: 'pdp-gallery__thumb--jar',
+    },
+    {
+      src: `assets/images/products/pickle-${typeSlug}-back-png-${sizeSlug}.png`,
+      alt: `${typeName} Pickle (${sizeLabel}) back jar view`,
+      bgClass: 'pdp-gallery__thumb--jar',
+    },
+    {
+      src: `assets/images/products/pickle-${typeSlug}-back-ingredients-${sizeSlug}.png`,
+      alt: `${typeName} Pickle (${sizeLabel}) ingredients and storage label`,
+      bgClass: 'pdp-gallery__thumb--label',
+    },
+    {
+      src: `assets/images/products/pickle-${typeSlug}-back-label-${sizeSlug}.png`,
+      alt: `${typeName} Pickle (${sizeLabel}) nutritional information label`,
+      bgClass: 'pdp-gallery__thumb--nutrition',
+    },
+  ];
+};
 
 const PRODUCTS_DATA = [
   {
@@ -80,7 +84,7 @@ const PRODUCTS_DATA = [
         displayChip: '350 g',
         price: 400,
         cardPrice: 499,
-        jarImage: 'assets/images/products/Pickle type=Chicken Front, Variant=Png, SIzes=350g.png',
+        jarImage: 'assets/images/products/pickle-chicken-front-png-350g.png',
         gallery: buildGalleryForType('Chicken', '350g'),
       },
       '200g': {
@@ -88,13 +92,13 @@ const PRODUCTS_DATA = [
         displayChip: '200 g',
         price: 280,
         cardPrice: 329,
-        jarImage: 'assets/images/products/Pickle type=Chicken Front, Variant=Png, SIzes=200g.png',
+        jarImage: 'assets/images/products/pickle-chicken-front-png-200g.png',
         gallery: buildGalleryForType('Chicken', '200g'),
       },
     },
     images: {
       card: 'assets/images/products/product-chicken-350g.png',
-      heroScene: 'assets/images/products/Pickle type=Chicken Front, Variant=With Bg, SIzes=350g.png',
+      heroScene: 'assets/images/products/pickle-chicken-front-with-bg-350g.png',
     },
     relatedSlugs: ['fish-pickle', 'squid-pickle', 'mutton-pickle', 'garlic-pickle'],
   },
@@ -142,7 +146,7 @@ const PRODUCTS_DATA = [
         displayChip: '350 g',
         price: 579,
         cardPrice: 579,
-        jarImage: 'assets/images/products/Pickle type=Mutton Front, Variant=Png, SIzes=350g.png',
+        jarImage: 'assets/images/products/pickle-mutton-front-png-350g.png',
         gallery: buildGalleryForType('Mutton', '350g'),
       },
       '200g': {
@@ -150,13 +154,13 @@ const PRODUCTS_DATA = [
         displayChip: '200 g',
         price: 389,
         cardPrice: 389,
-        jarImage: 'assets/images/products/Pickle type=Mutton Front, Variant=Png, SIzes=200g.png',
+        jarImage: 'assets/images/products/pickle-mutton-front-png-200g.png',
         gallery: buildGalleryForType('Mutton', '200g'),
       },
     },
     images: {
       card: 'assets/images/products/product-mutton-350g.png',
-      heroScene: 'assets/images/products/Pickle type=Mutton Front, Variant=With Bg, SIzes=350g.png',
+      heroScene: 'assets/images/products/pickle-mutton-front-with-bg-350g.png',
     },
     relatedSlugs: ['chicken-pickle', 'fish-pickle', 'squid-pickle', 'garlic-pickle'],
   },
@@ -204,7 +208,7 @@ const PRODUCTS_DATA = [
         displayChip: '350 g',
         price: 399,
         cardPrice: 399,
-        jarImage: 'assets/images/products/Pickle type=Fish Front, Variant=Png, SIzes=350g.png',
+        jarImage: 'assets/images/products/pickle-fish-front-png-350g.png',
         gallery: buildGalleryForType('Fish', '350g'),
       },
       '200g': {
@@ -212,13 +216,13 @@ const PRODUCTS_DATA = [
         displayChip: '200 g',
         price: 249,
         cardPrice: 249,
-        jarImage: 'assets/images/products/Pickle type=Fish Front, Variant=Png, SIzes=200g.png',
+        jarImage: 'assets/images/products/pickle-fish-front-png-200g.png',
         gallery: buildGalleryForType('Fish', '200g'),
       },
     },
     images: {
       card: 'assets/images/products/product-fish-350g.png',
-      heroScene: 'assets/images/products/Pickle type=Fish Front, Variant=With Bg, SIzes=350g.png',
+      heroScene: 'assets/images/products/pickle-fish-front-with-bg-350g.png',
     },
     relatedSlugs: ['chicken-pickle', 'squid-pickle', 'mutton-pickle', 'garlic-pickle'],
   },
@@ -266,7 +270,7 @@ const PRODUCTS_DATA = [
         displayChip: '350 g',
         price: 479,
         cardPrice: 479,
-        jarImage: 'assets/images/products/Pickle type=Prawn Front, Variant=Png, SIzes=350g.png',
+        jarImage: 'assets/images/products/pickle-prawn-front-png-350g.png',
         gallery: buildGalleryForType('Prawn', '350g'),
       },
       '200g': {
@@ -274,13 +278,13 @@ const PRODUCTS_DATA = [
         displayChip: '200 g',
         price: 319,
         cardPrice: 319,
-        jarImage: 'assets/images/products/Pickle type=Prawn Front, Variant=Png, SIzes=200g.png',
+        jarImage: 'assets/images/products/pickle-prawn-front-png-200g.png',
         gallery: buildGalleryForType('Prawn', '200g'),
       },
     },
     images: {
       card: 'assets/images/products/product-prawn-350g.png',
-      heroScene: 'assets/images/products/Pickle type=Prawn Front, Variant=With Bg, SIzes=350g.png',
+      heroScene: 'assets/images/products/pickle-prawn-front-with-bg-350g.png',
     },
     relatedSlugs: ['fish-pickle', 'squid-pickle', 'mutton-pickle', 'garlic-pickle'],
   },
@@ -328,7 +332,7 @@ const PRODUCTS_DATA = [
         displayChip: '350 g',
         price: 449,
         cardPrice: 449,
-        jarImage: 'assets/images/products/Pickle type=Squid Front, Variant=Png, SIzes=350g.png',
+        jarImage: 'assets/images/products/pickle-squid-front-png-350g.png',
         gallery: buildGalleryForType('Squid', '350g'),
       },
       '200g': {
@@ -336,13 +340,13 @@ const PRODUCTS_DATA = [
         displayChip: '200 g',
         price: 299,
         cardPrice: 299,
-        jarImage: 'assets/images/products/Pickle type=Squid Front, Variant=Png, SIzes=200g.png',
+        jarImage: 'assets/images/products/pickle-squid-front-png-200g.png',
         gallery: buildGalleryForType('Squid', '200g'),
       },
     },
     images: {
       card: 'assets/images/products/product-squid-350g.png',
-      heroScene: 'assets/images/products/Pickle type=Squid Front, Variant=With Bg, SIzes=350g.png',
+      heroScene: 'assets/images/products/pickle-squid-front-with-bg-350g.png',
     },
     relatedSlugs: ['fish-pickle', 'chicken-pickle', 'mutton-pickle', 'garlic-pickle'],
   },
@@ -390,7 +394,7 @@ const PRODUCTS_DATA = [
         displayChip: '350 g',
         price: 199,
         cardPrice: 199,
-        jarImage: 'assets/images/products/Pickle type=Tomato Front, Variant=Png, SIzes=350g.png',
+        jarImage: 'assets/images/products/pickle-tomato-front-png-350g.png',
         gallery: buildGalleryForType('Tomato', '350g'),
       },
       '200g': {
@@ -398,13 +402,13 @@ const PRODUCTS_DATA = [
         displayChip: '200 g',
         price: 139,
         cardPrice: 139,
-        jarImage: 'assets/images/products/Pickle type=Tomato Front, Variant=Png, SIzes=200g.png',
+        jarImage: 'assets/images/products/pickle-tomato-front-png-200g.png',
         gallery: buildGalleryForType('Tomato', '200g'),
       },
     },
     images: {
       card: 'assets/images/products/product-tomato-350g.png',
-      heroScene: 'assets/images/products/Pickle type=Tomato Front, Variant=With Bg, SIzes=350g.png',
+      heroScene: 'assets/images/products/pickle-tomato-front-with-bg-350g.png',
     },
     relatedSlugs: ['mango-pickle', 'garlic-pickle', 'lemon-pickle', 'fish-pickle'],
   },
@@ -452,7 +456,7 @@ const PRODUCTS_DATA = [
         displayChip: '350 g',
         price: 229,
         cardPrice: 229,
-        jarImage: 'assets/images/products/Pickle type=Mango Front, Variant=Png, SIzes=350g.png',
+        jarImage: 'assets/images/products/pickle-mango-front-png-350g.png',
         gallery: buildGalleryForType('Mango', '350g'),
       },
       '200g': {
@@ -460,13 +464,13 @@ const PRODUCTS_DATA = [
         displayChip: '200 g',
         price: 159,
         cardPrice: 159,
-        jarImage: 'assets/images/products/Pickle type=Mango Front, Variant=Png, SIzes=200g.png',
+        jarImage: 'assets/images/products/pickle-mango-front-png-200g.png',
         gallery: buildGalleryForType('Mango', '200g'),
       },
     },
     images: {
       card: 'assets/images/products/product-mango-350g.png',
-      heroScene: 'assets/images/products/Pickle type=Mango Front, Variant=With Bg, SIzes=350g.png',
+      heroScene: 'assets/images/products/pickle-mango-front-with-bg-350g.png',
     },
     relatedSlugs: ['tomato-pickle', 'garlic-pickle', 'lemon-pickle', 'chicken-pickle'],
   },
@@ -514,7 +518,7 @@ const PRODUCTS_DATA = [
         displayChip: '350 g',
         price: 199,
         cardPrice: 199,
-        jarImage: 'assets/images/products/Pickle type=Lemon Front, Variant=Png, SIzes=350g.png',
+        jarImage: 'assets/images/products/pickle-lemon-front-png-350g.png',
         gallery: buildGalleryForType('Lemon', '350g'),
       },
       '200g': {
@@ -522,13 +526,13 @@ const PRODUCTS_DATA = [
         displayChip: '200 g',
         price: 139,
         cardPrice: 139,
-        jarImage: 'assets/images/products/Pickle type=Lemon Front, Variant=Png, SIzes=200g.png',
+        jarImage: 'assets/images/products/pickle-lemon-front-png-200g.png',
         gallery: buildGalleryForType('Lemon', '200g'),
       },
     },
     images: {
       card: 'assets/images/products/product-lemon-350g.png',
-      heroScene: 'assets/images/products/Pickle type=Lemon Front, Variant=With Bg, SIzes=350g.png',
+      heroScene: 'assets/images/products/pickle-lemon-front-with-bg-350g.png',
     },
     relatedSlugs: ['mango-pickle', 'tomato-pickle', 'garlic-pickle', 'squid-pickle'],
   },
@@ -576,7 +580,7 @@ const PRODUCTS_DATA = [
         displayChip: '350 g',
         price: 249,
         cardPrice: 249,
-        jarImage: 'assets/images/products/Pickle type=Garlic Front, Variant=Png, SIzes=350g.png',
+        jarImage: 'assets/images/products/pickle-garlic-front-png-350g.png',
         gallery: buildGalleryForType('Garlic', '350g'),
       },
       '200g': {
@@ -584,13 +588,13 @@ const PRODUCTS_DATA = [
         displayChip: '200 g',
         price: 169,
         cardPrice: 169,
-        jarImage: 'assets/images/products/Pickle type=Garlic Front, Variant=Png, SIzes=200g.png',
+        jarImage: 'assets/images/products/pickle-garlic-front-png-200g.png',
         gallery: buildGalleryForType('Garlic', '200g'),
       },
     },
     images: {
       card: 'assets/images/products/product-garlic-350g.png',
-      heroScene: 'assets/images/products/Pickle type=Garlic Front, Variant=With Bg, SIzes=350g.png',
+      heroScene: 'assets/images/products/pickle-garlic-front-with-bg-350g.png',
     },
     relatedSlugs: ['fish-pickle', 'squid-pickle', 'mutton-pickle', 'mango-pickle'],
   },

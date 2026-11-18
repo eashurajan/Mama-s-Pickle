@@ -16,6 +16,7 @@
        ====================================================================== -->
   <header class="pdp-header">
     <nav class="navbar navbar--pdp" aria-label="Main Navigation" data-node-id="1147:5045">
+      <div class="navbar__inner">
       <!-- Hamburger Menu Button (Visible on Tablet & Mobile: < 1024px) -->
       <button
         type="button"
@@ -29,7 +30,7 @@
       </button>
 
       <!-- Brand Logo -->
-      <a href="Home.html" class="navbar__logo" aria-label="Mama's Pickles Home" data-node-id="I1147:5045;1023:814">
+      <a href="index.html" class="navbar__logo" aria-label="Mama's Pickles Home" data-node-id="I1147:5045;1023:814">
         <img
           src="assets/icons/logo-nav.svg"
           alt="Mama's Pickles"
@@ -49,27 +50,28 @@
       <!-- Desktop Navigation Menu (>= 1024px) -->
       <ul class="navbar__menu" data-node-id="I1147:5045;1023:840">
         <li class="navbar__menu-item" data-node-id="I1147:5045;1023:841">
-          <a href="Home.html" class="navbar__link" data-node-id="I1147:5045;1023:842">Home</a>
+          <a href="index.html" class="navbar__link" data-node-id="I1147:5045;1023:842">Home</a>
         </li>
         <li class="navbar__menu-item navbar__menu-item--shop" data-node-id="I1147:5045;1023:843">
           <button type="button" class="navbar__link" aria-haspopup="true" aria-expanded="false" data-nav-shop data-node-id="I1147:5045;1023:844">Shop</button>
         </li>
         <li class="navbar__menu-item" data-node-id="I1147:5045;1023:845">
-          <a href="OurStory.html" class="navbar__link is-active" aria-current="page" data-node-id="I1147:5045;1023:846">Our Story</a>
+          <a href="our-story.html" class="navbar__link is-active" aria-current="page" data-node-id="I1147:5045;1023:846">Our Story</a>
         </li>
         <li class="navbar__menu-item" data-node-id="I1147:5045;1023:847">
-          <a href="Contactus.html" class="navbar__link" data-node-id="I1147:5045;1023:848">Contact Us</a>
+          <a href="contact-us.html" class="navbar__link" data-node-id="I1147:5045;1023:848">Contact Us</a>
         </li>
       </ul>
 
       <!-- Cart Action Button (Figma Node: 515:201 — Default: 515:200 / Active: 515:199) -->
-      <a href="Cart.html" class="navbar__cart" aria-label="Shopping Cart" aria-disabled="true" data-cart-btn data-node-id="I1147:5045;1023:849">
+      <a href="cart.html" class="navbar__cart" aria-label="Shopping Cart" aria-disabled="true" data-cart-btn data-node-id="I1147:5045;1023:849">
         <span class="navbar__cart-icon" data-node-id="I1147:5045;1023:849;519:450">
           <img src="assets/icons/icon-cart-default.svg" alt="" class="navbar__cart-img navbar__cart-img--default" width="24" height="24" />
           <img src="assets/icons/icon-cart.svg" alt="" class="navbar__cart-img navbar__cart-img--active" width="24" height="24" />
         </span>
         <span class="navbar__cart-counter" data-cart-count data-node-id="I1147:5045;1023:849;515:203">1</span>
       </a>
+      </div>
     </nav>
 
     <!-- Mobile / Tablet Navigation Drawer -->
@@ -83,10 +85,10 @@
           </button>
         </div>
         <ul class="mobile-drawer__list">
-          <li><a href="Home.html" class="mobile-drawer__link">Home</a></li>
+          <li><a href="index.html" class="mobile-drawer__link">Home</a></li>
           <li><button type="button" class="mobile-drawer__link" data-nav-shop-mobile>Shop</button></li>
-          <li><a href="OurStory.html" class="mobile-drawer__link is-active" aria-current="page">Our Story</a></li>
-          <li><a href="Contactus.html" class="mobile-drawer__link">Contact Us</a></li>
+          <li><a href="our-story.html" class="mobile-drawer__link is-active" aria-current="page">Our Story</a></li>
+          <li><a href="contact-us.html" class="mobile-drawer__link">Contact Us</a></li>
         </ul>
       </div>
     </div>
@@ -262,6 +264,7 @@
        ====================================================================== -->
   <footer class="site-footer" data-node-id="1147:5090">
     <div class="site-footer__main" data-node-id="1147:5091">
+      <div class="site-footer__inner">
       <div class="site-footer__top" data-node-id="1147:5092">
         <!-- Newsletter Subscription -->
         <div class="site-footer__newsletter" data-node-id="1147:5093">
@@ -292,10 +295,10 @@
               <a href="Shop.html" class="site-footer__link" data-node-id="1147:5102">Shop</a>
             </li>
             <li data-node-id="1147:5103">
-              <a href="OurStory.html" class="site-footer__link" data-node-id="1147:5104">Our Story</a>
+              <a href="our-story.html" class="site-footer__link" data-node-id="1147:5104">Our Story</a>
             </li>
             <li data-node-id="1147:5105">
-              <a href="Contactus.html" class="site-footer__link" data-node-id="1147:5106">Contact</a>
+              <a href="contact-us.html" class="site-footer__link" data-node-id="1147:5106">Contact</a>
             </li>
           </ul>
 
@@ -333,6 +336,7 @@
           <li><a href="#cancellation" class="site-footer__legal-link" data-node-id="1147:5130">Cancellation Policy</a></li>
         </ul>
       </div>
+      </div>
     </div>
 
     <!-- Footer Brand Banner -->
@@ -351,6 +355,8 @@
   <!-- GSAP & ScrollTrigger per AGENT.md Section 2 -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+  <!-- Lenis Smooth Scroll -->
+  <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.18/dist/lenis.min.js" defer></script>
   <script src="js/products-data.js" defer></script>
   <script src="js/components.js" defer></script>
   <script src="js/animations.js" defer></script>

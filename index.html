@@ -16,6 +16,7 @@
        ====================================================================== -->
   <header class="hero-banner" data-node-id="1145:1631">
     <nav class="navbar" aria-label="Main Navigation" data-node-id="1145:1634">
+      <div class="navbar__inner">
       <!-- Hamburger Menu Button (Visible on Tablet & Mobile: < 1024px) -->
       <button
         type="button"
@@ -29,7 +30,7 @@
       </button>
 
       <!-- Brand Logo -->
-      <a href="Home.html" class="navbar__logo" aria-label="Mama's Pickles Home" data-node-id="I1145:1634;1023:289">
+      <a href="index.html" class="navbar__logo" aria-label="Mama's Pickles Home" data-node-id="I1145:1634;1023:289">
         <img
           src="assets/icons/logo-nav.svg"
           alt="Mama's Pickles"
@@ -49,27 +50,28 @@
       <!-- Desktop Navigation Menu (>= 1024px) -->
       <ul class="navbar__menu" data-node-id="I1145:1634;1023:315">
         <li class="navbar__menu-item" data-node-id="I1145:1634;1023:316">
-          <a href="Home.html" class="navbar__link is-active" aria-current="page" data-node-id="I1145:1634;1023:317">Home</a>
+          <a href="index.html" class="navbar__link is-active" aria-current="page" data-node-id="I1145:1634;1023:317">Home</a>
         </li>
         <li class="navbar__menu-item navbar__menu-item--shop" data-node-id="I1145:1634;1023:318">
           <button type="button" class="navbar__link" aria-haspopup="true" aria-expanded="false" data-nav-shop data-node-id="I1145:1634;1023:319">Shop</button>
         </li>
         <li class="navbar__menu-item" data-node-id="I1145:1634;1023:320">
-          <a href="OurStory.html" class="navbar__link" data-node-id="I1145:1634;1023:321">Our Story</a>
+          <a href="our-story.html" class="navbar__link" data-node-id="I1145:1634;1023:321">Our Story</a>
         </li>
         <li class="navbar__menu-item" data-node-id="I1145:1634;1023:322">
-          <a href="Contactus.html" class="navbar__link" data-node-id="I1145:1634;1023:323">Contact Us</a>
+          <a href="contact-us.html" class="navbar__link" data-node-id="I1145:1634;1023:323">Contact Us</a>
         </li>
       </ul>
 
       <!-- Cart Action Button (Figma Node: 515:201 — Default: 515:200 / Active: 515:199) -->
-      <a href="Cart.html" class="navbar__cart" aria-label="Shopping Cart" aria-disabled="true" data-cart-btn data-node-id="I1145:1634;1023:324">
+      <a href="cart.html" class="navbar__cart" aria-label="Shopping Cart" aria-disabled="true" data-cart-btn data-node-id="I1145:1634;1023:324">
         <span class="navbar__cart-icon" data-node-id="I1145:1634;1023:324;519:450">
           <img src="assets/icons/icon-cart-default.svg" alt="" class="navbar__cart-img navbar__cart-img--default" width="24" height="24" />
           <img src="assets/icons/icon-cart.svg" alt="" class="navbar__cart-img navbar__cart-img--active" width="24" height="24" />
         </span>
         <span class="navbar__cart-counter" data-cart-count data-node-id="I1145:1634;1023:324;515:203">1</span>
       </a>
+      </div>
     </nav>
 
     <!-- Mobile / Tablet Navigation Drawer -->
@@ -83,10 +85,10 @@
           </button>
         </div>
         <ul class="mobile-drawer__list">
-          <li><a href="Home.html" class="mobile-drawer__link is-active">Home</a></li>
+          <li><a href="index.html" class="mobile-drawer__link is-active">Home</a></li>
           <li><button type="button" class="mobile-drawer__link" data-nav-shop-mobile>Shop</button></li>
-          <li><a href="OurStory.html" class="mobile-drawer__link">Our Story</a></li>
-          <li><a href="Contactus.html" class="mobile-drawer__link">Contact Us</a></li>
+          <li><a href="our-story.html" class="mobile-drawer__link">Our Story</a></li>
+          <li><a href="contact-us.html" class="mobile-drawer__link">Contact Us</a></li>
         </ul>
       </div>
     </div>
@@ -95,7 +97,7 @@
     <div class="hero-banner__body">
       <h1 class="hero-banner__title" data-hero-title data-node-id="1145:1633">
         <span class="hero-banner__title-dark">Taste the Little Magic of </span>
-        <span class="hero-banner__title-brand">Mama’s Pickles.</span>
+        <span class="hero-banner__title-brand">Mama’s Pickle.</span>
       </h1>
 
       <div class="hero-banner__video-card" data-hero-video data-node-id="1145:1632">
@@ -103,7 +105,6 @@
           class="hero-banner__video"
           src="assets/videos/hero-video.mp4"
           poster="assets/images/hero/hero-video-poster.png"
-          autoplay
           muted
           playsinline
           preload="auto"
@@ -181,19 +182,19 @@
         </div>
       </div>
 
-      <!-- 9 Product Grid (Each card links to Product.html?product=<slug>) -->
+      <!-- 9 Product Grid (Each card links to product.html?product=<slug>) -->
       <div class="product-grid" data-product-grid data-node-id="1145:1642">
         <!-- 1. Chicken Pickle -->
         <article class="product-card" data-category="non-veg" data-product-slug="chicken-pickle" data-node-id="1145:1643">
-          <a href="Product.html?product=chicken-pickle" class="product-card__link" aria-label="View Chicken Pickle details">
+          <a href="product.html?product=chicken-pickle" class="product-card__link" aria-label="View Chicken Pickle details">
             <div class="product-card__media" data-node-id="I1145:1643;239:497">
               <img
-                src="assets/images/products/Pickle type=Chicken Front, Variant=Png, SIzes=350g.png"
+                src="assets/images/products/pickle-chicken-front-png-350g.png"
                 alt="Chicken Pickle jar"
                 class="product-card__img"
               />
               <img
-                src="assets/images/products/Pickle type=Chicken Front, Variant=With Bg, SIzes=350g.png"
+                src="assets/images/products/pickle-chicken-front-with-bg-350g.png"
                 alt=""
                 aria-hidden="true"
                 class="product-card__hover-img"
@@ -218,15 +219,15 @@
 
         <!-- 2. Mutton Pickle -->
         <article class="product-card" data-category="non-veg" data-product-slug="mutton-pickle" data-node-id="1145:1644">
-          <a href="Product.html?product=mutton-pickle" class="product-card__link" aria-label="View Mutton Pickle details">
+          <a href="product.html?product=mutton-pickle" class="product-card__link" aria-label="View Mutton Pickle details">
             <div class="product-card__media" data-node-id="I1145:1644;239:497">
               <img
-                src="assets/images/products/Pickle type=Mutton Front, Variant=Png, SIzes=350g.png"
+                src="assets/images/products/pickle-mutton-front-png-350g.png"
                 alt="Mutton Pickle jar"
                 class="product-card__img"
               />
               <img
-                src="assets/images/products/Pickle type=Mutton Front, Variant=With Bg, SIzes=350g.png"
+                src="assets/images/products/pickle-mutton-front-with-bg-350g.png"
                 alt=""
                 aria-hidden="true"
                 class="product-card__hover-img"
@@ -251,15 +252,15 @@
 
         <!-- 3. Fish Pickle -->
         <article class="product-card" data-category="non-veg" data-product-slug="fish-pickle" data-node-id="1145:1645">
-          <a href="Product.html?product=fish-pickle" class="product-card__link" aria-label="View Fish Pickle details">
+          <a href="product.html?product=fish-pickle" class="product-card__link" aria-label="View Fish Pickle details">
             <div class="product-card__media" data-node-id="I1145:1645;239:497">
               <img
-                src="assets/images/products/Pickle type=Fish Front, Variant=Png, SIzes=350g.png"
+                src="assets/images/products/pickle-fish-front-png-350g.png"
                 alt="Fish Pickle jar"
                 class="product-card__img"
               />
               <img
-                src="assets/images/products/Pickle type=Fish Front, Variant=With Bg, SIzes=350g.png"
+                src="assets/images/products/pickle-fish-front-with-bg-350g.png"
                 alt=""
                 aria-hidden="true"
                 class="product-card__hover-img"
@@ -284,15 +285,15 @@
 
         <!-- 4. Prawn Pickle -->
         <article class="product-card" data-category="non-veg" data-product-slug="prawn-pickle" data-node-id="1145:1646">
-          <a href="Product.html?product=prawn-pickle" class="product-card__link" aria-label="View Prawn Pickle details">
+          <a href="product.html?product=prawn-pickle" class="product-card__link" aria-label="View Prawn Pickle details">
             <div class="product-card__media" data-node-id="I1145:1646;239:497">
               <img
-                src="assets/images/products/Pickle type=Prawn Front, Variant=Png, SIzes=350g.png"
+                src="assets/images/products/pickle-prawn-front-png-350g.png"
                 alt="Prawn Pickle jar"
                 class="product-card__img"
               />
               <img
-                src="assets/images/products/Pickle type=Prawn Front, Variant=With Bg, SIzes=350g.png"
+                src="assets/images/products/pickle-prawn-front-with-bg-350g.png"
                 alt=""
                 aria-hidden="true"
                 class="product-card__hover-img"
@@ -317,15 +318,15 @@
 
         <!-- 5. Squid Pickle -->
         <article class="product-card" data-category="non-veg" data-product-slug="squid-pickle" data-node-id="1145:1647">
-          <a href="Product.html?product=squid-pickle" class="product-card__link" aria-label="View Squid Pickle details">
+          <a href="product.html?product=squid-pickle" class="product-card__link" aria-label="View Squid Pickle details">
             <div class="product-card__media" data-node-id="I1145:1647;239:497">
               <img
-                src="assets/images/products/Pickle type=Squid Front, Variant=Png, SIzes=350g.png"
+                src="assets/images/products/pickle-squid-front-png-350g.png"
                 alt="Squid Pickle jar"
                 class="product-card__img"
               />
               <img
-                src="assets/images/products/Pickle type=Squid Front, Variant=With Bg, SIzes=350g.png"
+                src="assets/images/products/pickle-squid-front-with-bg-350g.png"
                 alt=""
                 aria-hidden="true"
                 class="product-card__hover-img"
@@ -350,15 +351,15 @@
 
         <!-- 6. Tomato Pickle -->
         <article class="product-card" data-category="veg" data-product-slug="tomato-pickle" data-node-id="1145:1648">
-          <a href="Product.html?product=tomato-pickle" class="product-card__link" aria-label="View Tomato Pickle details">
+          <a href="product.html?product=tomato-pickle" class="product-card__link" aria-label="View Tomato Pickle details">
             <div class="product-card__media" data-node-id="I1145:1648;239:497">
               <img
-                src="assets/images/products/Pickle type=Tomato Front, Variant=Png, SIzes=350g.png"
+                src="assets/images/products/pickle-tomato-front-png-350g.png"
                 alt="Tomato Pickle jar"
                 class="product-card__img"
               />
               <img
-                src="assets/images/products/Pickle type=Tomato Front, Variant=With Bg, SIzes=350g.png"
+                src="assets/images/products/pickle-tomato-front-with-bg-350g.png"
                 alt=""
                 aria-hidden="true"
                 class="product-card__hover-img"
@@ -383,15 +384,15 @@
 
         <!-- 7. Mango Pickle -->
         <article class="product-card" data-category="veg" data-product-slug="mango-pickle" data-node-id="1145:1649">
-          <a href="Product.html?product=mango-pickle" class="product-card__link" aria-label="View Mango Pickle details">
+          <a href="product.html?product=mango-pickle" class="product-card__link" aria-label="View Mango Pickle details">
             <div class="product-card__media" data-node-id="I1145:1649;239:497">
               <img
-                src="assets/images/products/Pickle type=Mango Front, Variant=Png, SIzes=350g.png"
+                src="assets/images/products/pickle-mango-front-png-350g.png"
                 alt="Mango Pickle jar"
                 class="product-card__img"
               />
               <img
-                src="assets/images/products/Pickle type=Mango Front, Variant=With Bg, SIzes=350g.png"
+                src="assets/images/products/pickle-mango-front-with-bg-350g.png"
                 alt=""
                 aria-hidden="true"
                 class="product-card__hover-img"
@@ -416,15 +417,15 @@
 
         <!-- 8. Lemon Pickle -->
         <article class="product-card" data-category="veg" data-product-slug="lemon-pickle" data-node-id="1145:1650">
-          <a href="Product.html?product=lemon-pickle" class="product-card__link" aria-label="View Lemon Pickle details">
+          <a href="product.html?product=lemon-pickle" class="product-card__link" aria-label="View Lemon Pickle details">
             <div class="product-card__media" data-node-id="I1145:1650;239:497">
               <img
-                src="assets/images/products/Pickle type=Lemon Front, Variant=Png, SIzes=350g.png"
+                src="assets/images/products/pickle-lemon-front-png-350g.png"
                 alt="Lemon Pickle jar"
                 class="product-card__img"
               />
               <img
-                src="assets/images/products/Pickle type=Lemon Front, Variant=With Bg, SIzes=350g.png"
+                src="assets/images/products/pickle-lemon-front-with-bg-350g.png"
                 alt=""
                 aria-hidden="true"
                 class="product-card__hover-img"
@@ -449,15 +450,15 @@
 
         <!-- 9. Garlic Pickle -->
         <article class="product-card" data-category="veg" data-product-slug="garlic-pickle" data-node-id="1145:1651">
-          <a href="Product.html?product=garlic-pickle" class="product-card__link" aria-label="View Garlic Pickle details">
+          <a href="product.html?product=garlic-pickle" class="product-card__link" aria-label="View Garlic Pickle details">
             <div class="product-card__media" data-node-id="I1145:1651;239:497">
               <img
-                src="assets/images/products/Pickle type=Garlic Front, Variant=Png, SIzes=350g.png"
+                src="assets/images/products/pickle-garlic-front-png-350g.png"
                 alt="Garlic Pickle jar"
                 class="product-card__img"
               />
               <img
-                src="assets/images/products/Pickle type=Garlic Front, Variant=With Bg, SIzes=350g.png"
+                src="assets/images/products/pickle-garlic-front-with-bg-350g.png"
                 alt=""
                 aria-hidden="true"
                 class="product-card__hover-img"
@@ -502,7 +503,7 @@
           <div class="promo-slide__overlay" data-node-id="1154:7150">
             <div class="promo-slide__content" data-node-id="1154:7151">
               <h2 class="promo-slide__title" data-node-id="1154:7152">Get 5 Non-Veg pickle for ₹1499</h2>
-              <a href="Product.html?product=chicken-pickle" class="promo-btn promo-btn--red" data-node-id="1154:7153">
+              <a href="product.html?product=chicken-pickle" class="promo-btn promo-btn--red" data-node-id="1154:7153">
                 <span class="promo-btn__shine" aria-hidden="true">
                   <span class="promo-btn__beam promo-btn__beam--1"></span>
                   <span class="promo-btn__beam promo-btn__beam--2"></span>
@@ -529,7 +530,7 @@
           <div class="promo-slide__overlay" data-node-id="1154:7161">
             <div class="promo-slide__content" data-node-id="1154:7162">
               <h2 class="promo-slide__title" data-node-id="1154:7163">Get 4 Veg pickle for ₹699</h2>
-              <a href="Product.html?product=mango-pickle" class="promo-btn promo-btn--green" data-node-id="1154:7164">
+              <a href="product.html?product=mango-pickle" class="promo-btn promo-btn--green" data-node-id="1154:7164">
                 <span class="promo-btn__shine" aria-hidden="true">
                   <span class="promo-btn__beam promo-btn__beam--green-1"></span>
                   <span class="promo-btn__beam promo-btn__beam--green-2"></span>
@@ -706,7 +707,7 @@
                     A growing community of pickle lovers built through homemade flavors and word of mouth recommendations.
                   </p>
                 </div>
-                <a href="OurStory.html" class="journey-slide__btn">Learn More</a>
+                <a href="our-story.html" class="journey-slide__btn">Learn More</a>
               </div>
             </article>
 
@@ -722,7 +723,7 @@
                     Grew from 500 customers in January 2025 to 1,000 customers within just three months, driven by word-of-mouth recommendations.
                   </p>
                 </div>
-                <a href="OurStory.html" class="journey-slide__btn">Learn More</a>
+                <a href="our-story.html" class="journey-slide__btn">Learn More</a>
               </div>
             </article>
 
@@ -741,7 +742,7 @@
                     Partnered with local stores in Coimbatore to make Mama’s Pickles accessible to more customers.
                   </p>
                 </div>
-                <a href="OurStory.html" class="journey-slide__btn">Learn More</a>
+                <a href="our-story.html" class="journey-slide__btn">Learn More</a>
               </div>
             </article>
 
@@ -757,7 +758,7 @@
                     From its neighbourhood beginnings, the brand has expanded its customer reach across <strong>Palakkad, Andhra,</strong> and <strong>Bangalore</strong>.
                   </p>
                 </div>
-                <a href="OurStory.html" class="journey-slide__btn">Learn More</a>
+                <a href="our-story.html" class="journey-slide__btn">Learn More</a>
               </div>
             </article>
           </div>
@@ -850,6 +851,7 @@
        ====================================================================== -->
   <footer class="site-footer" data-node-id="1145:1850">
     <div class="site-footer__main" data-node-id="1145:1851">
+      <div class="site-footer__inner">
       <div class="site-footer__top" data-node-id="1145:1852">
         <!-- Newsletter Subscription -->
         <div class="site-footer__newsletter" data-node-id="1145:1853">
@@ -880,10 +882,10 @@
               <a href="Shop.html" class="site-footer__link" data-node-id="1145:1862">Shop</a>
             </li>
             <li data-node-id="1145:1863">
-              <a href="OurStory.html" class="site-footer__link" data-node-id="1145:1864">Our Story</a>
+              <a href="our-story.html" class="site-footer__link" data-node-id="1145:1864">Our Story</a>
             </li>
             <li data-node-id="1145:1865">
-              <a href="Contactus.html" class="site-footer__link" data-node-id="1145:1866">Contact</a>
+              <a href="contact-us.html" class="site-footer__link" data-node-id="1145:1866">Contact</a>
             </li>
           </ul>
 
@@ -921,6 +923,7 @@
           <li><a href="#cancellation" class="site-footer__legal-link" data-node-id="1145:1890">Cancellation Policy</a></li>
         </ul>
       </div>
+      </div>
     </div>
 
     <!-- Footer Brand Banner -->
@@ -939,6 +942,8 @@
   <!-- GSAP & ScrollTrigger per AGENT.md Section 2 -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+  <!-- Lenis Smooth Scroll -->
+  <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.18/dist/lenis.min.js" defer></script>
   <script src="js/products-data.js" defer></script>
   <script src="js/components.js" defer></script>
   <script src="js/animations.js" defer></script>

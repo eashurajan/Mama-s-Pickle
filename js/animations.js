@@ -1,8 +1,95 @@
 /**
- * animations.js — GSAP & ScrollTrigger Animations
+ * animations.js — Lenis Smooth Scroll & GSAP / ScrollTrigger Animations
  * Respects prefers-reduced-motion and animates transform/opacity only per AGENT.md.
  * Detailed comments are provided above each animation block for maintainability.
  */
+
+/**
+ * Initializes a single Lenis smooth-scroll instance synchronized with GSAP's ticker
+ * and ScrollTrigger updates. Preserves native touch scrolling and horizontal swipes.
+ */
+function initSmoothScroll() {
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (prefersReducedMotion || typeof window.Lenis === 'undefined') {
+    return null;
+  }
+
+  if (window.__lenisInstance) {
+    return window.__lenisInstance;
+  }
+
+  const lenis = new window.Lenis({
+    duration: 1.05,
+    easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+    smoothWheel: true,
+    wheelMultiplier: 1,
+    touchMultiplier: 1.2,
+    syncTouch: false,
+  });
+
+  window.__lenisInstance = lenis;
+
+  const hasGsap = typeof window.gsap !== 'undefined';
+  const hasScrollTrigger = typeof window.ScrollTrigger !== 'undefined';
+
+  if (hasGsap && hasScrollTrigger) {
+    window.gsap.registerPlugin(window.ScrollTrigger);
+  }
+
+  if (hasScrollTrigger) {
+    lenis.on('scroll', window.ScrollTrigger.update);
+  }
+
+  let rafId = null;
+  let tickerCallback = null;
+
+  if (hasGsap) {
+    tickerCallback = (time) => {
+      lenis.raf(time * 1000);
+    };
+    window.gsap.ticker.add(tickerCallback);
+    window.gsap.ticker.lagSmoothing(0);
+  } else {
+    const rafLoop = (time) => {
+      lenis.raf(time);
+      rafId = window.requestAnimationFrame(rafLoop);
+    };
+    rafId = window.requestAnimationFrame(rafLoop);
+  }
+
+  // Smoothly scroll in-page anchor links via Lenis while preserving native link behaviour
+  const handleAnchorClick = (e) => {
+    const anchor = e.target.closest('a[href^="#"]');
+    if (!anchor) return;
+    const href = anchor.getAttribute('href');
+    if (!href || href === '#') return;
+    const target = document.querySelector(href);
+    if (!target) return;
+    e.preventDefault();
+    lenis.scrollTo(target, { offset: -80 });
+  };
+  document.addEventListener('click', handleAnchorClick);
+
+  window.addEventListener(
+    'pagehide',
+    () => {
+      document.removeEventListener('click', handleAnchorClick);
+      if (tickerCallback && typeof window.gsap !== 'undefined') {
+        window.gsap.ticker.remove(tickerCallback);
+      }
+      if (rafId !== null) {
+        window.cancelAnimationFrame(rafId);
+      }
+      lenis.destroy();
+      window.__lenisInstance = null;
+    },
+    { once: true }
+  );
+
+  return lenis;
+}
+
+window.initSmoothScroll = initSmoothScroll;
 
 function initAnimations() {
   const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -28,7 +115,32 @@ function initAnimations() {
   const heroVideoCard = document.querySelector('[data-hero-video]');
   const heroVideoEl = heroVideoCard ? heroVideoCard.querySelector('.hero-banner__video') : null;
 
-  if (heroBanner && heroNavbar && heroTitle && heroVideoCard && heroVideoEl) {
+  const HERO_PLAYED_KEY = 'mamasPickleHeroPlayed';
+  let hasPlayedHeroBefore = false;
+  try {
+    hasPlayedHeroBefore = window.localStorage.getItem(HERO_PLAYED_KEY) === '1';
+  } catch (e) {
+    hasPlayedHeroBefore = false;
+  }
+
+  const markHeroAsPlayed = () => {
+    try {
+      window.localStorage.setItem(HERO_PLAYED_KEY, '1');
+    } catch (e) {
+      // Ignore storage errors in restricted browsing modes
+    }
+  };
+
+  if (heroBanner && heroNavbar && heroTitle && heroVideoCard && heroVideoEl && hasPlayedHeroBefore) {
+    heroVideoEl.loop = true;
+    heroVideoEl.controls = false;
+    heroVideoEl.muted = true;
+    heroVideoEl.playsInline = true;
+    const repeatPlay = heroVideoEl.play();
+    if (repeatPlay && typeof repeatPlay.catch === 'function') {
+      repeatPlay.catch(() => {});
+    }
+  } else if (heroBanner && heroNavbar && heroTitle && heroVideoCard && heroVideoEl) {
     const heroTitleParts = heroTitle.querySelectorAll('.hero-banner__title-dark, .hero-banner__title-brand');
     let heroCtx = null;
     let hasTransitioned = false;
@@ -58,7 +170,12 @@ function initAnimations() {
       window.removeEventListener('wheel', blockScrollEvent);
       window.removeEventListener('touchmove', blockScrollEvent);
       window.removeEventListener('keydown', blockKeyScroll);
-      window.scrollTo(0, 0);
+      if (window.__lenisInstance) {
+        window.__lenisInstance.start();
+        window.__lenisInstance.scrollTo(0, { immediate: true });
+      } else {
+        window.scrollTo(0, 0);
+      }
 
       if (immediate) {
         gsap.set(heroNavbar, { yPercent: 0, opacity: 1 });
@@ -77,6 +194,13 @@ function initAnimations() {
         const tl = gsap.timeline({
           onComplete: () => {
             gsap.set(heroVideoCard, { clearProps: 'position,top,left,width,height,transform,borderRadius,zIndex,minWidth,maxWidth' });
+            if (heroVideoEl.paused) {
+              heroVideoEl.loop = true;
+              const resumePlay = heroVideoEl.play();
+              if (resumePlay && typeof resumePlay.catch === 'function') {
+                resumePlay.catch(() => {});
+              }
+            }
             if (typeof window.ScrollTrigger !== 'undefined') {
               window.ScrollTrigger.refresh();
             }
@@ -140,7 +264,12 @@ function initAnimations() {
     };
 
     // Initial locked fullscreen state
-    window.scrollTo(0, 0);
+    if (window.__lenisInstance) {
+      window.__lenisInstance.stop();
+      window.__lenisInstance.scrollTo(0, { immediate: true });
+    } else {
+      window.scrollTo(0, 0);
+    }
     document.documentElement.classList.add('is-hero-playing');
     document.body.classList.add('is-hero-playing');
     window.addEventListener('wheel', blockScrollEvent, { passive: false });
@@ -157,8 +286,14 @@ function initAnimations() {
     heroVideoEl.addEventListener(
       'ended',
       () => {
-        heroVideoEl.pause();
+        markHeroAsPlayed();
         transitionHeroToFinalLayout(false);
+        heroVideoEl.loop = true;
+        heroVideoEl.currentTime = 0;
+        const settledPlay = heroVideoEl.play();
+        if (settledPlay && typeof settledPlay.catch === 'function') {
+          settledPlay.catch(() => {});
+        }
       },
       { once: true }
     );
@@ -172,10 +307,16 @@ function initAnimations() {
     );
 
     const playPromise = heroVideoEl.play();
-    if (playPromise && typeof playPromise.catch === 'function') {
-      playPromise.catch(() => {
-        transitionHeroToFinalLayout(true);
-      });
+    if (playPromise && typeof playPromise.then === 'function') {
+      playPromise
+        .then(() => {
+          markHeroAsPlayed();
+        })
+        .catch(() => {
+          transitionHeroToFinalLayout(true);
+        });
+    } else {
+      markHeroAsPlayed();
     }
 
     window.addEventListener('pagehide', () => {
@@ -231,7 +372,7 @@ function initAnimations() {
   /**
    * 5. OUR STORY PAGE MILESTONE SCROLL REVEALS
    * Smoothly reveals the founder introduction and each staggered brand story
-   * milestone card on OurStory.html using transform (y) and opacity as the user scrolls.
+   * milestone card on our-story.html using transform (y) and opacity as the user scrolls.
    */
   const storyRevealBlocks = document.querySelectorAll('[data-story-reveal]');
   if (storyRevealBlocks.length && typeof window.ScrollTrigger !== 'undefined') {
