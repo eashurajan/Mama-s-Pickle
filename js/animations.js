@@ -394,6 +394,111 @@ function initAnimations() {
       );
     });
   }
+
+  /**
+   * 6. OUR STORY "TASTE OF HOME" VIEWPORT-AWARE PICKLE JAR SLIDESHOW
+   * Cycles through the story-bgwith-(picklename) images at 4 frames per second
+   * via requestAnimationFrame only while the section is inside the viewport.
+   */
+  const tasteSlideshow = document.querySelector('[data-story-taste-slideshow]');
+  if (tasteSlideshow && !prefersReducedMotion) {
+    const slides = Array.from(tasteSlideshow.querySelectorAll('.story-taste__bg'));
+    if (slides.length > 1) {
+      const observeTarget = tasteSlideshow.closest('.story-milestone--taste') || tasteSlideshow;
+      const FPS = 4;
+      const FRAME_MS = 1000 / FPS;
+
+      let currentIndex = 0;
+      let elapsedMs = 0;
+      let lastTimestamp = null;
+      let rafId = null;
+      let isInViewport = false;
+      let decoded = false;
+
+      const preloadSlides = () => {
+        if (decoded) return;
+        decoded = true;
+        slides.forEach((img) => {
+          img.loading = 'eager';
+          if (typeof img.decode === 'function') {
+            img.decode().catch(() => {});
+          }
+        });
+      };
+
+      const step = (timestamp) => {
+        if (!isInViewport || document.hidden) {
+          rafId = null;
+          lastTimestamp = null;
+          return;
+        }
+
+        if (lastTimestamp === null) {
+          lastTimestamp = timestamp;
+        }
+
+        const dt = Math.min(timestamp - lastTimestamp, 200);
+        lastTimestamp = timestamp;
+        elapsedMs += dt;
+
+        if (elapsedMs >= FRAME_MS) {
+          const frameAdvance = Math.floor(elapsedMs / FRAME_MS);
+          elapsedMs %= FRAME_MS;
+
+          slides[currentIndex].classList.remove('is-active');
+          currentIndex = (currentIndex + frameAdvance) % slides.length;
+          slides[currentIndex].classList.add('is-active');
+        }
+
+        rafId = window.requestAnimationFrame(step);
+      };
+
+      const startLoop = () => {
+        if (rafId !== null || !isInViewport || document.hidden) return;
+        lastTimestamp = null;
+        rafId = window.requestAnimationFrame(step);
+      };
+
+      const stopLoop = () => {
+        if (rafId !== null) {
+          window.cancelAnimationFrame(rafId);
+          rafId = null;
+        }
+        lastTimestamp = null;
+      };
+
+      if ('IntersectionObserver' in window) {
+        const observer = new window.IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                isInViewport = true;
+                preloadSlides();
+                startLoop();
+              } else {
+                isInViewport = false;
+                stopLoop();
+              }
+            });
+          },
+          { threshold: 0.05 }
+        );
+        observer.observe(observeTarget);
+      } else {
+        isInViewport = true;
+        preloadSlides();
+        startLoop();
+      }
+
+      document.addEventListener('visibilitychange', () => {
+        if (document.hidden) {
+          stopLoop();
+        } else if (isInViewport) {
+          startLoop();
+        }
+      });
+    }
+  }
 }
 
 if (typeof window !== 'undefined') {

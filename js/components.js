@@ -1889,7 +1889,9 @@ function initProductDetailPage() {
   const nutritionHeadingEl = pdpMain.querySelector('[data-pdp-nutrition-heading]');
   const nutritionValuesEl = pdpMain.querySelector('[data-pdp-nutrition-values]');
   const relatedSectionEl = pdpMain.querySelector('.pdp-suggestions');
+  const relatedInnerEl = pdpMain.querySelector('.pdp-suggestions__inner');
   const relatedGridEl = pdpMain.querySelector('[data-pdp-related-grid]');
+  const relatedEmptyEl = pdpMain.querySelector('[data-pdp-related-empty]');
 
   let activeProduct = null;
   let activeSizeKey = '350g';
@@ -1981,7 +1983,6 @@ function initProductDetailPage() {
 
     mainImgEl.src = currentItem.src;
     mainImgEl.alt = currentItem.alt;
-    mainImgEl.classList.toggle('is-contain', safeIndex !== 0);
 
     thumbsContainer.innerHTML = gallery
       .map((item, idx) => {
@@ -2170,8 +2171,15 @@ function initProductDetailPage() {
       });
     }
 
+    const isEmpty = relatedProducts.length === 0;
     if (relatedSectionEl) {
-      relatedSectionEl.classList.toggle('is-hidden', relatedProducts.length === 0);
+      relatedSectionEl.classList.remove('is-hidden');
+    }
+    if (relatedInnerEl) {
+      relatedInnerEl.classList.toggle('is-hidden', isEmpty);
+    }
+    if (relatedEmptyEl) {
+      relatedEmptyEl.classList.toggle('is-hidden', !isEmpty);
     }
 
     relatedProducts.slice(0, desiredCount).forEach((relProduct) => {
